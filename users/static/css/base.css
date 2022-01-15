@@ -495,3 +495,13 @@ html {
 #navbar-img {
     height: 90%;
 }
+.team-logos{
+    display: none;
+    transition: all 0.75s ease-in;
+    opacity: 0;
+}
+.show-logos{
+    opacity: 1;
+    display: block;
+    transition: all 0.75s ease-in;
+}
