@@ -237,7 +237,8 @@ nav {
     text-align: center;
 }
 
-input[type=button] {
+input[type=button],
+input[type=submit] {
     width: 10%;
     padding: 1rem;
     border-radius: 1rem;
