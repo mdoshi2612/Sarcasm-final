@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Team
 from users.forms import TeamForm
 from django.http import HttpResponseRedirect
 from .models import Team
@@ -18,5 +19,6 @@ def home(request):
 		
 		team = Team(leader_name=leader_name, leader_roll_number=leader_roll_number, year_of_study=year_of_study, team_name=team_name, player1=player1, player2=player2, player3=player3, player4=player4)
 		team.save()
-		return HttpResponseRedirect('/')
+
+	
 	return render(request,'users/sarcasmbase.html')
