@@ -24,7 +24,8 @@ body {
     font-weight: normal;
     font-size: 10rem;
     line-height: 140px;
-    margin-left: 7.5%;
+    width: 85%;
+    margin: auto;
     /* identical to box height */
     color: #FFD600;
 }
@@ -55,7 +56,7 @@ body {
     color: white;
     width: 85%;
     height: 783px;
-    margin-left: 7.5%;
+    margin: auto;
     border-radius: 16px;
     position: relative;
     overflow: hidden;
@@ -76,7 +77,6 @@ body {
 
 #gen-info {
     padding-top: 50px;
-    padding-left: 100px;
     font-size: 2.5rem;
 }
 
@@ -354,13 +354,14 @@ body {
     border-radius: 10px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 992px) {
     nav {
         border: none;
         background-color: transparent;
         background: transparent;
     }
     .navbar {
+        margin: 3rem;
         background-color: transparent;
         background: transparent;
     }
@@ -368,7 +369,7 @@ body {
         display: none;
     }
     body {
-        background-color: hotpink;
+        background: url("../images/mobile_background.jpg") fixed;
     }
     .navbar {
         flex-direction: column;
