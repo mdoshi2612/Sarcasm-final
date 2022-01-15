@@ -213,12 +213,13 @@ nav {
     text-align: center;
 }
 
-input[type=submit] {
+input[type=button] {
     width: 10%;
     padding: 1rem;
     border-radius: 1rem;
     margin: 1rem 0;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    background-color: #FFD600;
 }
 
 @media screen and (max-width: 992px) {
