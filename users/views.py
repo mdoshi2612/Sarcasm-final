@@ -14,8 +14,9 @@ def home(request):
 		player2 = request.POST.get('player2')
 		player3 = request.POST.get('player3')
 		player4 = request.POST.get('player4')
+		team_logo = request.POST.get('team_logo')
 		
-		team = Team(leader_name=leader_name, leader_roll_number=leader_roll_number, year_of_study=year_of_study, team_name=team_name, player1=player1, player2=player2, player3=player3, player4=player4)
+		team = Team(leader_name=leader_name, leader_roll_number=leader_roll_number, year_of_study=year_of_study, team_name=team_name, player1=player1, player2=player2, player3=player3, player4=player4, team_logo=team_logo)
 		team.save()
 
 	
