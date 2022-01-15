@@ -15,4 +15,4 @@ def home(request):
 		form=TeamForm()
 
 	
-	return render(request,'game/sarcasmbase.html')
+	return render(request,'users/sarcasmbase.html')
