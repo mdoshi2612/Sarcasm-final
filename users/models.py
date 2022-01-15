@@ -6,7 +6,7 @@ class Team(models.Model):
 	leader_roll_number = models.CharField(max_length=100)
 	year_of_study = models.CharField(max_length=100)
 	team_name = models.CharField(max_length=100)
-	team_logo = models.CharField(max_length=100)
+	team_logo = models.CharField(max_length=100, null=True)
 	player1 = models.CharField(max_length=100)
 	player2 = models.CharField(max_length=100)
 	player3 = models.CharField(max_length=100)
