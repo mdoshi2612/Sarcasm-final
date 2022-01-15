@@ -102,13 +102,13 @@
                             <label>Leader Name</label>
                         </div>
                         <div class="col-lg">
-                            <input type="text" name="leader_name">
+                            <input type="text" name="leader_name" required>
                         </div>
                         <div class="col-lg">
                             <label for="">Team Player 1</label>
                         </div>
                         <div class="col-lg">
-                            <input type="text" name="player1">
+                            <input type="text" name="player1" required>
                         </div>
                     </div>
                     <div class="row">
@@ -116,7 +116,7 @@
                             <label>Leader Roll Number</label>
                         </div>
                         <div class="col-lg">
-                            <input type="text" name="leader_roll_number">
+                            <input type="text" name="leader_roll_number" required>
                         </div>
                         <div class="col-lg">
                             <label for="">Team Player 2</label>
@@ -130,7 +130,7 @@
                             <label>Year of Study</label>
                         </div>
                         <div class="col-lg">
-                            <input type="text" name="year_of_study" id="">
+                            <input type="text" name="year_of_study" id="" required>
                         </div>
                         <div class="col-lg">
                             <label for="">Team Player 3</label>
@@ -144,7 +144,7 @@
                             <label>Team Name</label>
                         </div>
                         <div class="col-lg">
-                            <input type="text" name="team_name" id="">
+                            <input type="text" name="team_name" id="" required>
                         </div>
                         <div class="col-lg">
                             <label for="">Team Player 4</label>
@@ -167,10 +167,10 @@
                     </div> -->
                     <a href="#team-logos-sec">
                         <div style="text-align: center; margin: 2rem 0; width: 100%;">
-                            <input type="button" value="Next" class="btn" id="btn-next" >
+                            <input type="button" value="Next" class="btn" id="btn-next">
                         </div>
                     </a>
-                
+
 
                 </div>
             </div>
@@ -188,7 +188,7 @@
                 <div class="col">
                     <label>
                         <input type="radio" name="team_logo" value="Alakazam" >
-                        <img src="static/pokemons/Alakazam.png" alt="" class="logo img-fluid">
+                        <img src="static/pokemons/Alakazam.png" alt="" class="logo img-fluid" checked>
                     </label>
                 </div>
                 <div class="col">
@@ -325,11 +325,11 @@
     </div>
     </form>
 
-   
+
 
     </div>
     <script>
-        $("#btn-next").click(function(){
+        $("#btn-next").click(function() {
             $(".team-logos").addClass("show-logos")
         })
     </script>

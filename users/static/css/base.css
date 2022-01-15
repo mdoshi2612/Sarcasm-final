@@ -127,6 +127,7 @@ input[type=text] {
     width: 80%;
     padding: 1rem;
     border-radius: 1rem;
+    font-size: 2rem;
 }
 
 div *,
@@ -496,12 +497,14 @@ html {
 #navbar-img {
     height: 90%;
 }
-.team-logos{
+
+.team-logos {
     display: none;
     transition: all 0.75s ease-in;
     opacity: 0;
 }
-.show-logos{
+
+.show-logos {
     opacity: 1;
     display: block;
     transition: all 0.75s ease-in;
