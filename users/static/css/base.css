@@ -40,6 +40,17 @@ body {
     margin-left: 0%;
 }
 
+.team-logos h1 {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 5rem;
+    /* identical to box height */
+    color: #FFD600;
+    margin: 2rem 0;
+    margin-left: 0%;
+}
+
 #gen-info-section {
     color: white;
     width: 85%;
@@ -120,6 +131,22 @@ div *:after {
     -webkit-box-sizing: content-box !important;
     -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
+}
+
+.team-logos {
+    margin: 2rem 0px;
+    text-align: center;
+    width: 85%;
+    margin: 4rem auto;
+}
+
+.logo {
+    width: 15rem;
+    height: 15rem;
+}
+
+.row-logos {
+    margin: 1rem 0;
 }
 
 .button {

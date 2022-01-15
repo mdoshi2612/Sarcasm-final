@@ -92,8 +92,8 @@
     <br>
     <br>
     <div id="reg-section" class="blur-back">
-        <div id="reg-section-content">
-            <form action="" method="POST" id="reg-form">
+        <form action="" method="POST" id="reg-form">
+            <div id="reg-section-content">
                 {% csrf_token %}
                 <div class="container">
                     <div class="row">
@@ -123,56 +123,104 @@
                         <div class="col-lg">
                             <input type="text" name="player2">
                         </div>
-                        <div class="row">
-                            <div class="col-lg">
-                                <label>Year of Study</label>
-                            </div>
-                            <div class="col-lg">
-                                <input type="text" name="year_of_study" id="">
-                            </div>
-                            <div class="col-lg">
-                                <label for="">Team Player 3</label>
-                            </div>
-                            <div class="col-lg">
-                                <input type="text" name="player3" id="">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg">
-                                    <label>Team Name</label>
-                                </div>
-                                <div class="col-lg">
-                                    <input type="text" name="team_name" id="">
-                                </div>
-                                <div class="col-lg">
-                                    <label for="">Team Player 4</label>
-                                </div>
-                                <div class="col-lg">
-                                    <input type="text" name="player4" id="">
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg">
-                                        <label>Team Logo</label>
-                                    </div>
-                                    <div class="col-lg">
-                                        <input type="text" name="team_logo" id="">
-                                    </div>
-                                    <div class="col-lg">
-                                    </div>
-                                    <div class="col-lg">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col" style="text-align: center; margin: 20px;">
-                                        <input type="button" value="Submit" id="submit">
-                                    </div>
-                                </div>
-
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <label>Year of Study</label>
+                        </div>
+                        <div class="col-lg">
+                            <input type="text" name="year_of_study" id="">
+                        </div>
+                        <div class="col-lg">
+                            <label for="">Team Player 3</label>
+                        </div>
+                        <div class="col-lg">
+                            <input type="text" name="player3" id="">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <label>Team Name</label>
+                        </div>
+                        <div class="col-lg">
+                            <input type="text" name="team_name" id="">
+                        </div>
+                        <div class="col-lg">
+                            <label for="">Team Player 4</label>
+                        </div>
+                        <div class="col-lg">
+                            <input type="text" name="player4" id="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <label>Team Logo</label>
+                        </div>
+                        <div class="col-lg">
+                            <input type="text" name="team_logo" id="">
+                        </div>
+                        <div class="col-lg">
+                        </div>
+                        <div class="col-lg">
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin: 2rem 0; width: 100%;">
+                        <input type="button" value="Next" id="submit">
+                    </div>
+
+
                 </div>
-            </form>
+            </div>
+    </div>
+    </div>
+
+    </div>
+    <div class="team-logos blur-back">
+        <h1>
+            Pick your team logo
+        </h1>
+        <div class="container">
+            <div class="row row-logos">
+                <div class="col"><img src="static/pokemons/Alakazam.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Arcanine.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Blastoise.png" alt="" class="logo img-fluid"></div>
+            </div>
+            <div class="row row-logos">
+                <div class="col"><img src="static/pokemons/Charizard.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Dragonite.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Eevee.png" alt="" class="logo img-fluid"></div>
+            </div>
+            <div class="row row-logos">
+                <div class="col"><img src="static/pokemons/Garchomp.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Gengar.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Gyarados.png" alt="" class="logo img-fluid"></div>
+            </div>
+            <div class="row row-logos">
+                <div class="col"><img src="static/pokemons/Haunter.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Kingdra.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Lugia.png" alt="" class="logo img-fluid"></div>
+            </div>
+            <div class="row row-logos">
+                <div class="col"><img src="static/pokemons/Metagross.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Mew.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Mewtwo.png" alt="" class="logo img-fluid"></div>
+            </div>
+            <div class="row row-logos">
+                <div class="col"><img src="static/pokemons/Pikachu.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Snorlax.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Typhlosion.png" alt="" class="logo img-fluid"></div>
+            </div>
+            <div class="row row-logos">
+                <div class="col"><img src="static/pokemons/Tyranitar.png" alt="" class="logo img-fluid"></div>
+                <div class="col"><img src="static/pokemons/Umbreon.png" alt="" class="logo img-fluid"></div>
+            </div>
         </div>
+    </div>
+    </form>
+
+
+
+
     </div>
 </body>
 
