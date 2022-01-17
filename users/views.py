@@ -23,3 +23,5 @@ def home(request):
 
 	
 	return render(request,'users/sarcasmbase.html')
+def faq(request):
+    return render(request,'users/faq.html')

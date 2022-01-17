@@ -1,0 +1,97 @@
+@font-face {
+    font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+}
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
+    
+}
+body{
+    background: url("../images/laptop_background.jpg");
+    background-size: cover;
+}
+
+/* * {
+    font-size: 10px;
+} */
+.accordion {
+    background-color: #081341;
+  border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 80%;
+    /* height: 25vh; */
+    border: none;
+    font-size: 1.5rem;
+    text-align: left;
+    outline: none;
+    /* font-size: 15px; */
+    transition: 0.4s;
+    margin-left: 10%;
+  }
+  .active
+  {
+      height: 30vh;
+      border-radius: 10px 10px 0px 0px;
+  }
+  /* .active, .accordion:hover {
+    background-color: #ccc;
+  }
+  
+  .accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2212";
+  } */
+  
+  .panel {
+  width:80%;
+  border-radius: 0px 0px 10px 10px;
+  margin-left: 10%;
+    /* padding: 0 18px; */
+    color: white;
+    background-color: #081341;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1.25rem;
+    transition: max-height 0.2s ease-out;
+  }
+  .faq-row
+  {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      /* justify-content: space-evenly; */
+  }
+  .faq-img
+  {
+      height: 80%;
+      width: 10%;
+      padding: 10px;
+  }
+  @media only screen and (max-width: 992px) {
+      .accordion
+      {
+          height: 25vh;
+          padding-top: 10vh;
+          padding-bottom: 10vh;
+          padding: 4px;
+      }
+      .panel
+      {
+          font-size: 2rem;
+          height: 30vh;
+      }
+      .faq-img
+      {
+          height: 80%;
+      }
+  }
