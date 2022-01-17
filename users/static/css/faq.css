@@ -11,6 +11,18 @@ body{
     background: url("../images/laptop_background.jpg");
     background-size: cover;
 }
+.main-heading {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10rem;
+    line-height: 210px;
+    width: 50%;
+    margin: auto;
+    margin-left: 35%;
+    /* identical to box height */
+    color: #FFD600;
+}
 
 /* * {
     font-size: 10px;
@@ -57,12 +69,15 @@ body{
   border-radius: 0px 0px 10px 10px;
   margin-left: 10%;
     /* padding: 0 18px; */
+    padding-left: 130px;
+    padding-right: 50px;
     color: white;
     background-color: #081341;
     max-height: 0;
     overflow: hidden;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     transition: max-height 0.2s ease-out;
+    transform: translateY(-50px);
   }
   .faq-row
   {
@@ -80,7 +95,7 @@ body{
   @media only screen and (max-width: 992px) {
       .accordion
       {
-          height: 25vh;
+          height: 15vh;
           padding-top: 10vh;
           padding-bottom: 10vh;
           padding: 4px;
@@ -89,9 +104,33 @@ body{
       {
           font-size: 2rem;
           height: 30vh;
+          transform: translateY(-90px);
       }
       .faq-img
       {
-          height: 80%;
+          height: 120%;
       }
   }
+  @media screen and (max-width: 992px) {
+    * {
+        font-size: 20px;
+    }
+    .accordion
+    {
+        font-size: 2rem;
+    }
+    .main-heading {
+        margin-left:30% ;
+        line-height: 250px;
+    }
+    .panel
+    {
+        padding-left: 70px;
+        padding-right: 50px;
+    }
+    .panel p
+    {
+        font-size: 30px;
+    }
+}
+  
