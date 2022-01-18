@@ -142,9 +142,14 @@ class Play(View) :
 			ans = form.cleaned_data.get('answer')
 			if ans == cur_level.answer:
 				level_number = cur_user.current_level.level_id
-				try:
-					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
+				if level_number == 2 :
 					cur_user.points=cur_user.points+3
+					cur_user.current_level_time = timezone.now()	 					
+					cur_user.save()
+					pass
+				try:
+					cur_user.points=cur_user.points+3
+					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
 					cur_user.current_level_time = timezone.now()	 					
 					cur_user.save()
 				except:
