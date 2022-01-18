@@ -141,7 +141,7 @@ class Play(View) :
 				level_number = cur_user.current_level.level_id
 				try:
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
-					cur_user.points=cur_user.player.points+3
+					cur_user.points=cur_user.points+3
 					cur_user.current_level_time = timezone.now()	 					
 					cur_user.save()
 				except:
@@ -151,6 +151,6 @@ class Play(View) :
 
 		
 def leaderboard(request):
-	top_teams = Team.objects.order_by('-score')[:10]
+	top_teams = Team.objects.order_by('points')[:10]
 	context = {'top_teams': top_teams}
 	return render(request,'users/leaderboard.html', context)

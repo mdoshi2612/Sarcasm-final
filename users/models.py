@@ -36,4 +36,4 @@ class Team(models.Model):
 	points=models.IntegerField(default=0)
 	username = models.CharField(max_length=100, null=True, blank = True)
 	password = models.CharField(max_length=100, null=True, blank = True)
-	score = models.IntegerField(default=0)
+	# score = models.IntegerField(default=0)
