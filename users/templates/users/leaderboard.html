@@ -15,24 +15,14 @@
     <div class="table-responsive table-container">
         <table class="table table-bordered leaderboard">
             <tbody>
+                {% for team in top_teams %}
                 <tr>
-                    <th scope="row" class="rank">2</th>
-                    <td class="logo">{{ top_teams.team_name }}</td>
-                    <td class="team-name">{{ top_teams.team_name }}</td>
-                    <td class="score">{{ top_teams.team_name }}</td>
+                    <th scope="row" class="rank">1</th>
+                    <td class="logo">{{ team.team_logo }}</td>
+                    <td class="team-name">{{ team.team_name }}</td>
+                    <td class="score">{{ team.score }}</td>
                 </tr>
-                <tr>
-                    <th scope="row" class="rank">2</th>
-                    <td class="logo">Jacob</td>
-                    <td class="team-name">Thornton</td>
-                    <td class="score">@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row" class="rank">2</th>
-                    <td class="logo">Jacob</td>
-                    <td class="team-name">Thornton</td>
-                    <td class="score">@fat</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

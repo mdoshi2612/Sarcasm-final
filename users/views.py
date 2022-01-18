@@ -28,6 +28,6 @@ def faq(request):
     return render(request,'users/faq.html')
 
 def leaderboard(request):
-	top_teams = Team.objects.order_by('-score')[0]
+	top_teams = Team.objects.order_by('-score')[:10]
 	context = {'top_teams': top_teams}
 	return render(request,'users/leaderboard.html', context)
