@@ -33,7 +33,6 @@ class Team(models.Model):
 	player4 = models.CharField(max_length=100)
 	current_level = models.ForeignKey(Level, default=Level.DEFAULT_LEVEL, on_delete=models.CASCADE)
 	current_level_time = models.DateTimeField(default=timezone.now)
-	points=models.IntegerField(default=0)
 	username = models.CharField(max_length=100, null=True, blank = True)
 	password = models.CharField(max_length=100, null=True, blank = True)
 	score = models.IntegerField(default=0)

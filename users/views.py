@@ -50,8 +50,8 @@ def generatepassword(request):
 			team.username = username
 			team.password = otp
 			user.save()
-			team.save
-			send_otp(email, otp)
+			team.save()
+			send_otp(email, otp) 		
 			return redirect('login')
 			
 		
@@ -73,7 +73,7 @@ def send_otp(email, otp_generated):
     message = 'Hi, your otp is ' + str(otp_generated)
     # email_from = ('pragyaptl131996@gmail.com', 'SARC IIT Bombay')
     email_from = 'pragyaptl131996@gmail.com'
-    recipient = [email, ]
+    recipient = [email]
     send_mail(subject, message, email_from, recipient, fail_silently=True)
     return None
 
