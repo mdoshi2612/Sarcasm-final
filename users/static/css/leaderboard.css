@@ -72,6 +72,31 @@ body {
     height: 3.5rem;
 }
 
+.team-name button {
+    float: right;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.team-name button img {
+    height: 1.5rem;
+}
+
+
+/* For dropdown list */
+
+.member-names {
+    width: 30%;
+}
+
+.member-names li {
+    padding: 0.25rem;
+    margin-left: 0.1rem;
+}
+
 @media screen and (max-width: 992px) {
     body {
         background: url("../images/mobile_background.jpg") fixed;
