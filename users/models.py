@@ -1,6 +1,8 @@
+from pyexpat import model
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,6 +30,7 @@ class Team(models.Model):
 	points=models.IntegerField(default=0, null=True)
 	current_level = models.ForeignKey(Level, default=Level.DEFAULT_LEVEL, on_delete=models.CASCADE, null=True,)
 	current_level_time = models.DateTimeField(default=timezone.now, null=True)
-	username = models.CharField(max_length=100, null=True, blank = True)
-	password = models.CharField(max_length=100, null=True, blank = True)
+	# username = models.CharField(max_length=100, null=True, blank = True)
+	# password = models.CharField(max_length=100, null=True, blank = True)
+	user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
 	# score = models.IntegerField(default=0)

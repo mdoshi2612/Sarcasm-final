@@ -48,10 +48,9 @@ def generatepassword(request):
 		else:
 			username=request.POST.get('username')
 			email=request.POST.get('email')
-			otp="hello"
-			user = User(username = username, email = email)
-			team.username = username
-			team.password = otp
+			otp= "hello"
+			user = User(username = username, email = email, password = otp)
+			team.user = user
 			user.save()
 			team.save()
 			send_otp(email, otp) 		
@@ -89,12 +88,13 @@ def login1(request):
 			context = {'message': 'Username does not exist', 'class': 'danger'}
 			return render(request, 'users/login.html', context)
 		else:
-			team = Team.objects.filter(username=uname).first()
-			if password == team.password:
-				login(request, user)
+			team = Team.objects.filter(user=user).first()
+			user2 = authenticate(request, username=uname, password=password)
+			if user2 is not None:
+				login(request, user2)
 				return redirect(reverse('play'))
 			else:
-				context = {'message': 'Incorrect password', 'class': 'danger'}
+				context = {'message': 'Incorrect password', 'class': 'danger', 'user2': user.password, 'pass': password}
 				return render(request, 'users/login.html', context)
 	return render(request, 'users/login.html')
 
@@ -116,9 +116,9 @@ class Play(View) :
 		"""
 
 		
-		cur_user = Team.objects.get(username=request.user.username)
-		# cur_level = cur_user.current_level	
-		cur_level = Level.objects.get(level_id=1)
+		cur_user = Team.objects.get(user=request.user)
+		cur_level = cur_user.current_level	
+		# cur_level = Level.objects.get(level_id=1)
 		form = self.form_class()
 		context = {
 			'level' : cur_level,
@@ -134,7 +134,7 @@ class Play(View) :
 		1. Get the current user and their answer
 		2. If the answer is correct, update the level
 		"""
-		cur_user = Team.objects.get(username=request.user.username)
+		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level
 		level_number = cur_user.current_level.level_id
 
