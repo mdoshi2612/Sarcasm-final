@@ -35,4 +35,4 @@ class Team(models.Model):
 	current_level_time = models.DateTimeField(default=timezone.now)
 	username = models.CharField(max_length=100, null=True, blank = True)
 	password = models.CharField(max_length=100, null=True, blank = True)
-	score = models.IntegerField(default=0)
+	# score = models.IntegerField(default=0)

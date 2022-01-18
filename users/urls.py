@@ -8,7 +8,6 @@ urlpatterns=[
 	path('play',Play.as_view(), name='play'),
 	path('generatepassword',views.generatepassword, name='generatepassword'),
 	path('login', views.login1, name='login'),
-
-	path('leaderboard',views.leaderboard, name='leaderboard')
+	path('leaderboard',views.leaderboard, name='leaderboard'),
 	
 ]
