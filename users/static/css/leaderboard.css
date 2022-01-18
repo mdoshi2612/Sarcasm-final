@@ -1,0 +1,114 @@
+@font-face {
+    font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../fonts/AvenirLTStd-Book.otf') format('opentype');
+}
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
+} */
+
+body {
+    background: url("../images/laptop_background.jpg");
+    background-size: cover;
+}
+
+.main-heading {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 7rem;
+    line-height: 210px;
+    width: 50%;
+    margin: auto;
+    /* identical to box height */
+    color: #FFD600;
+    text-align: center;
+}
+
+.table-container {
+    width: 60%;
+    margin: auto;
+    background-color: #11182A;
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
+
+.leaderboard {
+    font-size: 2rem;
+    color: white;
+    font-family: Avenir;
+    border-style: hidden;
+    margin: 0;
+}
+
+.leaderboard td,
+.leaderboard tr {
+    border: 0.2rem solid #98DED8;
+}
+
+.team-name {
+    width: 60%;
+    vertical-align: middle;
+}
+
+.rank {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.score {
+    vertical-align: middle;
+}
+
+.logo {
+    width: 4rem;
+    height: 3.5rem;
+}
+
+.team-name button {
+    float: right;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.team-name button img {
+    height: 1.5rem;
+}
+
+
+/* For dropdown list */
+
+.member-names {
+    width: 30%;
+}
+
+.member-names li {
+    padding: 0.25rem;
+    margin-left: 0.1rem;
+}
+
+@media screen and (max-width: 992px) {
+    body {
+        background: url("../images/mobile_background.jpg") fixed;
+    }
+    .main-heading {
+        font-size: 5rem;
+    }
+    .leaderboard {
+        font-size: 1.5rem;
+    }
+    .logo {
+        width: 3rem;
+        height: 2.5rem;
+    }
+}

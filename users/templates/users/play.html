@@ -58,7 +58,7 @@
         </div>
         <div class="row questionontent" style="width: 75%;">
           {% if level.question is not None%}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">{{level.question|safe}}</span></div>{% endif %}
-          {% if special == 'code' %}
+          <!-- {% if special == 'code' %}
             <div class="d-flex flex-row">
                 <img src="{% static 'images/1.png' %}" width="25%" alt="Nature" onclick="myFunction(this);">
                 <img src="{% static 'images/8.png' %}" width="25%" alt="Snow" onclick="myFunction(this);">
@@ -72,7 +72,7 @@
               <img src="{% static 'images/5.png' %}" width="25%" alt="Lights" onclick="myFunction(this);">
             </div>
             
-          {% endif %}
+          {% endif %} -->
         </div>  
         <div class="row questionMedia card-img">
           {% if level.image.url is not None %}<img src={{level.image.url}} class="img-responsive">{% endif %}
@@ -85,17 +85,17 @@
 	        {% endif %}
         </div>
         <div class="row">
-          <form class="d-flex flex-column" method="POST" action="" id="answer"> {% csrf_token %} 
+          <form class="d-flex flex-column" method="POST" action="play" id="answer"> {% csrf_token %} 
             {{form}}  
           <input  type="submit" value="Submit" name="" class="submitButton row" autocomplete="off" style="color: white; width: auto;">
           </form>
         </div>
     </div>
-    {% comment %} 
+    <!-- {% comment %} 
       <div class="offset-2 col-md-2 col-sm-2">
        <p onmouseover="showInsult()" class="imageArea"><img id="marioimg"  src="{% static "images/mario-question.svg" %}"></p>
       </div> 
-    {% endcomment %}
+    {% endcomment %} -->
    </div>
    
  </div>
@@ -176,4 +176,3 @@ console.log("here")
 
 </script>
 {% endblock %}
-
