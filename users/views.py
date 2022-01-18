@@ -28,4 +28,6 @@ def faq(request):
     return render(request,'users/faq.html')
 
 def leaderboard(request):
-    return render(request,'users/leaderboard.html')
+	latest_question_list = Team.objects.order_by('-score')[:10]
+	context = {'latest_question_list': latest_question_list}
+	return render(request,'users/leaderboard.html')
