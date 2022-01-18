@@ -61,6 +61,11 @@ body {
     text-align: center;
 }
 
+.logo {
+    width: 5rem;
+    height: 5rem;
+}
+
 @media screen and (max-width: 992px) {
     body {
         background: url("../images/mobile_background.jpg") fixed;
@@ -70,5 +75,9 @@ body {
     }
     .leaderboard {
         font-size: 1.5rem;
+    }
+    .logo {
+        width: 3rem;
+        height: 3rem;
     }
 }

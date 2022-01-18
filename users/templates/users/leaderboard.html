@@ -18,7 +18,7 @@
                 {% for team in top_teams %}
                 <tr>
                     <th scope="row" class="rank">1</th>
-                    <td class="logo">{{ team.team_logo }}</td>
+                    <td class="logo"><img src="static/pokemons/{{team.team_logo}}.png" alt="" class="logo img-fluid"></td>
                     <td class="team-name">{{ team.team_name }}</td>
                     <td class="score">{{ team.score }}</td>
                 </tr>
