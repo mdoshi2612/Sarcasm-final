@@ -60,3 +60,15 @@ body {
 .rank {
     text-align: center;
 }
+
+@media screen and (max-width: 992px) {
+    body {
+        background: url("../images/mobile_background.jpg") fixed;
+    }
+    .main-heading {
+        font-size: 5rem;
+    }
+    .leaderboard {
+        font-size: 1.5rem;
+    }
+}
