@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Team
+from django.utils import timezone
+from .models import Team, Level
 from users.forms import TeamForm
 from django.http import HttpResponseRedirect
 from .models import Team, Level
@@ -31,6 +32,8 @@ def home(request):
 
 	
 	return render(request,'users/sarcasmbase.html')
+
+
 def faq(request):
     return render(request,'users/faq.html')
 
@@ -45,7 +48,7 @@ def generatepassword(request):
 		else:
 			username=request.POST.get('username')
 			email=request.POST.get('email')
-			otp=generateOTP()
+			otp="hello"
 			user = User(username = username, email = email)
 			team.username = username
 			team.password = otp
@@ -152,6 +155,6 @@ class Play(View) :
 
 		
 def leaderboard(request):
-	top_teams = Team.objects.order_by('points')[:10]
+	top_teams = Team.objects.order_by('-points')[:10]
 	context = {'top_teams': top_teams}
 	return render(request,'users/leaderboard.html', context)
