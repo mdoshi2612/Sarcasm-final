@@ -25,3 +25,6 @@ def home(request):
 	return render(request,'users/sarcasmbase.html')
 def faq(request):
     return render(request,'users/faq.html')
+
+def play(request):
+	return render(request, 'users/play.html')
