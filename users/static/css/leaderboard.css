@@ -1,0 +1,62 @@
+@font-face {
+    font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../fonts/AvenirLTStd-Book.otf') format('opentype');
+}
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
+} */
+
+body {
+    background: url("../images/laptop_background.jpg");
+    background-size: cover;
+}
+
+.main-heading {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 7rem;
+    line-height: 210px;
+    width: 50%;
+    margin: auto;
+    /* identical to box height */
+    color: #FFD600;
+    text-align: center;
+}
+
+.table-container {
+    width: 60%;
+    margin: auto;
+    background-color: #11182A;
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
+
+.leaderboard {
+    font-size: 2rem;
+    color: white;
+    font-family: Avenir;
+    border-style: hidden;
+    margin: 0;
+}
+
+.leaderboard td,
+.leaderboard tr {
+    border: 0.2rem solid #98DED8;
+}
+
+.team-name {
+    width: 60%;
+}
+
+.rank {
+    text-align: center;
+}

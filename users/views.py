@@ -23,5 +23,9 @@ def home(request):
 
 	
 	return render(request,'users/sarcasmbase.html')
+
 def faq(request):
     return render(request,'users/faq.html')
+
+def leaderboard(request):
+    return render(request,'users/leaderboard.html')
