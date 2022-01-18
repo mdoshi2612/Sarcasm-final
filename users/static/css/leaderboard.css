@@ -55,10 +55,16 @@ body {
 
 .team-name {
     width: 60%;
+    vertical-align: middle;
 }
 
 .rank {
     text-align: center;
+    vertical-align: middle;
+}
+
+.score {
+    vertical-align: middle;
 }
 
 .logo {
