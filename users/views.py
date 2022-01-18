@@ -46,9 +46,11 @@ def generatepassword(request):
 			username=request.POST.get('username')
 			email=request.POST.get('email')
 			otp=generateOTP()
-			request.session['email']=email
-			request.session['username']=username
-			request.session['otp']=otp
+			user = User(username = username, email = email)
+			team.username = username
+			team.password = otp
+			user.save()
+			team.save
 			send_otp(email, otp)
 			return redirect('login')
 			
@@ -146,3 +148,9 @@ class Play(View) :
 					pass
 
 		return redirect(reverse('play'))
+
+		
+def leaderboard(request):
+	top_teams = Team.objects.order_by('-score')[:10]
+	context = {'top_teams': top_teams}
+	return render(request,'users/leaderboard.html', context)

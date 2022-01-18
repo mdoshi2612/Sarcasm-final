@@ -9,4 +9,6 @@ urlpatterns=[
 	path('generatepassword',views.generatepassword, name='generatepassword'),
 	path('login', views.login1, name='login'),
 
+	path('leaderboard',views.leaderboard, name='leaderboard')
+	
 ]

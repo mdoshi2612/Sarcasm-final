@@ -23,7 +23,7 @@ class Level(models.Model):
 
 class Team(models.Model):
 	leader_name = models.CharField(max_length=100)
-	leader_roll_number = models.CharField(max_length=100)
+	leader_roll_number = models.CharField(max_length=100, primary_key=True)
 	year_of_study = models.CharField(max_length=100)
 	team_name = models.CharField(max_length=100)
 	team_logo = models.CharField(max_length=100, null=True)
@@ -36,3 +36,4 @@ class Team(models.Model):
 	points=models.IntegerField(default=0)
 	username = models.CharField(max_length=100, null=True, blank = True)
 	password = models.CharField(max_length=100, null=True, blank = True)
+	score = models.IntegerField(default=0)

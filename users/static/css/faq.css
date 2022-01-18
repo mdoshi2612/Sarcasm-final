@@ -2,15 +2,17 @@
     font-family: Pokemon;
     src: url('../fonts/pokemonsolid.woff');
 }
+
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 * {
     font-family: Raleway;
-    
 }
-body{
+
+body {
     background: url("../images/laptop_background.jpg");
     background-size: cover;
 }
+
 .main-heading {
     font-family: Pokemon;
     font-style: normal;
@@ -19,17 +21,19 @@ body{
     line-height: 210px;
     width: 50%;
     margin: auto;
-    margin-left: 35%;
     /* identical to box height */
     color: #FFD600;
+    text-align: center;
 }
+
 
 /* * {
     font-size: 10px;
 } */
+
 .accordion {
     background-color: #081341;
-  border-radius: 10px;
+    border-radius: 10px;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -42,13 +46,15 @@ body{
     /* font-size: 15px; */
     transition: 0.4s;
     margin-left: 10%;
-  }
-  .active
-  {
-      height: 30vh;
-      border-radius: 10px 10px 0px 0px;
-  }
-  /* .active, .accordion:hover {
+}
+
+.active {
+    height: 30vh;
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+/* .active, .accordion:hover {
     background-color: #ccc;
   }
   
@@ -63,14 +69,13 @@ body{
   .active:after {
     content: "\2212";
   } */
-  
-  .panel {
-  width:80%;
-  border-radius: 0px 0px 10px 10px;
-  margin-left: 10%;
+
+.panel {
+    width: 80%;
+    border-radius: 0px 0px 10px 10px;
+    margin-left: 10%;
     /* padding: 0 18px; */
-    padding-left: 130px;
-    padding-right: 50px;
+    padding-left: 20%;
     color: white;
     background-color: #081341;
     max-height: 0;
@@ -78,59 +83,54 @@ body{
     font-size: 1.5rem;
     transition: max-height 0.2s ease-out;
     transform: translateY(-50px);
-  }
-  .faq-row
-  {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      /* justify-content: space-evenly; */
-  }
-  .faq-img
-  {
-      height: 80%;
-      width: 10%;
-      padding: 10px;
-  }
-  @media only screen and (max-width: 992px) {
-      .accordion
-      {
-          height: 15vh;
-          padding-top: 10vh;
-          padding-bottom: 10vh;
-          padding: 4px;
-      }
-      .panel
-      {
-          font-size: 2rem;
-          height: 30vh;
-          transform: translateY(-90px);
-      }
-      .faq-img
-      {
-          height: 120%;
-      }
-  }
-  @media screen and (max-width: 992px) {
+}
+
+.faq-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+
+.faq-img {
+    height: 80%;
+    width: 10%;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .accordion {
+        height: 15vh;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+        padding: 4px;
+    }
+    .panel {
+        font-size: 2rem;
+        height: 30vh;
+        transform: translateY(-90px);
+    }
+    .faq-img {
+        height: 120%;
+    }
+}
+
+@media screen and (max-width: 992px) {
     * {
         font-size: 20px;
     }
-    .accordion
-    {
+    .accordion {
         font-size: 2rem;
     }
     .main-heading {
-        margin-left:30% ;
+        margin-left: 30%;
         line-height: 250px;
     }
-    .panel
-    {
+    .panel {
         padding-left: 70px;
         padding-right: 50px;
     }
-    .panel p
-    {
+    .panel p {
         font-size: 30px;
     }
 }
-  
