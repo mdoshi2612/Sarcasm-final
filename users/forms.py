@@ -11,4 +11,4 @@ class TeamForm(forms.ModelForm):
         fields='__all__'
 
 class LevelForm(forms.Form):
-	answer = forms.CharField(label="")
+	answer = forms.CharField(label="Answer")

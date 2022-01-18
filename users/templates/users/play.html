@@ -57,7 +57,7 @@
          
         </div>
         <div class="row questionontent" style="width: 75%;">
-          {% if level.question is not None%}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">{{level.question|safe}}</span></div>{% endif %}
+          {% if level.question is not None %}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">{{level.question|safe}}</span></div>{% endif %}
           <!-- {% if special == 'code' %}
             <div class="d-flex flex-row">
                 <img src="{% static 'images/1.png' %}" width="25%" alt="Nature" onclick="myFunction(this);">
@@ -74,7 +74,7 @@
             
           {% endif %} -->
         </div>  
-        <div class="row questionMedia card-img">
+        <!-- <div class="row questionMedia card-img">
           {% if level.image.url is not None %}<img src={{level.image.url}} class="img-responsive">{% endif %}
           {% if level.audiofile.url is not None %}<audio controls><source src={{level.audiofile.url}} type="audio/mpeg">
 	                              Your browser does not support the audio tag</audio>
@@ -83,7 +83,7 @@
             Your Browser does not support the video tag
                                   </video>
 	        {% endif %}
-        </div>
+        </div> -->
         <div class="row">
           <form class="d-flex flex-column" method="POST" action="play" id="answer"> {% csrf_token %} 
             {{form}}  
@@ -128,8 +128,8 @@ function htmlDecode(input){
 question = htmlDecode(question);
 console.log(question);
 
-$(".sub-ttle").innerHTML = question;
-console.log("here")
+// $(".sub-ttle").innerHTML = question;
+// console.log("here")
 
 
 /*

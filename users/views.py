@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Team
 from users.forms import TeamForm
 from django.http import HttpResponseRedirect
-from .models import Team
+from .models import Team, Level
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 import math
@@ -92,7 +92,7 @@ def login1(request):
 				return redirect(reverse('play'))
 			else:
 				context = {'message': 'Incorrect password', 'class': 'danger'}
-				return render(request, 'users/login.html')
+				return render(request, 'users/login.html', context)
 	return render(request, 'users/login.html')
 
 
@@ -114,13 +114,14 @@ class Play(View) :
 
 		
 		cur_user = Team.objects.get(username=request.user.username)
-		cur_level = cur_user.current_level	
-		# cur_level = Level.objects.get(level_id=5)
+		# cur_level = cur_user.current_level	
+		cur_level = Level.objects.get(level_id=1)
 		form = self.form_class()
 		context = {
 			'level' : cur_level,
 			'form': form,
 		}
+		
 		return render(request,'users/play.html',context)   #{{form|crispy}} crispy form was removed try to add it back
 
 
@@ -141,8 +142,8 @@ class Play(View) :
 				level_number = cur_user.current_level.level_id
 				try:
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
-					cur_user.points=cur_user.points+3
-					cur_user.current_level_time = timezone.now()	 					
+					# cur_user.points=cur_user.points+3
+					# cur_user.current_level_time = timezone.now()	 					
 					cur_user.save()
 				except:
 					pass
