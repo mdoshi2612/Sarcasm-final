@@ -68,10 +68,10 @@ def generatepassword(request):
 				context = {'message': 'Team not found', 'class': 'danger'}
 				return render(request, 'users/generatepassword.html', context)
 		else:
-			username=request.POST.get('username')
+			# username=request.POST.get('username')
 			email=request.POST.get('email')
 			otp= "hello"
-			user = User(username = username, email = email, password = otp)
+			user = User(username = leader_roll_number, email = email, password = otp)
 			team.user = user
 			user.save()
 			team.save()
