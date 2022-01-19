@@ -613,6 +613,10 @@ body {
     .navbar-links.active {
         display: flex;
     }
+    .single-input {
+        margin: 0rem;
+        display: block;
+    }
 }
 
 
@@ -686,4 +690,17 @@ html {
     opacity: 1;
     display: block;
     transition: all 0.75s ease-in;
+}
+
+@media only screen and (max-width: 600px) {
+    .radio-options {
+        margin-right: 0.25rem;
+        font-size: 1.5rem;
+    }
+    .options .option div {
+        margin-right: 1rem;
+    }
+    * {
+        font-size: 6px;
+    }
 }
