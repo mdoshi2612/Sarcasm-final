@@ -8,7 +8,7 @@ from .models import Team, Level, BonusQuestion
 # admin.site.register( userdata, userdataadmin)
 
 class TeamAdmin(admin.ModelAdmin):
-	list_display = ('leader_name', 'leader_roll_number')
+	list_display = ('leader_first_name','leader_last_name', 'leader_roll_number', 'leader_whatsapp_number')
 
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Level)
