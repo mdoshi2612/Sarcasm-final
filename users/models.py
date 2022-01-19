@@ -41,3 +41,22 @@ class Team(models.Model):
 	current_level_time = models.DateTimeField(default=timezone.now, null=True)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
 	league = models.CharField(max_length=100, null = True)
+	# score = models.IntegerField(default=0)
+	bonus_attempted = models.IntegerField(default=0)
+	bonus_level_id = models.IntegerField(default=1)
+
+class BonusQuestion(models.Model):
+	# question = RichTextField(config_name = 'awesome_ckeditor', blank = True)
+	DEFAULT_LEVEL = 1
+
+	level_id = models.IntegerField(primary_key=True) 
+	question = models.CharField(max_length=1000, blank = True)
+	answer = models.CharField(max_length=120)
+	expiration_date = models.DateTimeField()
+	live_date = models.DateTimeField()
+
+	image = models.ImageField(upload_to = 'static', null = True,	blank = True)
+	audiofile= models.FileField(upload_to='static/', null=True, blank = True, verbose_name="")
+	videofile= models.FileField(upload_to='static/', null=True, blank = True, verbose_name="")
+	title = models.CharField(max_length=100)
+	

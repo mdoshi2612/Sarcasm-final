@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Level
+from .models import Team, Level, BonusQuestion
 # Register your models here.
 # class PlayerAdmin(admin.ModelAdmin):
 # 	list_display = ('user', 'current_level', 'current_level_time','points', 'bonus_attempted')
@@ -12,3 +12,4 @@ class TeamAdmin(admin.ModelAdmin):
 
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Level)
+admin.site.register(BonusQuestion)
