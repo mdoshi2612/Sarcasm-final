@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from .models import Team, Level
+from .models import Team, Level, BonusQuestion
 from users.forms import TeamForm
 from django.http import HttpResponseRedirect
 from .models import Team, Level
@@ -12,6 +12,7 @@ from django.core.mail import send_mail, BadHeaderError
 from .forms import LevelForm
 from django.urls import reverse
 from django.views import View
+from django.utils import timezone
 
 # Create your views here.
 
@@ -145,12 +146,94 @@ class Play(View) :
 				level_number = cur_user.current_level.level_id
 				try:
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
-					# cur_user.points=cur_user.points+3
+					cur_user.points=cur_user.points+3
 					# cur_user.current_level_time = timezone.now()	 					
 					cur_user.save()
 				except:
 					pass
 
+		return redirect(reverse('play'))
+
+class Bonus(View) :
+	# Form field for the level
+	form_class = LevelForm
+
+	def get(self, request, *args, **kwargs):
+		cur_user = Team.objects.get(user=request.user)
+		try:
+			bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
+			livedatetime=bonus_level.live_date
+			# print("live date ", livedatetime)
+			current_time=timezone.now()
+			# print("current time ",current_time)
+			expdatetime = bonus_level.expiration_date
+			# print("expiry date ",expdatetime)
+			expired = bonus_level.expiration_date < current_time
+			if expired:
+				# print("The question has expired")
+				bonus_array = BonusQuestion.objects.filter(level_id__gt=cur_user.bonus_level_id)
+				# print(bonus_array)
+				for q in bonus_array:
+					if q.live_date < current_time and current_time<q.expiration_date:
+						cur_user.bonus_level_id = q.level_id
+						# print("The bonus id is ",cur_user.player.bonus_level_id)
+						bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
+						cur_user.save()
+
+			if bonus_level.expiration_date<timezone.now() or bonus_level.live_date>timezone.now():
+				print("Question {0} not live".format(bonus_level.level_id))
+				raise
+		except:
+			print("Error")
+			return redirect(reverse('play'))
+		form = self.form_class
+
+		question = bonus_level.question
+		livedatetime = bonus_level.live_date
+		expdatetime = bonus_level.expiration_date
+	
+		current_time = timezone.now()
+		year = expdatetime.strftime('%Y')
+		month = expdatetime.strftime('%m')
+		day = expdatetime.strftime('%d')
+		hour = expdatetime.strftime('%H')
+		minute = expdatetime.strftime('%M')
+		second = expdatetime.strftime('%S')
+
+		context = {'question': question,'year': year,'month': month,'day': day,'hour': hour,'minute': minute,
+			'second':second,'expdate': expdatetime,'livedate': livedatetime,'now': current_time,'form':form,}
+		return render(request, 'users/bonus.html', context)
+	
+
+	def post(self,request, *args, **kwargs):
+		"""
+		POST request
+		1. Get the current user and their answer
+		2. If the answer is correct, update the level
+		"""
+		cur_user = Team.objects.get(user=request.user)
+		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
+		form = self.form_class(request.POST)    #What if request != 'POST' ????
+		if form.is_valid():
+			ans = form.cleaned_data.get('answer')
+			if ans == bonus_level.answer:
+				
+				level_number = bonus_level.level_id
+				if cur_user.bonus_level_id == level_number:
+					try:
+						cur_user.bonus_level_id += 1
+						cur_user.bonus_attempted=cur_user.bonus_attempted+1
+						cur_user.points += 5	 					
+						cur_user.save()
+						return redirect(reverse('play'))
+					except:
+						pass
+				else:
+					print("Cant play Bonus Twice")
+					return redirect(reverse('play'))
+			else:
+				print("Wrong Answer! Try Again")
+				return redirect(reverse('bonus'))
 		return redirect(reverse('play'))
 
 		
