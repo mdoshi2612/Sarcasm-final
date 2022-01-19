@@ -1,0 +1,111 @@
+@font-face {
+    font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+}
+header{
+font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+    color: yellow;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background-size: 100% 120%;
+    background-image: url("../images/laptop_background.jpg");
+    position: relative;
+    font-family: 'Amatic SC';
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: azure;
+}
+
+.team-area {
+    display: flex;
+    justify-content: space-around;
+    width: 70vw;
+}
+.team-area .team-member {
+    text-align: center;
+}
+
+
+.team-area .team-member .thumb {
+    width: 100px;
+    height: 100px;
+}
+
+.team-area .team-member .thumb img {
+    width: 100%;
+    border-radius: 50%; 
+}
+
+
+.team-1 {
+    display: flex;
+    justify-content: space-around;
+    width: 30vw;
+}
+.team-1 .team-member {
+    text-align: center;
+}
+
+
+.team-1 .team-member .thumb {
+    width: 100px;
+    height: 100px;
+    border-image-width: 10px;
+}
+
+.team-1 .team-member .thumb img {
+    width: 100%;
+    border-radius: 50%; 
+    
+    
+}
+ 
+
+.team-3 {
+    display: flex;
+    justify-content: space-around;
+    width: 10vw;
+}
+.team-3 .team-member {
+    text-align: center;
+}
+
+
+.team-3 .team-member .thumb {
+    width: 100px;
+    height: 100px;
+    border-image-width: 10px;
+}
+
+.team-3 .team-member .thumb img {
+    width: 100%;
+    border-radius: 50%; 
+    
+    
+}
+
+
+img { 
+   border:3px solid aqua;
+}
+
+@media only screen and (max-width:600px) {
+    .laptop{
+        display: none;
+    }
+    .body{
+        background-repeat: no-repeat;
+        background-image: url('../t.png') !important;
+        background-size: 100% 490px;
+        background-color: black;
+    }
+    
+}
