@@ -137,10 +137,6 @@ body {
     margin-top: 2rem;
 }
 
-.single-field {
-    text-align: center;
-}
-
 #player2,
 #player3,
 #player4,
@@ -153,6 +149,11 @@ input[type=text] {
     padding: 1rem;
     border-radius: 1rem;
     font-size: 2rem;
+}
+
+.single-input {
+    width: 60% !important;
+    margin: 0 2rem;
 }
 
 div *,

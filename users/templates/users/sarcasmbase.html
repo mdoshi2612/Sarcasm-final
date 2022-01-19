@@ -160,98 +160,90 @@
                         </div>
                     </div>
                     <div class="row player">
-                        <div class="col-lg-4 single-field">
-                            <label>Player 2 First Name</label>
-                        </div>
-                        <div class="col-lg-6">
-                            <input type="text" name="player2_first_name" id="player2_first_name">
+                        <div class="col-lg single-field">
+                            <label>Player 2 Roll Number</label>
+                            <input type="text" name="player2_roll_number" id="player2_roll_number" class="single-input">
                         </div>
                     </div>
                     <div id="player2">
                         <div class="row">
                             <div class="col-lg">
-                                <label>Player 2 Last Name</label>
+                                <label>Player 2 First Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player2_last_name">
+                                <input type="text" name="player2_first_name">
                             </div>
                             <div class="col-lg">
-                                <label for="">Player 2 Roll Number</label>
+                                <label for="">Player 2 Last Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player2_roll_number" id="">
+                                <input type="text" name="player2_last_name" id="">
                             </div>
                         </div>
                         <div class="row player">
-                            <div class="col-lg-4 single-field">
-                                <label>Player 3 First Name</label>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" name="player3_first_name" id="player3_first_name">
+                            <div class="col-lg single-field">
+                                <label>Player 3 Roll Number</label>
+                                <input type="text" name="player3_roll_number" id="player3_roll_number" class="single-input" id="player3_roll_">
                             </div>
                         </div>
                     </div>
                     <div id="player3">
                         <div class="row">
                             <div class="col-lg">
-                                <label>Player 3 Last Name</label>
+                                <label>Player 3 First Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player3_last_name">
+                                <input type="text" name="player3_first_name">
                             </div>
                             <div class="col-lg">
-                                <label for="">Player 3 Roll Number</label>
+                                <label for="">Player 3 Last Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player3_roll_number" id="">
+                                <input type="text" name="player3_last_name" id="">
                             </div>
                         </div>
                         <div class="row player">
-                            <div class="col-lg-4 single-field">
-                                <label>Player 4 First Name</label>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" name="player4_first_name" id="player4_first_name">
+                            <div class="col-lg single-field">
+                                <label>Player 4 Roll Number</label>
+                                <input type="text" name="player4_roll_number" id="player4_roll_number" class="single-input">
                             </div>
                         </div>
                     </div>
                     <div id="player4">
                         <div class="row">
                             <div class="col-lg">
-                                <label>Player 4 Last Name</label>
+                                <label>Player 4 First Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player4_last_name">
+                                <input type="text" name="player4_first_name">
                             </div>
                             <div class="col-lg">
-                                <label for="">Player 4 Roll Number</label>
+                                <label for="">Player 4 Last Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player4_roll_number" id="">
+                                <input type="text" name="player4_last_name" id="">
                             </div>
                         </div>
                         <div class="row player">
-                            <div class="col-lg-4 single-field">
-                                <label>Player 5 First Name</label>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" name="player5_first_name" id="player5_first_name">
+                            <div class="col-lg single-field">
+                                <label>Player 5 Roll Number</label>
+                                <input type="text" name="player5_roll_number" id="player5_roll_number" class="single-input">
                             </div>
                         </div>
                     </div>
                     <div id="player5">
                         <div class="row">
                             <div class="col-lg">
-                                <label>Player 5 Last Name</label>
+                                <label>Player 5 First Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player5_last_name">
+                                <input type="text" name="player5_first_name">
                             </div>
                             <div class="col-lg">
-                                <label for="">Player 5 Roll Number</label>
+                                <label for="">Player 5 Last Name</label>
                             </div>
                             <div class="col-lg">
-                                <input type="text" name="player5_roll_number" id="">
+                                <input type="text" name="player5_last_name" id="">
                             </div>
                         </div>
                     </div>s
@@ -424,25 +416,25 @@
         })
     </script>
     <script>
-        $('#player2_first_name').keyup(function() {
+        $('#player2_roll_number').keyup(function() {
             if ($(this).val().length)
                 $('#player2').show();
             else
                 $('#player2').hide();
         });
-        $('#player3_first_name').keyup(function() {
+        $('#player3_roll_number').keyup(function() {
             if ($(this).val().length)
                 $('#player3').show();
             else
                 $('#player3').hide();
         });
-        $('#player4_first_name').keyup(function() {
+        $('#player4_roll_number').keyup(function() {
             if ($(this).val().length)
                 $('#player4').show();
             else
                 $('#player4').hide();
         });
-        $('#player5_first_name').keyup(function() {
+        $('#player5_roll_number').keyup(function() {
             if ($(this).val().length)
                 $('#player5').show();
             else
