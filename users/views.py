@@ -57,6 +57,8 @@ def home(request):
 def faq(request):
     return render(request,'users/faq.html')
 
+def ourteam(request):
+    return render(request,'users/ourteam.html')
 
 def generatepassword(request):
 	if request.method == 'POST':
