@@ -40,5 +40,4 @@ class Team(models.Model):
 	current_level = models.ForeignKey(Level, default=Level.DEFAULT_LEVEL, on_delete=models.CASCADE, null=True,)
 	current_level_time = models.DateTimeField(default=timezone.now, null=True)
 	user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
-	freshies_only = models.BooleanField(default=0)
-	open = models.BooleanField(default=0)
+	league = models.CharField(max_length=100, null = True)

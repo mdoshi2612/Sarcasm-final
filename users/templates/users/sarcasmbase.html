@@ -135,6 +135,7 @@
                     </div>
                     <div class="options">
                         <div class="option faded" id="option1">
+                            <input type="radio" name="league" id="freshies_only" unchecked="unchecked" value="Freshies Only">
                             <div class="pokeball unselected">
                                 <div class="upper-half"> </div>
                                 <div class="lower-half"> </div>
@@ -146,6 +147,7 @@
                             <div class="radio-options">Freshie Only</div>
                         </div>
                         <div class="option faded" id="option2">
+                            <input type="radio" name="league" id="open" unchecked="unchecked" value="Open">
                             <div class="pokeball unselected">
                                 <div class="upper-half"> </div>
                                 <div class="lower-half"> </div>
@@ -463,6 +465,22 @@
                         pokeball.parentNode.classList.remove("faded");
                     }
                 }
+                freshie_div = document.getElementById("option1")
+                open_div = document.getElementById("option2")
+                freshies_only = document.getElementById("freshies_only")
+                open = document.getElementById("open")
+                if (freshie_div.classList.contains("faded")) {
+                    open.checked = true
+                    freshies_only.checked = false
+                    console.log("Open")
+                } else if (open_div.classList.contains("faded")) {
+                    freshies_only.checked = true
+                    open.checked = false
+                    console.log("Freshies only")
+                } else {
+                    console.log("none selected")
+                }
+
             });
         });
     </script>

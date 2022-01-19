@@ -35,7 +35,7 @@ def home(request):
 		player5_first_name = request.POST.get('player5_first_name')
 		player5_last_name = request.POST.get('player5_last_name')
 		player5_roll_number = request.POST.get('player5_roll_number')
-
+		league = request.POST.get('league')
 
 
 			
@@ -44,7 +44,8 @@ def home(request):
 		player2_first_name = player2_first_name, player2_last_name = player2_last_name, player2_roll_number = player2_roll_number,
 		player3_first_name = player3_first_name, player3_last_name = player3_last_name, player3_roll_number = player3_roll_number,
 		player4_first_name = player4_first_name, player4_last_name = player4_last_name, player4_roll_number = player4_roll_number,
-		player5_first_name = player5_first_name, player5_last_name = player5_last_name, player5_roll_number = player5_roll_number)
+		player5_first_name = player5_first_name, player5_last_name = player5_last_name, player5_roll_number = player5_roll_number,
+		league = league)
 		
 		team.save()
 
