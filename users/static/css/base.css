@@ -123,6 +123,31 @@ body {
     color: white;
 }
 
+.col-lg-4 {
+    margin: 10px 0px;
+}
+
+.col-lg-4 label {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.team-name-div,
+.player {
+    margin-top: 2rem;
+}
+
+.single-field {
+    text-align: center;
+}
+
+#player2,
+#player3,
+#player4,
+#player5 {
+    display: none;
+}
+
 input[type=text] {
     width: 80%;
     padding: 1rem;
