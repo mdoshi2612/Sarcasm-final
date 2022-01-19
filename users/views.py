@@ -17,17 +17,35 @@ from django.views import View
 
 def home(request):
 	if request.method=="POST":
-		leader_name = request.POST.get('leader_name')
-		leader_roll_number = request.POST.get('leader_roll_number')
-		year_of_study = request.POST.get('year_of_study')
 		team_name = request.POST.get('team_name')
-		player1 = request.POST.get('player1')
-		player2 = request.POST.get('player2')
-		player3 = request.POST.get('player3')
-		player4 = request.POST.get('player4')
+		leader_first_name = request.POST.get('leader_first_name')
+		leader_last_name = request.POST.get('leader_last_name')
+		leader_roll_number = request.POST.get('leader_roll_number')
+		leader_whatsapp_number = request.POST.get('leader_whatsapp_number')
 		team_logo = request.POST.get('team_logo')
+		player2_first_name = request.POST.get('player2_first_name')
+		player2_last_name = request.POST.get('player2_last_name')
+		player2_roll_number = request.POST.get('player2_roll_number')
+		player3_first_name = request.POST.get('player3_first_name')
+		player3_last_name = request.POST.get('player3_last_name')
+		player3_roll_number = request.POST.get('player3_roll_number')
+		player4_first_name = request.POST.get('player4_first_name')
+		player4_last_name = request.POST.get('player4_last_name')
+		player4_roll_number = request.POST.get('player4_roll_number')
+		player5_first_name = request.POST.get('player5_first_name')
+		player5_last_name = request.POST.get('player5_last_name')
+		player5_roll_number = request.POST.get('player5_roll_number')
+
+
+
+			
+		team = Team(team_name = team_name, leader_first_name = leader_first_name, leader_last_name = leader_last_name,
+		leader_roll_number = leader_roll_number, leader_whatsapp_number = leader_whatsapp_number, team_logo = team_logo,
+		player2_first_name = player2_first_name, player2_last_name = player2_last_name, player2_roll_number = player2_roll_number,
+		player3_first_name = player3_first_name, player3_last_name = player3_last_name, player3_roll_number = player3_roll_number,
+		player4_first_name = player4_first_name, player4_last_name = player4_last_name, player4_roll_number = player4_roll_number,
+		player5_first_name = player5_first_name, player5_last_name = player5_last_name, player5_roll_number = player5_roll_number)
 		
-		team = Team(leader_name=leader_name, leader_roll_number=leader_roll_number, year_of_study=year_of_study, team_name=team_name, player1=player1, player2=player2, player3=player3, player4=player4, team_logo=team_logo)
 		team.save()
 
 	
