@@ -80,6 +80,7 @@ def home(request):
 		teamFetch.user = user
 		user.save()
 		teamFetch.save()
+		print(password)
 		send_otp(email, password, leader_roll_number) 
 
 		success = True
@@ -110,6 +111,7 @@ def generatepassword(request):
 			team.user = user
 			user.save()
 			team.save()
+			print(password)
 			send_otp(email, password, leader_roll_number) 		
 			return redirect('login')
 			
@@ -121,7 +123,7 @@ def generatepassword(request):
 
 def send_otp(email, password, leader_roll_number):
     subject = "Sarcasm Login Credentials"
-    message = 'Hi, your login credentials are: Username ' + str(leader_roll_number) + ' & Password ' + str(password)
+    message = 'Hi, the login credentials for your team are: \nUsername: ' + str(leader_roll_number) + '\nPassword: ' + str(password)+'\nUse these credentials to log into the portal when it goes live. \nStay tuned and follow instagram.com/sarc_iitb for updates.'
     email_from = 'pragya.sarc@gmail.com'
     recipient = [email, ]
     send_mail(subject, message, email_from, recipient, fail_silently=True)
