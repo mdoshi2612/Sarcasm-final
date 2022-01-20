@@ -66,14 +66,16 @@
                             <img src="static/images/pokeball_closed.png" alt="">
                         </button>
                         <ul class="member-names dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
-                            {% if team.player1 %}
-                            <li>{{team.player1}}</li>
-                            {% endif %} {% if team.player2 %}
-                            <li>{{team.player2}}</li>
-                            {% endif %} {% if team.player3 %}
-                            <li>{{team.player3}}</li>
-                            {% endif %} {% if team.player4 %}
-                            <li>{{team.player4}}</li>
+                            {% if team.leader_first_name %}
+                            <li>{{team.leader_first_name}} {{team.leader_last_name}}</li>
+                            {% endif %} {% if team.player2_first_name %}
+                            <li>{{team.player2_first_name}} {{team.player2_last_name}}</li>
+                            {% endif %} {% if team.player3_first_name %}
+                            <li>{{team.player3_first_name}} {{team.player3_last_name}}</li>
+                            {% endif %} {% if team.player4_first_name %}
+                            <li>{{team.player4_first_name}} {{team.player4_last_name}}</li>
+                            {% endif %} {% if team.player5_first_name %}
+                            <li>{{team.player5_first_name}} {{team.player5_last_name}}</li>
                             {% endif %}
 
                         </ul>

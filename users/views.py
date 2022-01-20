@@ -295,7 +295,8 @@ def leaderboard(request):
 			top_teams = Team.objects.filter(league = "Freshies Only").order_by('-points')
 			context = {'top_teams': top_teams}
 			return render(request,'users/leaderboard.html', context)
-		else:
-			top_teams = Team.objects.order_by('-points')
-			context = {'top_teams': top_teams}
-			return render(request,'users/leaderboard.html', context)
+		top_teams = Team.objects.order_by('-points')
+		context = {'top_teams': top_teams}
+		return render(request,'users/leaderboard.html', context)
+	return render(request,'users/leaderboard.html')
+	
