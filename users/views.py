@@ -15,17 +15,18 @@ from django.views import View
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 import csv
+from .image_overlay import generate_image
 
 # Create your views here.
 
 def csv_teams(request):
-    response = HttpResponse(content_type='text/csv')
-    writer = csv.writer(response)
-    writer.writerow(['team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'])
-    for team in Team.objects.all().values_list('team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'):
-        writer.writerow(team)
-    response['Content-Disposition'] = 'attachment; filename="team_final.csv"'
-    return response
+	response = HttpResponse(content_type='text/csv')
+	writer = csv.writer(response)
+	writer.writerow(['team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'])
+	for team in Team.objects.all().values_list('team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'):
+		writer.writerow(team)
+	response['Content-Disposition'] = 'attachment; filename="team_final.csv"'
+	return response
 
 def home(request):
 	error_message = ""
@@ -89,10 +90,10 @@ def home(request):
 
 
 def faq(request):
-    return render(request,'users/faq.html')
+	return render(request,'users/faq.html')
 
 def ourteam(request):
-    return render(request,'users/ourteam.html')
+	return render(request,'users/ourteam.html')
 
 def generatepassword(request):
 	if request.method == 'POST':
@@ -115,17 +116,17 @@ def generatepassword(request):
 			
 		
 	return render(request, 'users/generatepassword.html')
-    
+	
 		
 
 
 def send_otp(email, password, leader_roll_number):
-    subject = "Sarcasm Login Credentials"
-    message = 'Hi, your login credentials are: Username ' + str(leader_roll_number) + ' & Password ' + str(password)
-    email_from = 'pragya.sarc@gmail.com'
-    recipient = [email, ]
-    send_mail(subject, message, email_from, recipient, fail_silently=True)
-    return None
+	subject = "Sarcasm Login Credentials"
+	message = 'Hi, your login credentials are: Username ' + str(leader_roll_number) + ' & Password ' + str(password)
+	email_from = 'pragya.sarc@gmail.com'
+	recipient = [email, ]
+	send_mail(subject, message, email_from, recipient, fail_silently=True)
+	return None
 
 
 def login1(request):
@@ -333,5 +334,10 @@ def increase_bonus_level(request) :
 		context = {'top_teams': top_teams}
 		return render(request,'users/leaderboard.html', context)
 	return render(request,'users/leaderboard.html')
-	
 
+def image(request):
+	response = HttpResponse(content_type='image/png')
+	image = generate_image("Charizard", "Pokemon")
+	image.save(response, 'png')
+	response['Content-Disposition'] = 'attachment; filename="image.png"'
+	return response	
