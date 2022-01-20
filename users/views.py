@@ -155,17 +155,39 @@ class Play(View) :
 		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level	
 		image = "./static/pokemons/"+cur_user.team_logo+".png"
-		# cur_level = Level.objects.get(level_id=1)
-		form = self.form_class()
-		context = {
-			'level' : cur_level,
-			'user': cur_user,
-			'logo': image,
-			'form': form,
-		}
-		
-		return render(request,'users/play.html',context)   #{{form|crispy}} crispy form was removed try to add it back
-
+		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
+		bonus_level_id = cur_user.bonus_level_id
+		# if cur_level.level_id < 3:
+		if bonus_level_id < 3:
+			livedatetime=bonus_level.live_date
+			current_time=timezone.now()
+			print("current time ",current_time)
+			expdatetime = bonus_level.expiration_date
+			print("Expdate", expdatetime)
+			print("live date ",livedatetime)
+			if current_time < livedatetime:
+				time_remaining = (livedatetime - current_time).total_seconds() * 1000
+				print("Time remaining1", time_remaining)
+			if (current_time > livedatetime) and (current_time < expdatetime):
+				time_remaining = 0
+				print("Time remaining2", time_remaining)
+			if current_time > expdatetime:
+				print("Time remaining 3")
+				time_remaining = 200000000
+			# print("Time remaining ", time_remaining.total_seconds())
+			# cur_level = Level.objects.get(level_id=1)
+			form = self.form_class()
+			context = {
+				'level' : cur_level,
+				'user': cur_user,
+				'logo': image,
+				'form': form,
+				'time_remaining': time_remaining,
+			}
+			
+			return render(request,'users/play.html',context)   #{{form|crispy}} crispy form was removed try to add it back
+		else:
+			return render(request, 'users/success.html')
 
 	def post(self,request, *args, **kwargs):
 		"""
@@ -179,14 +201,17 @@ class Play(View) :
 
 		form = self.form_class(request.POST)    #What if request != 'POST' ????
 		if form.is_valid():
-			ans = form.cleaned_data.get('answer')
-			if ans == cur_level.answer:
+			ans = form.cleaned_data.get('answer').lower()
+			correct_answers = cur_level.answer.split(',')
+			print(correct_answers)
+			if ans in correct_answers:
 				level_number = cur_user.current_level.level_id
 				if level_number == 2 :
 					cur_user.points=cur_user.points+3
 					cur_user.current_level_time = timezone.now()	 					
 					cur_user.save()
-					pass
+					return render(request, 'users/success.html')
+					
 				try:
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
 					cur_user.points=cur_user.points+3
@@ -248,6 +273,7 @@ class Bonus(View) :
 		return render(request, 'users/bonus.html', context)
 	
 
+
 	def post(self,request, *args, **kwargs):
 		"""
 		POST request
@@ -258,25 +284,34 @@ class Bonus(View) :
 		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
 		form = self.form_class(request.POST)    #What if request != 'POST' ????
 		if form.is_valid():
-			ans = form.cleaned_data.get('answer')
-			if ans == bonus_level.answer:
-				
-				level_number = bonus_level.level_id
-				if cur_user.bonus_level_id == level_number:
-					try:
-						cur_user.bonus_level_id += 1
-						cur_user.bonus_attempted=cur_user.bonus_attempted+1
-						cur_user.points += 5	 					
-						cur_user.save()
+			if(form.cleaned_data.get('submit')):
+				print("Submitting")
+				ans = form.cleaned_data.get('answer')
+				if ans == bonus_level.answer:
+					
+					level_number = bonus_level.level_id
+					if cur_user.bonus_level_id == level_number:
+						try:
+							cur_user.bonus_level_id += 1
+							cur_user.bonus_attempted=cur_user.bonus_attempted+1
+							cur_user.points += 6	 					
+							cur_user.save()
+							return redirect(reverse('play'))
+						except:
+							pass
+					else:
+						print("Cant play Bonus Twice")
 						return redirect(reverse('play'))
-					except:
-						pass
 				else:
-					print("Cant play Bonus Twice")
-					return redirect(reverse('play'))
-			else:
-				print("Wrong Answer! Try Again")
-				return redirect(reverse('bonus'))
+					print("Wrong Answer! Try Again")
+					return redirect(reverse('bonus'))
+			if(form.cleaned_data.get('skip')):
+				print("Skipping")
+				cur_user.bonus_level_id += 1
+				cur_user.bonus_attempted=cur_user.bonus_attempted+1
+				cur_user.points += 0	 					
+				cur_user.save()
+				return redirect(reverse('play'))
 		return redirect(reverse('play'))
 
 		
@@ -284,3 +319,19 @@ def leaderboard(request):
 	top_teams = Team.objects.order_by('-points')[:10]
 	context = {'top_teams': top_teams}
 	return render(request,'users/leaderboard.html', context)
+
+def success(request):
+	return render(request, 'users/success.html')
+
+def increase_bonus_level(request) :
+	print ("Increase bonus level")
+	if request.method=='POST' :
+		cur_user = Team.objects.get(user=request.user)
+		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
+		level_number = bonus_level.level_id
+		if cur_user.bonus_level_id == level_number:
+			cur_user.bonus_level_id += 1
+			cur_user.bonus_attempted=cur_user.bonus_attempted+1
+			cur_user.points += 0	 					
+			cur_user.save()
+			return redirect(reverse('play'))
