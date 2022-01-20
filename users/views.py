@@ -167,10 +167,13 @@ class Play(View) :
 		
 		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level	
+		image = "./static/pokemons/"+cur_user.team_logo+".png"
 		# cur_level = Level.objects.get(level_id=1)
 		form = self.form_class()
 		context = {
 			'level' : cur_level,
+			'user': cur_user,
+			'logo': image,
 			'form': form,
 		}
 		
@@ -271,7 +274,7 @@ class Bonus(View) :
 					try:
 						cur_user.bonus_level_id += 1
 						cur_user.bonus_attempted=cur_user.bonus_attempted+1
-						cur_user.points += 5	 					
+						cur_user.points += 4	 					
 						cur_user.save()
 						return redirect(reverse('play'))
 					except:
