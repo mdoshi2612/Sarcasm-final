@@ -2,10 +2,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 def generate_image(pokemon, team_name):
     # Front Image
-    filename1 = 'final1-01.png'
+    filename1 = 'static/templates/final1-01.png'
     
     # Back Image
-    filename = 'Pokemon/'+pokemon+'.png'
+    filename =  './static/pokemons/'+pokemon+'.png'
     
     # Open Front Image
     frontImage = Image.open(filename)
