@@ -86,10 +86,14 @@ body {
     /* transform: translateY(-50px); */
     /* transform: translateX(-500px); */
 }
-.panel p{
-    padding-right: 10%;
-    transform: translateX(13%);
-};
+/* .answer-para
+{
+    transform: translateX(-1000px);
+} */
+ .panel p{
+    padding-left: 15%;
+    /* transform: translateX(-1000px); 
+}
 .faq-row {
     display: flex;
     flex-direction: row;
