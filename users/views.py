@@ -71,30 +71,6 @@ def faq(request):
 def ourteam(request):
     return render(request,'users/ourteam.html')
 
-def generatepassword(request):
-	if request.method == 'POST':
-		leader_roll_number=request.POST.get('leader_roll_number')
-		team = Team.objects.filter(leader_roll_number=leader_roll_number).first()
-		if team is None:
-				context = {'message': 'Team not found', 'class': 'danger'}
-				return render(request, 'users/generatepassword.html', context)
-		else:
-			# username=request.POST.get('username')
-			email=request.POST.get('email')
-			otp= "hello"
-			user = User(username = leader_roll_number, email = email, password = otp)
-			team.user = user
-			user.save()
-			team.save()
-			send_otp(email, otp) 		
-			return redirect('login')
-			
-		
-	return render(request, 'users/generatepassword.html')
-    
-		
-		
-
 def generateOTP():
     digits = "0123456789"
     OTP = ""
@@ -111,6 +87,33 @@ def send_otp(email, otp_generated):
     recipient = [email]
     send_mail(subject, message, email_from, recipient, fail_silently=True)
     return None
+
+def generatepassword(request):
+	if request.method == 'POST':
+		leader_roll_number=request.POST.get('leader_roll_number')
+		team = Team.objects.filter(leader_roll_number=leader_roll_number).first()
+		if team is None:
+				context = {'message': 'Team not found', 'class': 'danger'}
+				return render(request, 'users/generatepassword.html', context)
+		else:
+			# username=request.POST.get('username')
+			email=request.POST.get('email')
+			password = User.objects.make_random_password()
+			user = User.objects.create(username = leader_roll_number, email = email)
+			user.set_password(password)
+			team.user = user
+			user.save()
+			team.save()
+			send_otp(email, password) 		
+			return redirect('login')
+			
+		
+	return render(request, 'users/generatepassword.html')
+    
+		
+		
+
+
 
 def login1(request):
 	if request.method == 'POST':
