@@ -1,41 +1,26 @@
-{% load staticfiles %}
-{% block head %}
-<META HTTP-EQUIV="refresh" CONTENT="15">
-{% endblock %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/play.css' %}">
-<style type="text/css">
-    body {
-        background-image:url("{% static 'images/rocket.png' %}");
-        background-size: cover;
-    }
+{% load static %}
+<!DOCTYPE html>
+<html>
 
-    #star {
-        height: 60px;
-    }
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <script src="https://kit.fontawesome.com/3aab0d0a4c.js" crossorigin="anonymous"></script>
+    <title>Sarcasm base</title>
+    <style>
 
-    @media only screen and (max-width: 450px) {
-        #star {
-            height: 40px;
-        }
-    }
-</style>
-{% endblock %}
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/play.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
 
-{% block content %}
-
+<body>
+<h1 class='main-heading'>SARCasm</h1>
 
 <div class="container">
     <div class="questionContainer d-flex flex-column">
-        <div class="row ml-auto" style="margin-right: auto; ">
-            <p id="TimerVivek" style="font-size: 30px;"></p>
-        </div>
-        <div class="questionDetails">
-            <div class="row questionumber">
-                <img src="{% static 'images/Bonus.svg' %}" id="star" alt="">
-            </div>
-        </div>
-        <div class="row questionontent">
+        <div class="accordion" style="font-size: 1.5rem;">
             {% if question is not None%}<div class="sub-ttle wrapper" id="bonusQuestionText"><span></span><span
                     class="text"></span><span class="cursor">{{question|safe}}</span></div>{% endif %}
         </div>
@@ -59,7 +44,8 @@
         <div class="row">
             <form class="d-flex flex-column" method="POST" action="" id="answer"> {% csrf_token %} {{form}}
 
-                <input type="submit" value="Submit" name="" class="submitButton row" style="color: white; width: auto;">
+                <input placeholder="Answer" type="submit" value="Submit" name="" class="submitButton row" autocomplete="off"
+                    style="color: white; width: auto; font-size: 2.5rem;">
             </form>
         </div>
     </div>
@@ -71,7 +57,6 @@
 </div>
 
 </div>
-{% endblock %}
 {% block post %}
 <script type="text/javascript">
     var comments = ["Hey Step up your game", "You can still win", "It will be nicer if you try being smarter", "I’d agree with you but then we’d both be wrong", "Keep Typing. Maybe youll find the answer", "My friend says that you need a therapist.", "Remember what I told you: It's hard ", "Life sometimes gets hard for no reason ", "50% correct 50% incorrect", "Same old same old ", "   Maybe you don't want the prizes so bad ", "I think you are stuckkkk….", "I bet you didn't see that coming ", "This is an easy question ", "Looks like someone needs a little help ", "I am surprised you reached till here ", "It's not what you are thinking ", "JBL PORTABLE SPEAKER", "JBL WIRED HEADPHONES", "10000 mAH MI POWER BANK", "ROUTER ", "BOAT EARPHONES ", " I don't know that either ", "Good luck! You will need it "];
