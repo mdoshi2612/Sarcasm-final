@@ -94,8 +94,20 @@
           {% endif %}
          
         </div> -->
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col">
+          <span class="sub-heading" style="color: black;  font-weight: bold;">Menu</span>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="column">
+          <span class="sub-heading" style="color: orangered; margin-left: 30%; font-weight: bold;">Score: {{user.points}}</span>
+        </div>
+        </div>
+        </div>
+        </div>
         <div class="accordion" style="font-size: 1.5rem;">
-          {% if level.question is not None %}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">{{level.question|safe}}</span></div>{% endif %}
+          {% if level.question is not None %}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">Question: {{level.question|safe}}</span></div>{% endif %}
           </div>
           <!-- {% if special == 'code' %}
             <div class="d-flex flex-row">
@@ -126,7 +138,7 @@
         <div class="row">
           <form class="d-flex flex-column" method="POST" action="play"> {% csrf_token %} 
             {{form}}  
-          <input  type="submit" value="Submit" name="" class="submitButton row" autocomplete="off" style="color: white; width: auto;">
+          <input  placeholder="Answer" type="submit" value="Submit" name="" class="submitButton row" autocomplete="off" style="color: white; width: auto; font-size: 2.5rem;">
           </form>
         </div>
     </div>
@@ -135,6 +147,19 @@
        <p onmouseover="showInsult()" class="imageArea"><img id="marioimg"  src="{% static "images/mario-question.svg" %}"></p>
       </div> 
     {% endcomment %} -->
+    <div class="column">
+      <img style="width: 245px; height: 247px;" src={{logo}}/>
+    </div>
+    <div class='column'>
+      <!-- <div class="pokeball unselected" rendered={{{user.league}} == "Open"}>
+        <div class="upper-half"> </div>
+        <div class="lower-half"> </div>
+        <div class="base"> </div>
+        <div class="inner-circle"> </div>
+        <div class="indicator visible"> </div>
+        <div class="indicator-inner"> </div> -->
+    </div>
+    </div>
    </div>
    
 

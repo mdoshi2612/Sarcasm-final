@@ -151,10 +151,13 @@ class Play(View) :
 		
 		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level	
+		image = "./static/pokemons/"+cur_user.team_logo+".png"
 		# cur_level = Level.objects.get(level_id=1)
 		form = self.form_class()
 		context = {
 			'level' : cur_level,
+			'user': cur_user,
+			'logo': image,
 			'form': form,
 		}
 		
@@ -176,6 +179,11 @@ class Play(View) :
 			ans = form.cleaned_data.get('answer')
 			if ans == cur_level.answer:
 				level_number = cur_user.current_level.level_id
+				if level_number == 2 :
+					cur_user.points=cur_user.points+3
+					cur_user.current_level_time = timezone.now()	 					
+					cur_user.save()
+					pass
 				try:
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
 					cur_user.points=cur_user.points+3
