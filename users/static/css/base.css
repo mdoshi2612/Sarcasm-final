@@ -55,7 +55,7 @@ body {
 #gen-info-section {
     color: white;
     width: 85%;
-    height: 783px;
+    height: auto;
     margin: auto;
     border-radius: 16px;
     position: relative;
@@ -64,7 +64,9 @@ body {
 }
 
 #gen-info {
-    text-align: center;
+    text-align: left;
+    margin-left:2vw;
+    margin-right:2vw
 }
 
 .blur-back {
