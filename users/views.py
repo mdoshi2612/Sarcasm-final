@@ -17,7 +17,10 @@ from django.utils import timezone
 # Create your views here.
 
 def home(request):
+	error_message = ""
+	context = {'error_message':error_message}
 	if request.method=="POST":
+		
 		team_name = request.POST.get('team_name')
 		leader_first_name = request.POST.get('leader_first_name')
 		leader_last_name = request.POST.get('leader_last_name')
@@ -38,6 +41,11 @@ def home(request):
 		player5_roll_number = request.POST.get('player5_roll_number')
 		league = request.POST.get('league')
 
+		allowed_roll_numbers = ["21",""]
+		if league=="Freshies Only" and (leader_roll_number[:2] not in allowed_roll_numbers or player2_roll_number[:2] not in allowed_roll_numbers or player3_roll_number[:2] not in allowed_roll_numbers or player4_roll_number[:2] not in allowed_roll_numbers or player5_roll_number[:2] not in allowed_roll_numbers):
+			error_message = "Please register for open category"
+			context = {'error_message':error_message}
+			return render(request,'users/sarcasmbase.html', context)
 
 			
 		team = Team(team_name = team_name, leader_first_name = leader_first_name, leader_last_name = leader_last_name,
@@ -47,11 +55,13 @@ def home(request):
 		player4_first_name = player4_first_name, player4_last_name = player4_last_name, player4_roll_number = player4_roll_number,
 		player5_first_name = player5_first_name, player5_last_name = player5_last_name, player5_roll_number = player5_roll_number,
 		league = league)
+
+
 		
 		team.save()
 
 	
-	return render(request,'users/sarcasmbase.html')
+	return render(request,'users/sarcasmbase.html', context)
 
 
 def faq(request):
