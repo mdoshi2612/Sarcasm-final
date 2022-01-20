@@ -49,7 +49,7 @@ body {
 }
 
 .active {
-    height: 30vh;
+    height: 35vh;
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -72,19 +72,24 @@ body {
 
 .panel {
     width: 80%;
-    border-radius: 0px 0px 10px 10px;
     margin-left: 10%;
+    border-radius: 0px 0px 10px 10px;
+    /* padding-top:-20%; */
     /* padding: 0 18px; */
-    padding-left: 20%;
+     padding-right: 5%; 
     color: white;
     background-color: #081341;
     max-height: 0;
     overflow: hidden;
     font-size: 1.5rem;
     transition: max-height 0.2s ease-out;
-    transform: translateY(-50px);
+    /* transform: translateY(-50px); */
+    /* transform: translateX(-500px); */
 }
-
+.panel p{
+    padding-right: 10%;
+    transform: translateX(13%);
+};
 .faq-row {
     display: flex;
     flex-direction: row;
@@ -107,11 +112,18 @@ body {
     }
     .panel {
         font-size: 2rem;
-        height: 30vh;
-        transform: translateY(-90px);
+        margin-left:10% ;
+        /* padding-right: 75%; */
+        /* transform: translateX(90px); */
     }
     .faq-img {
         height: 120%;
+    }
+    .panel p
+    {
+        transform: translateX(-0.5%);
+        padding-right: 10%; 
+
     }
 }
 
