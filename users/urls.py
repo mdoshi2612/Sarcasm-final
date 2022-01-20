@@ -10,6 +10,7 @@ urlpatterns=[
 	path('login', views.login1, name='login'),
 	path('leaderboard',views.leaderboard, name='leaderboard'),
 	path('bonus',views.Bonus.as_view(),name='bonus'),
-	path('ourteam',views.ourteam,name='ourteam')
+	path('ourteam',views.ourteam,name='ourteam'),
+	path('csv_teams',views.csv_teams,name='csv_teams')
 	
 ]
