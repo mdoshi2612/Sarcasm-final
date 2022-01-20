@@ -300,3 +300,11 @@ def leaderboard(request):
 		return render(request,'users/leaderboard.html', context)
 	return render(request,'users/leaderboard.html')
 	
+def image(request):
+    response = HttpResponse(content_type='image')
+    writer = csv.writer(response)
+    writer.writerow(['team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'])
+    for team in Team.objects.all().values_list('team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'):
+        writer.writerow(team)
+    response['Content-Disposition'] = 'attachment; filename="team_final.csv"'
+    return response	
