@@ -289,6 +289,13 @@ class Bonus(View) :
 
 		
 def leaderboard(request):
-	top_teams = Team.objects.order_by('-points')[:10]
-	context = {'top_teams': top_teams}
-	return render(request,'users/leaderboard.html', context)
+	if request.method == 'POST':
+		league = request.POST.get('league')		
+		if league == "Freshies Only":
+			top_teams = Team.objects.filter(league = "Freshies Only").order_by('-points')
+			context = {'top_teams': top_teams}
+			return render(request,'users/leaderboard.html', context)
+		else:
+			top_teams = Team.objects.order_by('-points')
+			context = {'top_teams': top_teams}
+			return render(request,'users/leaderboard.html', context)
