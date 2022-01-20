@@ -1,63 +1,102 @@
 {% load static %}
-{% block css %}
-    <link rel="stylesheet" href="{% static 'css/play.css' %}">
-    <style type="text/css">
-      body{
-        background-image:url("{% static 'images/space.png' %}") ;
-        background-size: cover;
-      }
-    </style>
-    {% if special == 'dark' %}
-    <style>
-      :root {
-        cursor: none;
-        --cursorX: 50vw;
-        --cursorY: 50vh;
-      }
-      :root:before {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        pointer-events: none;
-        background: radial-gradient(
-          circle 10vmax at var(--cursorX) var(--cursorY),
-          rgba(0,0,0,0) 0%,
-          rgba(0,0,0,.5) 80%,
-          rgba(0,0,0,.95) 100%
-        )
-      }
-    </style>
-    <script>
-      function update(e){
-        var x = e.clientX || e.touches[0].clientX
-        var y = e.clientY || e.touches[0].clientY
+<!DOCTYPE html>
+<html>
 
-        document.documentElement.style.setProperty('--cursorX', x + 'px')
-        document.documentElement.style.setProperty('--cursorY', y + 'px')
-      }
+<head>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <script src="https://kit.fontawesome.com/3aab0d0a4c.js" crossorigin="anonymous"></script>
+  <title>Sarcasm base</title>
+  <style>
 
-      document.addEventListener('mousemove',update)
-      document.addEventListener('touchmove',update)
-    </script>
-    {% endif %}
-{% endblock %}
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/play.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
 
-{% block content %}
+<body>
+  <!-- <nav>
+        <div class="navbar-ele"><a href="#"><img src="static/images/laptop_navbar.jpg" id="navbar-img"></a></div>
+    <nav>
+        <div class="navbar-ele" id="ham">
+            <a href="#"><img src="static/images/laptop_navbar.jpg" id="navbar-img"></a>
+        </div>
+        <div class="navbar-ele"><a href="#">Quiz</a></div>
+        <div class="navbar-ele"><a href="#">Leaderboard</a></div>
+        <div class="navbar-ele"><a href="#">FAQs</a></div>
+        <div class="navbar-ele"><a href="#">Team</a></div>
+        <div class="navbar-ele"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></div>
+        <div class="navbar-ele"><a href="#"><i class="fab fa-facebook fa-2x"></i></a></div>
+    </nav> -->
+  <!-- <nav class="navbar">
+        <a href="#" class="toggle-button">
+            <img src="static/images/pokeball.png" style="height: 60px;transform: translateY(10px);width:45px;">
+        </a> -->
+
+  <!-- <div class="brand-title"><img src="2 3.jpg" id="navbar-img"></div>   -->
+  <!-- <img src="2 3.jpg" id="navbar-img"> -->
+  <!-- <a href="#" class="toggle-button">
+           <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <img src="2 3.jpg">
+        </a> -->
+  <!-- <div class="navbar-links">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Quiz</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook fa-2x"></i></a></li>
+            </ul>
+        </div>
+    </nav> -->
+  <!-- <script>
+        var click = 0;
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+        toggleButton.addEventListener('click', () => {
+            click++;
+            console.log(click);
+            navbarLinks.classList.toggle('active')
+            if (click % 2 == 1)
+                toggleButton.style.transform = "translateX(-2px)";
+            if (click % 2 == 0)
+                toggleButton.style.transform = "translateY(-10px)";
+        })
+        if (navbarLinks.classList.contains('active')) {
+            console.log("Hello");
+            toggleButton.style.transform = "translateY(-40px)";
+        }
+        //toggleButton.style.transform="translateY(-60px)";
+    </script> -->
+
+
+
+
+
+
+
+
+  <h1 class='main-heading'>SARCasm</h1>
 
  <div class="container">
     <div class="questionContainer d-flex flex-column">
-        <div class="">
-        </div>
-        <div class="questionDetails">
+        <!-- <div class="">
+        </div> -->
+        <!-- <div class="questionDetails">
           {% if not level.is_bonus %}
             <div class="row questionumber">#{{level.level_id}}</div>
           {% endif %}
          
-        </div>
-        <div class="row questionontent" style="width: 75%;">
+        </div> -->
+        <div class="accordion" style="font-size: 1.5rem;">
           {% if level.question is not None %}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">{{level.question|safe}}</span></div>{% endif %}
+          </div>
           <!-- {% if special == 'code' %}
             <div class="d-flex flex-row">
                 <img src="{% static 'images/1.png' %}" width="25%" alt="Nature" onclick="myFunction(this);">
@@ -85,7 +124,7 @@
 	        {% endif %}
         </div> -->
         <div class="row">
-          <form class="d-flex flex-column" method="POST" action="play" id="answer"> {% csrf_token %} 
+          <form class="d-flex flex-column" method="POST" action="play"> {% csrf_token %} 
             {{form}}  
           <input  type="submit" value="Submit" name="" class="submitButton row" autocomplete="off" style="color: white; width: auto;">
           </form>
@@ -98,10 +137,8 @@
     {% endcomment %} -->
    </div>
    
- </div>
-{% endblock %}
 
-{% block post %}
+
 	<script type="text/javascript">
     var comments = ["Hey Step up your game", "You can still win","It will be nicer if you try being smarter","I’d agree with you but then we’d both be wrong","Keep Typing. Maybe you’ll find the answer","My friend says that you need a therapist.","Remember what I told you: It's hard ","Life sometimes gets hard for no reason ","50% correct 50% incorrect","Same old same old ","   Maybe you don't want the prizes so bad ","I think you are stuckkkk….","I bet you didn't see that coming ","This is an easy question ","Looks like someone needs a little help ","I am surprised you reached till here ","It's not what you are thinking ","JBL PORTABLE SPEAKER","JBL WIRED HEADPHONES","10000 mAH MI POWER BANK","ROUTER ","BOAT EARPHONES "," I don't know that either ","Good luck! You will need it "];
     $(document).ready(function(){
@@ -175,4 +212,7 @@ console.log(question);
 
 
 </script>
-{% endblock %}
+
+</body>
+
+</html>
