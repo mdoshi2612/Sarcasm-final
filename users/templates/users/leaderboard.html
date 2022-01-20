@@ -19,6 +19,40 @@
 
 <body>
     <h1 class='main-heading'>Leaderboard</h1>
+    <form action="" method='post'>
+        {% csrf_token %}
+        <div class="options">
+            <div class="option faded" id="option1">
+                <input type="radio" name="league" id="freshies_only" unchecked="unchecked" value="Freshies Only">
+                <div class="pokeball unselected">
+                    <div class="upper-half"> </div>
+                    <div class="lower-half"> </div>
+                    <div class="base"> </div>
+                    <div class="inner-circle"> </div>
+                    <div class="indicator visible"> </div>
+                    <div class="indicator-inner"> </div>
+                </div>
+                <div class="radio-options">Freshie Only</div>
+            </div>
+            <div class="option faded" id="option2">
+                <input type="radio" name="league" id="open" unchecked="unchecked" value="Open">
+                <div class="pokeball unselected">
+                    <div class="upper-half"> </div>
+                    <div class="lower-half"> </div>
+                    <div class="base"> </div>
+                    <div class="inner-circle"> </div>
+                    <div class="indicator visible"> </div>
+                    <div class="indicator-inner"> </div>
+                </div>
+                <div class="radio-options">Open</div>
+            </div>
+        </div>
+        <div>
+            <div style="text-align: center; margin: 2rem 0; width: 100%;">
+                <input type="submit" value="Show" class="btn" style="width:auto">
+            </div>
+        </div>
+    </form>
     <div class="table-responsive table-container">
         <table class="table table-bordered leaderboard">
             <tbody>
@@ -32,14 +66,16 @@
                             <img src="static/images/pokeball_closed.png" alt="">
                         </button>
                         <ul class="member-names dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
-                            {% if team.player1 %}
-                            <li>{{team.player1}}</li>
-                            {% endif %} {% if team.player2 %}
-                            <li>{{team.player2}}</li>
-                            {% endif %} {% if team.player3 %}
-                            <li>{{team.player3}}</li>
-                            {% endif %} {% if team.player4 %}
-                            <li>{{team.player4}}</li>
+                            {% if team.leader_first_name %}
+                            <li>{{team.leader_first_name}} {{team.leader_last_name}}</li>
+                            {% endif %} {% if team.player2_first_name %}
+                            <li>{{team.player2_first_name}} {{team.player2_last_name}}</li>
+                            {% endif %} {% if team.player3_first_name %}
+                            <li>{{team.player3_first_name}} {{team.player3_last_name}}</li>
+                            {% endif %} {% if team.player4_first_name %}
+                            <li>{{team.player4_first_name}} {{team.player4_last_name}}</li>
+                            {% endif %} {% if team.player5_first_name %}
+                            <li>{{team.player5_first_name}} {{team.player5_last_name}}</li>
                             {% endif %}
 
                         </ul>
@@ -50,6 +86,41 @@
             </tbody>
         </table>
     </div>
+    <script>
+        const options = ["option1", "option2"];
+
+        options.forEach(option => {
+            document.getElementById(option).addEventListener("click", function() {
+                const pokeballs = document.getElementsByClassName("pokeball");
+                for (var i = 0; i < pokeballs.length; i++) {
+                    pokeball = pokeballs[i];
+                    if (pokeball.parentNode.id != option) {
+                        pokeball.classList.remove("selected");
+                        pokeball.parentNode.classList.add("faded");
+                    } else {
+                        pokeball.classList.add("selected");
+                        pokeball.parentNode.classList.remove("faded");
+                    }
+                }
+                freshie_div = document.getElementById("option1")
+                open_div = document.getElementById("option2")
+                freshies_only = document.getElementById("freshies_only")
+                open = document.getElementById("open")
+                if (freshie_div.classList.contains("faded")) {
+                    open.checked = true
+                    freshies_only.checked = false
+                    console.log("Open")
+                } else if (open_div.classList.contains("faded")) {
+                    freshies_only.checked = true
+                    open.checked = false
+                    console.log("Freshies only")
+                } else {
+                    console.log("none selected")
+                }
+
+            });
+        });
+    </script>
 </body>
 
 </html>

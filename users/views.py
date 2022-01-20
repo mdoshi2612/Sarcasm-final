@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from .models import Team, Level, BonusQuestion
 from users.forms import TeamForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Team, Level
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
@@ -13,8 +13,19 @@ from .forms import LevelForm
 from django.urls import reverse
 from django.views import View
 from django.utils import timezone
+from django.core.mail import send_mail, BadHeaderError, EmailMessage
+import csv
 
 # Create your views here.
+
+def csv_teams(request):
+    response = HttpResponse(content_type='text/csv')
+    writer = csv.writer(response)
+    writer.writerow(['team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'])
+    for team in Team.objects.all().values_list('team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'):
+        writer.writerow(team)
+    response['Content-Disposition'] = 'attachment; filename="team_final.csv"'
+    return response
 
 def home(request):
 	error_message = ""
@@ -59,6 +70,18 @@ def home(request):
 
 		
 		team.save()
+
+		# to send login credentials
+		teamFetch = Team.objects.filter(leader_roll_number=leader_roll_number).first()
+		email=str(leader_roll_number)+'@iitb.ac.in'
+		password = User.objects.make_random_password()
+		user = User.objects.create(username = leader_roll_number, email = email)
+		user.set_password(password)
+		teamFetch.user = user
+		user.save()
+		teamFetch.save()
+		send_otp(email, password, leader_roll_number) 
+
 		success = True
 		context = {'success':success}
 	
@@ -70,23 +93,6 @@ def faq(request):
 
 def ourteam(request):
     return render(request,'users/ourteam.html')
-
-def generateOTP():
-    digits = "0123456789"
-    OTP = ""
-    for i in range(4):
-        OTP += digits[math.floor(random.random() * 10)]
-    return OTP
-
-
-def send_otp(email, otp_generated):
-    subject = "OTP request"
-    message = 'Hi, your otp is ' + str(otp_generated)
-    # email_from = ('pragyaptl131996@gmail.com', 'SARC IIT Bombay')
-    email_from = 'pragyaptl131996@gmail.com'
-    recipient = [email]
-    send_mail(subject, message, email_from, recipient, fail_silently=True)
-    return None
 
 def generatepassword(request):
 	if request.method == 'POST':
@@ -104,15 +110,22 @@ def generatepassword(request):
 			team.user = user
 			user.save()
 			team.save()
-			send_otp(email, password) 		
+			send_otp(email, password, leader_roll_number) 		
 			return redirect('login')
 			
 		
 	return render(request, 'users/generatepassword.html')
     
 		
-		
 
+
+def send_otp(email, password, leader_roll_number):
+    subject = "Sarcasm Login Credentials"
+    message = 'Hi, your login credentials are: Username ' + str(leader_roll_number) + ' & Password ' + str(password)
+    email_from = 'pragya.sarc@gmail.com'
+    recipient = [email, ]
+    send_mail(subject, message, email_from, recipient, fail_silently=True)
+    return None
 
 
 def login1(request):
@@ -155,6 +168,7 @@ class Play(View) :
 		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level	
 		image = "./static/pokemons/"+cur_user.team_logo+".png"
+<<<<<<< HEAD
 		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
 		bonus_level_id = cur_user.bonus_level_id
 		# if cur_level.level_id < 3:
@@ -188,6 +202,19 @@ class Play(View) :
 			return render(request,'users/play.html',context)   #{{form|crispy}} crispy form was removed try to add it back
 		else:
 			return render(request, 'users/success.html')
+=======
+		# cur_level = Level.objects.get(level_id=1)
+		form = self.form_class()
+		context = {
+			'level' : cur_level,
+			'user': cur_user,
+			'logo': image,
+			'form': form,
+		}
+		
+		return render(request,'users/play.html',context)   #{{form|crispy}} crispy form was removed try to add it back
+
+>>>>>>> fca1598403d4ce66611225efbe5e3bbe53074c46
 
 	def post(self,request, *args, **kwargs):
 		"""
@@ -284,6 +311,7 @@ class Bonus(View) :
 		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
 		form = self.form_class(request.POST)    #What if request != 'POST' ????
 		if form.is_valid():
+<<<<<<< HEAD
 			if(form.cleaned_data.get('submit')):
 				print("Submitting")
 				ans = form.cleaned_data.get('answer')
@@ -301,6 +329,18 @@ class Bonus(View) :
 							pass
 					else:
 						print("Cant play Bonus Twice")
+=======
+			ans = form.cleaned_data.get('answer')
+			if ans == bonus_level.answer:
+				
+				level_number = bonus_level.level_id
+				if cur_user.bonus_level_id == level_number:
+					try:
+						cur_user.bonus_level_id += 1
+						cur_user.bonus_attempted=cur_user.bonus_attempted+1
+						cur_user.points += 4	 					
+						cur_user.save()
+>>>>>>> fca1598403d4ce66611225efbe5e3bbe53074c46
 						return redirect(reverse('play'))
 				else:
 					print("Wrong Answer! Try Again")
@@ -316,6 +356,7 @@ class Bonus(View) :
 
 		
 def leaderboard(request):
+<<<<<<< HEAD
 	top_teams = Team.objects.order_by('-points')[:10]
 	context = {'top_teams': top_teams}
 	return render(request,'users/leaderboard.html', context)
@@ -335,3 +376,16 @@ def increase_bonus_level(request) :
 			cur_user.points += 0	 					
 			cur_user.save()
 			return redirect(reverse('play'))
+=======
+	if request.method == 'POST':
+		league = request.POST.get('league')		
+		if league == "Freshies Only":
+			top_teams = Team.objects.filter(league = "Freshies Only").order_by('-points')
+			context = {'top_teams': top_teams}
+			return render(request,'users/leaderboard.html', context)
+		top_teams = Team.objects.order_by('-points')
+		context = {'top_teams': top_teams}
+		return render(request,'users/leaderboard.html', context)
+	return render(request,'users/leaderboard.html')
+	
+>>>>>>> fca1598403d4ce66611225efbe5e3bbe53074c46
