@@ -2,110 +2,101 @@
     font-family: Pokemon;
     src: url('../fonts/pokemonsolid.woff');
 }
-header{
-font-family: Pokemon;
-    src: url('../fonts/pokemonsolid.woff');
-    color: yellow;
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
 }
-body{
-    padding: 0;
-    margin: 0;
-    background-size: 100% 120%;
-    background-image: url("../images/laptop_background.jpg");
-    position: relative;
-    font-family: 'Amatic SC';
-    display: flex;
+
+* {
+    font-size: 15px;
+}
+
+body {
+    background: url("../images/laptop_background.jpg") no-repeat fixed;
+    color: white;
+    background-size: cover;
     align-items: center;
-    overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    color: azure;
 }
-
-.team-area {
-    display: flex;
-    justify-content: space-around;
-    width: 70vw;
-}
-.team-area .team-member {
+.main-heading{
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 140px;
+    width: 100%;
+    margin: auto;
     text-align: center;
+    /* identical to box height */
+    color: #FFD600;
 }
 
 
-.team-area .team-member .thumb {
+
+.container  {
+    text-align: center;
+    font-size: 15px;
+    align-items: center;
+}
+
+.thumb {
     width: 100px;
     height: 100px;
 }
 
-.team-area .team-member .thumb img {
+.thumb img {
     width: 100%;
     border-radius: 50%; 
 }
-
-
-.team-1 {
-    display: flex;
-    justify-content: space-around;
-    width: 30vw;
-}
-.team-1 .team-member {
-    text-align: center;
-}
-
-
-.team-1 .team-member .thumb {
-    width: 100px;
-    height: 100px;
-    border-image-width: 10px;
-}
-
-.team-1 .team-member .thumb img {
-    width: 100%;
-    border-radius: 50%; 
-    
-    
-}
- 
-
-.team-3 {
-    display: flex;
-    justify-content: space-around;
-    width: 10vw;
-}
-.team-3 .team-member {
-    text-align: center;
-}
-
-
-.team-3 .team-member .thumb {
-    width: 100px;
-    height: 100px;
-    border-image-width: 10px;
-}
-
-.team-3 .team-member .thumb img {
-    width: 100%;
-    border-radius: 50%; 
-    
-    
-}
-
 
 img { 
-   border:3px solid aqua;
+   border: 3px solid aqua;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (min-width: 768px){
+
     .laptop{
         display: none;
     }
-    .body{
-        background-repeat: no-repeat;
-        background-image: url('../t.png') !important;
-        background-size: 100% 490px;
-        background-color: black;
+}
+
+@media only screen and (max-width:992px) {
+    .mobile{
+        display: none;
     }
+    .body{
+    background: url("../images/mobile_background.jpg") no-repeat fixed;
+    color: white;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    }
+
+    .thumb {
+    width: 40px;
+    height: 40px;
+    }
+
+    .main-heading{
+        font-size: 2rem;
+    }
+    * {
+        font-size: 7px;
+        text-align: center;
+    };
+
+    img { 
+    border: 2px solid black;
+}
+    
+    .thumb {
+    width: 40px;
+    height: 40px;
+}
+
     
 }
