@@ -132,6 +132,12 @@ body {
     color: white;
 }
 
+.error_message span {
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+}
+
 .team-name-div,
 .player {
     margin-top: 2rem;
