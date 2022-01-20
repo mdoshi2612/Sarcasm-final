@@ -13,75 +13,19 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="static/css/play.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    var time = "{{time_remaining}}";
+    console.log(time)
+    window.onload = () => {
+      window.setTimeout(function(){
+      window.location.href = "/bonus";
+      }, time);
+    }
+  </script>
 </head>
 
 <body>
-  <!-- <nav>
-        <div class="navbar-ele"><a href="#"><img src="static/images/laptop_navbar.jpg" id="navbar-img"></a></div>
-    <nav>
-        <div class="navbar-ele" id="ham">
-            <a href="#"><img src="static/images/laptop_navbar.jpg" id="navbar-img"></a>
-        </div>
-        <div class="navbar-ele"><a href="#">Quiz</a></div>
-        <div class="navbar-ele"><a href="#">Leaderboard</a></div>
-        <div class="navbar-ele"><a href="#">FAQs</a></div>
-        <div class="navbar-ele"><a href="#">Team</a></div>
-        <div class="navbar-ele"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></div>
-        <div class="navbar-ele"><a href="#"><i class="fab fa-facebook fa-2x"></i></a></div>
-    </nav> -->
-  <!-- <nav class="navbar">
-        <a href="#" class="toggle-button">
-            <img src="static/images/pokeball.png" style="height: 60px;transform: translateY(10px);width:45px;">
-        </a> -->
-
-  <!-- <div class="brand-title"><img src="2 3.jpg" id="navbar-img"></div>   -->
-  <!-- <img src="2 3.jpg" id="navbar-img"> -->
-  <!-- <a href="#" class="toggle-button">
-           <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <img src="2 3.jpg">
-        </a> -->
-  <!-- <div class="navbar-links">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Quiz</a></li>
-                <li><a href="#">Leaderboard</a></li>
-                <li><a href="#">FAQs</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
-                <li><a href="#"><i class="fab fa-facebook fa-2x"></i></a></li>
-            </ul>
-        </div>
-    </nav> -->
-  <!-- <script>
-        var click = 0;
-        const toggleButton = document.getElementsByClassName('toggle-button')[0]
-        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
-
-        toggleButton.addEventListener('click', () => {
-            click++;
-            console.log(click);
-            navbarLinks.classList.toggle('active')
-            if (click % 2 == 1)
-                toggleButton.style.transform = "translateX(-2px)";
-            if (click % 2 == 0)
-                toggleButton.style.transform = "translateY(-10px)";
-        })
-        if (navbarLinks.classList.contains('active')) {
-            console.log("Hello");
-            toggleButton.style.transform = "translateY(-40px)";
-        }
-        //toggleButton.style.transform="translateY(-60px)";
-    </script> -->
-
-
-
-
-
-
-
-
+  
   <h1 class='main-heading'>SARCasm</h1>
 
  <div class="container">
@@ -95,20 +39,19 @@
          
         </div> -->
         <div class="row" style="margin-bottom: 20px;">
-          <!-- <div class="col">
-            <span class="sub-heading" style="color: black;  font-weight: bold;">Menu</span>
-          </div> -->
           <div class="col">
-            <!-- <div class="row">
-              <div class="column">
-                <span class="sub-heading" style="color: orangered; margin-left: 30%; font-weight: bold;">Score:
-                  {{user.points}}</span>
-              </div>
-            </div> -->
+          <span class="sub-heading" style="color: black;  font-weight: bold;">Menu</span>
           </div>
+          <div class="col">
+            <div class="row">
+              <div class="column">
+          <span class="sub-heading" style="color: orangered; margin-left: 30%; font-weight: bold;">Score: {{user.points}}</span>
+        </div>
+        </div>
+        </div>
         </div>
         <div class="accordion" style="font-size: 1.5rem;">
-          {% if level.question is not None %}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">Question:{{level.question|safe}}</span></div>{% endif %}
+          {% if level.question is not None %}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">Question: {{level.question|safe}}</span></div>{% endif %}
           </div>
           <!-- {% if special == 'code' %}
             <div class="d-flex flex-row">
@@ -139,8 +82,7 @@
         <div class="row">
           <form class="d-flex flex-column" method="POST" action="play"> {% csrf_token %} 
             {{form}}  
-          <input placeholder="Answer" type="submit" value="Submit" name="" class="submitButton row" autocomplete="off"
-            style="color: white; width: auto; font-size: 2.5rem;">
+          <input  placeholder="Answer" type="submit" value="Submit" name="" class="submitButton row" autocomplete="off" style="color: white; width: auto; font-size: 2.5rem;">
           </form>
         </div>
     </div>
@@ -149,11 +91,14 @@
        <p onmouseover="showInsult()" class="imageArea"><img id="marioimg"  src="{% static "images/mario-question.svg" %}"></p>
       </div> 
     {% endcomment %} -->
-  <div class="column">
-    <img style="width: 245px; height: 247px;" src={{logo}} />
-  </div>
-  
-
+    <div class="column">
+      <img style="width: 245px; height: 247px;" src={{logo}}/>
+    </div>
+    <div class='column'>
+      
+    </div>
+    </div>
+   </div>
    
 
 
@@ -163,6 +108,11 @@
       $("#marioimg").hover(
         function () { $("#randomInsult").css("opacity", "1"); },
         function () {$("#randomInsult").css("opacity", "0"); });  });
+
+
+function check_bonus() {
+
+}
 
 
 function showInsult() {

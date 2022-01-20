@@ -15,17 +15,18 @@ from django.views import View
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 import csv
+from .image_overlay import generate_image
 
 # Create your views here.
 
 def csv_teams(request):
-    response = HttpResponse(content_type='text/csv')
-    writer = csv.writer(response)
-    writer.writerow(['team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'])
-    for team in Team.objects.all().values_list('team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'):
-        writer.writerow(team)
-    response['Content-Disposition'] = 'attachment; filename="team_final.csv"'
-    return response
+	response = HttpResponse(content_type='text/csv')
+	writer = csv.writer(response)
+	writer.writerow(['team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'])
+	for team in Team.objects.all().values_list('team_name', 'leader_first_name', 'leader_last_name', 'leader_roll_number', 'leader_whatsapp_number', 'team_logo', 'player2_first_name', 'player2_last_name', 'player2_roll_number', 'player3_first_name', 'player3_last_name', 'player3_roll_number', 'player4_first_name', 'player4_last_name', 'player4_roll_number', 'player5_first_name', 'player5_last_name', 'player5_roll_number', 'league'):
+		writer.writerow(team)
+	response['Content-Disposition'] = 'attachment; filename="team_final.csv"'
+	return response
 
 def home(request):
 	error_message = ""
@@ -89,10 +90,10 @@ def home(request):
 
 
 def faq(request):
-    return render(request,'users/faq.html')
+	return render(request,'users/faq.html')
 
 def ourteam(request):
-    return render(request,'users/ourteam.html')
+	return render(request,'users/ourteam.html')
 
 def generatepassword(request):
 	if request.method == 'POST':
@@ -115,17 +116,17 @@ def generatepassword(request):
 			
 		
 	return render(request, 'users/generatepassword.html')
-    
+	
 		
 
 
 def send_otp(email, password, leader_roll_number):
-    subject = "Sarcasm Login Credentials"
-    message = 'Hi, your login credentials are: Username ' + str(leader_roll_number) + ' & Password ' + str(password)
-    email_from = 'pragya.sarc@gmail.com'
-    recipient = [email, ]
-    send_mail(subject, message, email_from, recipient, fail_silently=True)
-    return None
+	subject = "Sarcasm Login Credentials"
+	message = 'Hi, your login credentials are: Username ' + str(leader_roll_number) + ' & Password ' + str(password)
+	email_from = 'pragya.sarc@gmail.com'
+	recipient = [email, ]
+	send_mail(subject, message, email_from, recipient, fail_silently=True)
+	return None
 
 
 def login1(request):
@@ -192,9 +193,17 @@ class Play(View) :
 
 		form = self.form_class(request.POST)    #What if request != 'POST' ????
 		if form.is_valid():
-			ans = form.cleaned_data.get('answer')
-			if ans == cur_level.answer:
+			ans = form.cleaned_data.get('answer').lower()
+			correct_answers = cur_level.answer.split(',')
+			print(correct_answers)
+			if ans in correct_answers:
 				level_number = cur_user.current_level.level_id
+				if level_number == 2 :
+					cur_user.points=cur_user.points+3
+					cur_user.current_level_time = timezone.now()	 					
+					cur_user.save()
+					return render(request, 'users/success.html')
+					
 				try:
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
 					cur_user.points=cur_user.points+3
@@ -256,6 +265,7 @@ class Bonus(View) :
 		return render(request, 'users/bonus.html', context)
 	
 
+
 	def post(self,request, *args, **kwargs):
 		"""
 		POST request
@@ -277,18 +287,43 @@ class Bonus(View) :
 						cur_user.points += 4	 					
 						cur_user.save()
 						return redirect(reverse('play'))
-					except:
-						pass
+					finally:
+						print('log')
 				else:
-					print("Cant play Bonus Twice")
-					return redirect(reverse('play'))
-			else:
-				print("Wrong Answer! Try Again")
-				return redirect(reverse('bonus'))
+					print("Wrong Answer! Try Again")
+					return redirect(reverse('bonus'))
+			if(form.cleaned_data.get('skip')):
+				print("Skipping")
+				cur_user.bonus_level_id += 1
+				cur_user.bonus_attempted=cur_user.bonus_attempted+1
+				cur_user.points += 0	 					
+				cur_user.save()
+				return redirect(reverse('play'))
 		return redirect(reverse('play'))
 
 		
 def leaderboard(request):
+
+	top_teams = Team.objects.order_by('-points')[:10]
+	context = {'top_teams': top_teams}
+	return render(request,'users/leaderboard.html', context)
+
+def success(request):
+	return render(request, 'users/success.html')
+
+def increase_bonus_level(request) :
+	print ("Increase bonus level")
+	if request.method=='POST' :
+		cur_user = Team.objects.get(user=request.user)
+		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
+		level_number = bonus_level.level_id
+		if cur_user.bonus_level_id == level_number:
+			cur_user.bonus_level_id += 1
+			cur_user.bonus_attempted=cur_user.bonus_attempted+1
+			cur_user.points += 0	 					
+			cur_user.save()
+			return redirect(reverse('play'))
+
 	if request.method == 'POST':
 		league = request.POST.get('league')		
 		if league == "Freshies Only":
@@ -299,4 +334,10 @@ def leaderboard(request):
 		context = {'top_teams': top_teams}
 		return render(request,'users/leaderboard.html', context)
 	return render(request,'users/leaderboard.html')
-	
+
+def image(request):
+	response = HttpResponse(content_type='image/png')
+	image = generate_image("Charizard", "Pokemon")
+	image.save(response, 'png')
+	response['Content-Disposition'] = 'attachment; filename="image.png"'
+	return response	
