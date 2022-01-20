@@ -59,7 +59,8 @@ def home(request):
 
 		
 		team.save()
-
+		error_message = "You have been successfully registered"
+		context = {'error_message':error_message}
 	
 	return render(request,'users/sarcasmbase.html', context)
 
