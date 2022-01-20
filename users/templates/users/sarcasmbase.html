@@ -82,8 +82,21 @@
 
 
     <h1 class='main-heading'>SARCasm</h1>
+    {%if success%}
+    <div id="gen-info" style="text-align:center; color:yellow">You have registered successfully!!</div>
+    {%endif%}
     <div id="gen-info-section" class="blur-back">
-        <div id="gen-info">General info about the event</div>
+
+        <div id="gen-info">Put your brain into gear for it is brainstorming time! 
+            The most exhilarating, nail-biting and mind-boggling 48 hours of your life await. 
+            
+            Unleash your potential to comprehend the clues and chart the course for this exasperating, (yet enjoyable) journey, because SARCasm 2022 is here!
+            
+            Decode Insti’s Best Annual Crypt Hunt with your friends in teams of 4-6 and win exciting prizes.
+            
+            But do you have the right concoction to crack the code?</div>
+            
+            <div id="gen-info" style="text-align:center"> Hurry and register to find out!</div>
     </div>
     <br>
     <br>
@@ -256,7 +269,7 @@
                     </div>s
                     <a href="#team-logos-sec">
                         <div style="text-align: center; margin: 2rem 0; width: 100%;">
-                            <input type="button" value="Next" class="btn" id="btn-next">
+                            <input type="button" value="Next" class="btn" id="btn-next" style="width:auto">
                         </div>
                     </a>
 
@@ -409,7 +422,7 @@
             </div>
         </div>
         <div style="text-align: center; margin: 2rem 0; width: 100%;">
-            <input type="submit" value="Submit" class="btn">
+            <input type="submit" value="Submit" class="btn" style="width:auto">
         </div>
     </div>
     </form>
