@@ -407,6 +407,7 @@ def generate_image(pokemon, team_name):
 
 def image(request):
 	response = HttpResponse(content_type='image/png')
+	cur_user = Team.objects.get(user=request.user)
 	image = generate_image("Charizard", "Pokemon")
 	image.save(response, 'png')
 	response['Content-Disposition'] = 'attachment; filename="image.png"'
