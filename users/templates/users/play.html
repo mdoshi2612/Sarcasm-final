@@ -33,7 +33,7 @@
         <div class="navbar-ele"><a href="#"><img src="../../static/images/leader.png"></a></div>
         <div class="navbar-ele"><a href="#"><img src="../../static/images/faq.png"></a></div>
         <div class="navbar-ele"><a href="#"><img src="../../static/images/team.png"></a></div>
-        <div class="navbar-ele"><a href="#"><img src="../../static/images/share.png"></a></div>
+        <div class="navbar-ele" id="mob-share"><a href="#"><img src="../../static/images/share.png"></a></div>
         <div class="navbar-ele"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></div>
         <div class="navbar-ele"><a href="#"><i class="fab fa-facebook fa-2x"></i></a></div>
     </nav>
@@ -141,12 +141,12 @@
     {% endcomment %} -->
 
 
-     {% comment %} <div class="column blur-back score-card" style="width: 25%; text-align: center; position: absolute; bottom: 30px; left: 30px;">
+     <div class="column blur-back score-card" style="width: 25%; text-align: center; position: absolute; bottom: 30px; left: 30px;">
       <div class="team-half">
       <img style="width: 90%;" src={{logo}}/>
       <div class="team-name">{{user.team_name}}</div>
       </div>
-      <div class="score-half">  {% endcomment %}
+      <div class="score-half">  
       <div class="points">
         {{user.points}} 
       </div>
@@ -154,7 +154,7 @@
 
       </div>
 
-    </div>  {% endcomment %}
+    </div> 
 
 
 
@@ -182,12 +182,17 @@ So what are you waiting for?</p>
         const shareinst = document.querySelector(".share-instructions")
         const closebut = document.querySelector(".close-button")
         const modalback = document.querySelector(".modal-back")
+        const mobshare = document.getElementById("mob-share")
         pokeball.addEventListener("click", function() {
             pokeball.classList.toggle("selected")
             nav.classList.toggle("show-nav")
             main.classList.toggle("slide-down")
         })
         share.addEventListener("click", function(){
+            shareinst.classList.add("show-modal")
+            modalback.classList.add("show-modal")
+        })
+        mobshare.addEventListener("click", function(){
             shareinst.classList.add("show-modal")
             modalback.classList.add("show-modal")
         })

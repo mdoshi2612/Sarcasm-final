@@ -466,12 +466,19 @@ input[type="submit"] {
         height: 20vh;
     }
     .team-half img {
-        width: 65% !important;
+        width: 60% !important;
+        height: 65% !important;
+    }
+    .share{
+        display: none;
     }
     .team-half {
         width: 20rem;
     }
     nav{
         overflow-x: scroll;
+    }
+    .share-instructions{
+        width: 80%;
     }
 }
