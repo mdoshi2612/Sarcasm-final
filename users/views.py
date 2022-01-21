@@ -20,7 +20,6 @@ import csv
 from django.templatetags.static import static
 from django.contrib.staticfiles.storage import staticfiles_storage
 from PIL import Image, ImageDraw, ImageFont
-
 # Create your views here.
 
 def csv_teams(request):
@@ -175,6 +174,26 @@ class Play(View) :
 		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level	
 		image = "./static/pokemons/"+cur_user.team_logo+".png"
+		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
+		bonus_level_id = cur_user.bonus_level_id
+		# if cur_level.level_id < 3:
+		# if bonus_level_id < 3:
+		livedatetime=bonus_level.live_date
+		current_time=timezone.now()
+		print("current time ",current_time)
+		expdatetime = bonus_level.expiration_date
+		print("Expdate", expdatetime)
+		print("live date ",livedatetime)
+		if current_time < livedatetime:
+			time_remaining = (livedatetime - current_time).total_seconds() * 1000
+			print("Time remaining1", time_remaining)
+		if (current_time > livedatetime) and (current_time < expdatetime):
+			time_remaining = 0
+			print("Time remaining2", time_remaining)
+		if current_time > expdatetime:
+			print("Time remaining 3")
+			time_remaining = 200000000
+			# print("Time remaining ", time_remaining.total_seconds())
 		# cur_level = Level.objects.get(level_id=1)
 		form = self.form_class()
 		context = {
@@ -182,6 +201,7 @@ class Play(View) :
 			'user': cur_user,
 			'logo': image,
 			'form': form,
+			'time_remaining': time_remaining,
 		}
 		
 		return render(request,'users/play.html',context)   #{{form|crispy}} crispy form was removed try to add it back
@@ -238,7 +258,7 @@ class Bonus(View) :
 			if expired:
 				# print("The question has expired")
 				bonus_array = BonusQuestion.objects.filter(level_id__gt=cur_user.bonus_level_id)
-				# print(bonus_array)
+				print(bonus_array)
 				for q in bonus_array:
 					if q.live_date < current_time and current_time<q.expiration_date:
 						cur_user.bonus_level_id = q.level_id
@@ -251,6 +271,8 @@ class Bonus(View) :
 				raise
 		except:
 			print("Error")
+			cur_user.bonus_level_id=cur_user.bonus_level_id + 1
+			cur_user.save()
 			return redirect(reverse('play'))
 		form = self.form_class
 
@@ -282,19 +304,24 @@ class Bonus(View) :
 		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
 		form = self.form_class(request.POST)    #What if request != 'POST' ????
 		if form.is_valid():
-			ans = form.cleaned_data.get('answer')
-			if ans == bonus_level.answer:
-				
-				level_number = bonus_level.level_id
-				if cur_user.bonus_level_id == level_number:
-					try:
-						cur_user.bonus_level_id += 1
-						cur_user.bonus_attempted=cur_user.bonus_attempted+1
-						cur_user.points += 4	 					
-						cur_user.save()
+			if(form.cleaned_data.get('submit')):
+				print("Submitting")
+				ans = form.cleaned_data.get('answer')
+				if ans == bonus_level.answer:
+					
+					level_number = bonus_level.level_id
+					if cur_user.bonus_level_id == level_number:
+						try:
+							cur_user.bonus_level_id += 1
+							cur_user.bonus_attempted=cur_user.bonus_attempted+1
+							cur_user.points += 6	 					
+							cur_user.save()
+							return redirect(reverse('play'))
+						except:
+							pass
+					else:
+						print("Cant play Bonus Twice")
 						return redirect(reverse('play'))
-					finally:
-						print('log')
 				else:
 					print("Wrong Answer! Try Again")
 					return redirect(reverse('bonus'))
@@ -305,6 +332,9 @@ class Bonus(View) :
 				cur_user.points += 0	 					
 				cur_user.save()
 				return redirect(reverse('play'))
+
+		cur_user.bonus_level_id += 1
+		cur_user.bonus_attempted=cur_user.bonus_attempted+1
 		return redirect(reverse('play'))
 
 		
@@ -343,7 +373,7 @@ def increase_bonus_level(request) :
 
 def generate_image(pokemon, team_name):
     # Front Image
-    filename1 = os.path.join(os.getcwd(), "users/static/images/final1-02.png")
+    filename1 = os.path.join(os.getcwd(), "users/static/images/final1-01.png")
     filename = os.path.join(os.getcwd(), "users/static/pokemons/"+pokemon+'.png')
 
     
@@ -410,8 +440,10 @@ def generate_image(pokemon, team_name):
 
 def image(request):
 	response = HttpResponse(content_type='image/png')
+	
 	cur_user = Team.objects.get(user=request.user)
-	image = generate_image("Charizard", "Pokemon")
+
+	image = generate_image(cur_user.team_logo, cur_user.team_name)
 	image.save(response, 'png')
-	response['Content-Disposition'] = 'attachment; filename="image.png"'
+	response['Content-Disposition'] = 'attachment; filename="my_SARCasm_team.png"'
 	return response	
