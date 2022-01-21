@@ -47,35 +47,37 @@
             <div class="accordion">
             {% if question is not None%}<div class="sub-ttle wrapper" id="bonusQuestionText"><span></span><span
                     class="text"></span><span class="cursor">Question: {{question|safe}}</span></div>{% endif %}
+                    <div class="row questionImage card-img" id="bonusQuestionImage">
+                        {% if level.image.url is not None %}
+                        {% comment %} {{level.image.url}} {% endcomment %}
+                        <img src={{level.image.url}} class="img-responsive" style="width:50%; height:auto; margin-left:auto; margin-right:auto;">
+                        {% endif %}
+                        {% if level.audiofile.url is not None %}
+                        <audio controls id="bonusQuestionAudio">
+                            <source src={{level.audiofile.url}} type="audio/mpeg">
+                            Your browser does not support the audio tag.
+                        </audio>
+                        {% endif %}
+                        {% if level.videofile.url is not None %}
+                        <video width="auto" height="auto" controls id="bonusQuestionVideo">
+                            <source src={{level.videofile.url}} type="video/mp4">
+                            Your Browser does not support the video tag
+                        </video>
+                        {% endif %}
+                    </div>
         </div>
-        <div class="row questionImage card-img" id="bonusQuestionImage">
-            {% if level.image.url is not None %}
-            <img src={{level.image.url}} class="img-responsive">
-            {% endif %}
-            {% if level.audiofile.url is not None %}
-            <audio controls id="bonusQuestionAudio">
-                <source src={{level.audiofile.url}} type="audio/mpeg">
-                Your browser does not support the audio tag.
-            </audio>
-            {% endif %}
-            {% if level.videofile.url is not None %}
-            <video width="auto" height="150" controls id="bonusQuestionVideo">
-                <source src={{level.videofile.url}} type="video/mp4">
-                Your Browser does not support the video tag
-            </video>
-            {% endif %}
-        </div>
+        
         <div class="row">
             <form class="d-flex flex-column" method="POST" action="" id="answer"> {% csrf_token %}
                  {{form}}
-            <button type="submit" value="Submit" name="submit" class="submitButton row" style="background: #ffd600;; height: 100%; padding: 1rem; font-size:2.5rem;  border-radius: 1rem; color: white; width: auto;">
+            <button type="submit" value="Submit" name="submit" class="submitButton row" style="background: #ffd600;; height: 50px; padding: 1rem; font-size:2.5rem;  border-radius: 1rem; color: white; width: 10%; margin:0 auto; display: flex; align-items:center; justify-content:center; padding-bottom:1rem">Submit</button>
             </form>
             
         </div>
         <form method="POST" action="/skip"> {% csrf_token %}
             <input type="text" name="skip" value="skipped" hidden />
             <button type="submit"
-                style="background: #ffd600;; height: 100%; padding: 1rem; font-size:2.5rem;  border-radius: 1rem; color: white; width: auto;">Skip</button>
+                style="background: #e76910; height: 100%; padding: 1rem; font-size:2.5rem;  border-radius: 1rem; color: white; width: auto; margin-left:auto; margin-right:auto">Skip</button>
         </form>
     </div>
     <!-- {% comment %}
