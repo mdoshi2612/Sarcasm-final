@@ -366,9 +366,9 @@ def increase_bonus_level(request) :
 
 def generate_image(pokemon, team_name):
     # Front Image
-    filename1 = os.path.join(settings.STATIC_ROOT, '/images/final1-01.png')
-    
-    filename = staticfiles_storage.url('pokemons/'+pokemon+'.png')
+    filename1 = os.path.join(os.getcwd(), "users/static/images/final1-01.png")
+    filename = os.path.join(os.getcwd(), "users/static/pokemons/"+pokemon+'.png')
+
     
     # Open Background Image
     background = Image.open(filename1)
@@ -408,7 +408,7 @@ def generate_image(pokemon, team_name):
     txt = Image.new("RGBA", background.size, (255, 255, 255, 0))
 
     # get a font
-    fnt = ImageFont.truetype("AEH.ttf", 250)
+    fnt = ImageFont.truetype(os.path.join(os.getcwd(), "users/static/fonts/AEH.ttf"), 250)
     # get a drawing context
 
 
@@ -433,7 +433,10 @@ def generate_image(pokemon, team_name):
 
 def image(request):
 	response = HttpResponse(content_type='image/png')
-	image = generate_image("Charizard", "Pokemon")
+	
+	cur_user = Team.objects.get(user=request.user)
+
+	image = generate_image(cur_user.team_logo, cur_user.team_name)
 	image.save(response, 'png')
-	response['Content-Disposition'] = 'attachment; filename="image.png"'
+	response['Content-Disposition'] = 'attachment; filename="my_SARCasm_team.png"'
 	return response	
