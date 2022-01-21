@@ -3,103 +3,55 @@
 
 <head>
     <title>FAQ</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/faq.css" />
 </head>
 
 <body>
     <h1 class='main-heading'>FAQs</h1>
-    <button class="accordion" onclick="changeimg(1)">
-        <div class="faq-row" style="font-size: 1.5rem;">
-            <img src="static/images/mario.svg" class="faq-img" id="faq-img1">
-            What is SARCasm?
-        </div>
-    </button>
-    <div class="panel">
-        <p class="answer-para">SARCasm is an online cryptic quiz organised by the Student Alumni Relations Cell. The
-            participants are required to answer questions, riddles or puzzles, with the key being something related to
-            our institute. It aims to introduce freshmen to life at the institute, or more fondly, the “insti life” and
-            offers a multitude of exciting prizes as rewards. Participants have a 48 hour window to solve around 50
-            questions related to insti life whose answers range from places, to ‘insti lingo’, alumni and anything you
-            can think of as long as it’s related to insti! Pokemon is only the theme for this year’s SARCasm, no
-            questions will be related to the franchise.</p>
-    </div>
-    <br>
-    <button class="accordion" onclick="changeimg(2)">
-        <div class="faq-row" style="font-size: 1.5rem;">
-            <img src="static/images/mario.svg" class="faq-img" id="faq-img2">
-            What is the allowed Team Size for SARCasm?
-        </div>
-    </button>
-    <div class="panel">
-        <p class="answer-para">This year, we are flexible with the size of the teams with the constraint that a team of anywhere between 2-5 members, including the team leader, is allowed.</p>
-    </div>
-    <br>
-    <button class="accordion" onclick="changeimg(3)">
-        <div class="faq-row" style="font-size: 1.5rem;">
-            <img src="static/images/mario.svg" class="faq-img" id="faq-img3">
-            What is the Last Date for registering for SARCasm?
-        </div>
-    </button>
-    <div class="panel">
-        <p class="answer-para">While we have no hard deadline for registrations, we suggest that you register before
-            the beginning of the 48 hours in which the questions are available so that you can gain access to and begin
-            solving the questions. Registration before Saturday, 22nd January 2022, is recommended in order to have the
-            best experience solving the questions</p>
-    </div>
-    <br>
-    <button class="accordion" onclick="changeimg(4)">
-        <div class="faq-row" style="font-size: 1.5rem;">
-            <img src="static/images/mario.svg" class="faq-img" id="faq-img4">
-            Who all are allowed to register for SARCasm?
-        </div>
-    </button>
-    <div class="panel">
-        <p class="answer-para">Owing to the many requests we have received, SARCasm is now open to register for
-            Seniors as well as the previously allowed Freshers of IIT Bombay. Participants are required to select the
-            Fresher or Senior team option in registration as applicable. Although it is not required that students team
-            up with their own batchmates, note that even if a single member in the team is a senior, the team is
-            considered to be in the Senior category. While there will be a common leaderboard active during the
-            competition, the prizes at the end will be given considering separate rank lists of seniors and freshers
-            i.e. Fresher’s prizes are irrespective of the performance of Senior teams.</p>
-    </div>
-    <br>
-    <!-- <button class="accordion" onclick="changeimg(5)">
-    <div class="faq-row" style="font-size: 1.5rem;">
-        <img src="static/images/mario.svg" class="faq-img" id="faq-img5">
-        How can you participate?
-    </div></button>
-    <div class="panel">
-        <p style="padding: 10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div> -->
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Accordion Item #1
+            </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
 
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-        var str;
-
-        function changeimg(x) {
-            const fimg = ["faq-img1", "faq-img2", "faq-img3", "faq-img4", "faq-img5"];
-            console.log(x);
-            str = fimg[x - 1];
-
-        }
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    document.getElementById(str).src = "static/images/mario.svg";
-                    panel.style.maxHeight = null;
-                } else {
-                    document.getElementById(str).src = "static/images/pokeball.png";
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
-        }
-    </script>
-    <br>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Accordion Item #2
+            </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as
+                    the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Accordion Item #3
+            </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the
+                    showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+                    does limit overflow.
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 
 </html>

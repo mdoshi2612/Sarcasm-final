@@ -79,6 +79,7 @@ def home(request):
 		teamFetch = Team.objects.filter(leader_roll_number=leader_roll_number).first()
 		email=str(leader_roll_number)+'@iitb.ac.in'
 		password = User.objects.make_random_password()
+		print(password)
 		user = User.objects.create(username = leader_roll_number, email = email)
 		user.set_password(password)
 		teamFetch.user = user
@@ -173,6 +174,8 @@ class Play(View) :
 		
 		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level	
+		if cur_level.level_id > 46:
+			return render(request, 'users/success.html')
 		image = "./static/pokemons/"+cur_user.team_logo+".png"
 		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
 		bonus_level_id = cur_user.bonus_level_id
@@ -224,10 +227,14 @@ class Play(View) :
 			print(correct_answers)
 			if ans in correct_answers:
 				level_number = cur_user.current_level.level_id
-				if level_number == 2 :
+				if level_number == 46 :
 					cur_user.points=cur_user.points+3
-					cur_user.current_level_time = timezone.now()	 					
+					cur_user.current_level_time = timezone.now()
+					cur_user.current_level = Level.objects.get(level_id = level_number + 1) 	 					
 					cur_user.save()
+					
+					return render(request, 'users/success.html')
+				elif level_number > 46:
 					return render(request, 'users/success.html')
 					
 				try:
@@ -287,9 +294,10 @@ class Bonus(View) :
 		hour = expdatetime.strftime('%H')
 		minute = expdatetime.strftime('%M')
 		second = expdatetime.strftime('%S')
+		time_remaining=(expdatetime-current_time).total_seconds() * 1000
 
 		context = {'question': question,'year': year,'month': month,'day': day,'hour': hour,'minute': minute,
-			'second':second,'expdate': expdatetime,'livedate': livedatetime,'now': current_time,'form':form,}
+			'second':second,'expdate': expdatetime,'livedate': livedatetime,'now': current_time,'form':form,'time_remaining':time_remaining}
 		return render(request, 'users/bonus.html', context)
 	
 
@@ -326,13 +334,6 @@ class Bonus(View) :
 			else:
 				print("Wrong Answer! Try Again")
 				return redirect(reverse('bonus'))
-		if(form.cleaned_data.get('skip')):
-			print("Skipping")
-			cur_user.bonus_level_id += 1
-			cur_user.bonus_attempted=cur_user.bonus_attempted+1
-			cur_user.points += 0	 					
-			cur_user.save()
-			return redirect(reverse('play'))
 
 		cur_user.bonus_level_id += 1
 		cur_user.bonus_attempted=cur_user.bonus_attempted+1

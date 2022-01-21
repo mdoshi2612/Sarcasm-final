@@ -2,6 +2,7 @@
     font-family: Pokemon;
     src: url('../fonts/pokemonsolid.woff');
 }
+
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 * {
     font-family: Raleway;
@@ -20,7 +21,8 @@ body {
     justify-content: center;
     flex-direction: column;
 }
-.main-heading{
+
+.main-heading {
     font-family: Pokemon;
     font-style: normal;
     font-weight: normal;
@@ -33,14 +35,16 @@ body {
     margin-top: 40px;
 }
 
-h1{
+h1 {
     font-size: 5rem;
     margin-block-start: 0%;
 }
-.thumb p{
+
+.thumb p {
     margin-top: 10px;
 }
-.container  {
+
+.container {
     text-align: center;
     font-size: 15px;
     align-items: center;
@@ -51,20 +55,37 @@ h1{
     height: 140px;
 }
 
-.thumb img {
-    width: 100%;
-    height: 100%;
+img {
     border-radius: 50%;
-    
 }
 
-img { 
-   border: 3px solid aqua;
+img {
+    border: 3px solid aqua;
 }
 
-@media only screen and (min-width: 992px){
+.ctms {
+    width: 60%;
+    margin: 3rem auto;
+}
 
-    .laptop{
+.coordies {
+    margin: 3rem auto;
+}
+
+.coordies div {
+    margin: 1rem auto;
+}
+
+.photos {
+    width: 10rem
+}
+
+.main-heading h1 {
+    font-family: Pokemon;
+}
+
+@media only screen and (min-width: 992px) {
+    .laptop {
         display: none;
     }
 }
@@ -75,44 +96,37 @@ img {
         height: 150px;
         object-fit: cover; 
     } */
-    #mobh1
-    {
+    #mobh1 {
         transform: translateY(20%);
-
     }
-    #mobh2
-    {
+    #mobh2 {
         transform: translateY(20%);
-
     }
-    #mob-int1
-    {
+    #mob-int1 {
         transform: translateY(60%);
     }
-    #mob-int2
-    {
+    #mob-int2 {
         transform: translateY(60%);
     }
-    
-    .mobile{
+    .mobile {
         display: none;
     }
-    .body{
-    background: url("../images/mobile_background.jpg") no-repeat fixed;
-    color: white;
-    background-size: cover;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    .body {
+        background: url("../images/mobile_background.jpg") no-repeat fixed;
+        color: white;
+        background-size: cover;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
-
-    .main-heading{
+    .main-heading {
         font-size: 2rem;
     }
     * {
         font-size: 12px;
         text-align: center;
+<<<<<<< HEAD
     };
 
     img { 
@@ -122,4 +136,17 @@ img {
     width: 100px;
 }
     
+=======
+    }
+    ;
+    img {
+        border: 2px solid black;
+    }
+    .thumb {
+        width: 100px;
+    }
+    .photos {
+        width: 7rem;
+    }
+>>>>>>> 27b97fe96c2c32e9b36027edff5c27e7bf12b43c
 }
