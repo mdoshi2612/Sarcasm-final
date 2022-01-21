@@ -341,7 +341,7 @@ def increase_bonus_level(request) :
 
 def generate_image(pokemon, team_name):
     # Front Image
-    filename1 = os.path.join(os.getcwd(), "users/static/images/final1-02.png")
+    filename1 = os.path.join(os.getcwd(), "users/static/images/final1-01.png")
     filename = os.path.join(os.getcwd(), "users/static/pokemons/"+pokemon+'.png')
 
     
@@ -408,8 +408,10 @@ def generate_image(pokemon, team_name):
 
 def image(request):
 	response = HttpResponse(content_type='image/png')
+	
 	cur_user = Team.objects.get(user=request.user)
-	image = generate_image("Charizard", "Pokemon")
+
+	image = generate_image(cur_user.team_logo, cur_user.team_name)
 	image.save(response, 'png')
 	response['Content-Disposition'] = 'attachment; filename="image.png"'
 	return response	
