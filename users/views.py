@@ -310,7 +310,7 @@ class Bonus(View) :
 						try:
 							cur_user.bonus_level_id += 1
 							cur_user.bonus_attempted=cur_user.bonus_attempted+1
-							cur_user.points += 4	 					
+							cur_user.points += 6	 					
 							cur_user.save()
 							return redirect(reverse('play'))
 						except:
@@ -328,6 +328,9 @@ class Bonus(View) :
 				cur_user.points += 0	 					
 				cur_user.save()
 				return redirect(reverse('play'))
+
+		cur_user.bonus_level_id += 1
+		cur_user.bonus_attempted=cur_user.bonus_attempted+1
 		return redirect(reverse('play'))
 
 		

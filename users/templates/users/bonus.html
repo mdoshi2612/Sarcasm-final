@@ -56,7 +56,7 @@
                 <img src="{% static 'images/bonus.png' %}" height="300" alt="">
             </div>
         </div>
-        <span class="sub-heading" style="color: orangered; text-align: center; font-size: 4rem; font-weight: bold;">Expires at: {{expdate}}</span>
+        <span class="sub-heading" style="color: orangered; text-align: center; font-size: 4rem; font-weight: bold;">Expires on: {{expdate}}</span>
         <!-- <div class="row questionontent"> -->
             <div class="accordion">
             {% if question is not None%}<div class="sub-ttle wrapper" id="bonusQuestionText"><span></span><span
@@ -86,7 +86,7 @@
             </form>
             <form method="POST" action="skip"> {% csrf_token %}
             <input type="text" name="skip" value="skipped" hidden/>
-            <button type="submit" style="background: #ffd600;; height: 300%; padding: 1rem; font-size:2.5rem;  border-radius: 1rem; color: white; width: auto;">Skip</button>
+            <button type="submit" style="background: #ffd600;; height: 100%; padding: 1rem; font-size:2.5rem;  border-radius: 1rem; color: white; width: auto;">Skip</button>
             </form>
         </div>
     </div>
