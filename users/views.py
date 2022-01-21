@@ -343,6 +343,7 @@ def generate_image(pokemon, team_name):
     # Front Image
     filename1 = os.path.join(os.getcwd(), "users/static/images/final1-02.png")
     filename = os.path.join(os.getcwd(), "users/static/pokemons/"+pokemon+'.png')
+
     
     # Open Background Image
     background = Image.open(filename1)
