@@ -24,17 +24,22 @@ body {
     font-family: Pokemon;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
     line-height: 140px;
     width: 100%;
     margin: auto;
     text-align: center;
     /* identical to box height */
     color: #FFD600;
+    margin-top: 40px;
 }
 
-
-
+h1{
+    font-size: 5rem;
+    margin-block-start: 0%;
+}
+.thumb p{
+    margin-top: 10px;
+}
 .container  {
     text-align: center;
     font-size: 15px;
@@ -42,9 +47,8 @@ body {
 }
 
 .thumb {
-    width: 150px;
-    height: 150px;
-    object-fit: cover; 
+    width: 140px;
+    height: 140px;
 }
 
 .thumb img {
@@ -103,11 +107,6 @@ img {
     flex-direction: column;
     }
 
-    .thumb {
-    width: 180px;
-    height: 180px;
-    }
-
     .main-heading{
         font-size: 2rem;
     }
@@ -119,11 +118,8 @@ img {
     img { 
     border: 2px solid black;
 }
-    
-    .thumb {
-    width: 80px;
-    height: 80px;
+.thumb{
+    width: 100px;
 }
-
     
 }

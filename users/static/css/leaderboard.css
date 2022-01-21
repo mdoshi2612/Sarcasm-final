@@ -269,9 +269,6 @@ input[type="radio"] {
     .options .option div {
         margin-right: 1rem;
     }
-    * {
-        font-size: 6px;
-    }
 }
 
 @media screen and (max-width: 992px) {
