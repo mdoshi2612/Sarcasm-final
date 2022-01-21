@@ -68,6 +68,19 @@ img {
     margin: 3rem auto;
 }
 
+.names {
+    font-size: 2rem;
+}
+
+.names-coordies {
+    font-size: 1.5rem;
+}
+
+.names,
+.names-coordies {
+    margin: -1.5rem auto;
+}
+
 .coordies {
     margin: 3rem auto;
 }
