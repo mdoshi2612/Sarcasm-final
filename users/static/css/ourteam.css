@@ -53,14 +53,16 @@ h1{
 
 .thumb img {
     width: 100%;
-    border-radius: 50%; 
+    height: 100%;
+    border-radius: 50%;
+    
 }
 
 img { 
    border: 3px solid aqua;
 }
 
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 992px){
 
     .laptop{
         display: none;
@@ -68,6 +70,30 @@ img {
 }
 
 @media only screen and (max-width:992px) {
+    /* .thumb {
+        width: 150px;
+        height: 150px;
+        object-fit: cover; 
+    } */
+    #mobh1
+    {
+        transform: translateY(20%);
+
+    }
+    #mobh2
+    {
+        transform: translateY(20%);
+
+    }
+    #mob-int1
+    {
+        transform: translateY(60%);
+    }
+    #mob-int2
+    {
+        transform: translateY(60%);
+    }
+    
     .mobile{
         display: none;
     }
@@ -85,7 +111,7 @@ img {
         font-size: 2rem;
     }
     * {
-        font-size: 7px;
+        font-size: 12px;
         text-align: center;
     };
 
