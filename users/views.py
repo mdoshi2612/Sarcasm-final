@@ -341,9 +341,8 @@ def increase_bonus_level(request) :
 
 def generate_image(pokemon, team_name):
     # Front Image
-    filename1 = os.path.join(settings.STATIC_ROOT, '/images/final1-01.png')
-    
-    filename = staticfiles_storage.url('pokemons/'+pokemon+'.png')
+    filename1 = os.path.join(os.getcwd(), "users/static/images/final1-02.png")
+    filename = os.path.join(os.getcwd(), "users/static/pokemons/"+pokemon+'.png')
     
     # Open Background Image
     background = Image.open(filename1)
@@ -383,7 +382,7 @@ def generate_image(pokemon, team_name):
     txt = Image.new("RGBA", background.size, (255, 255, 255, 0))
 
     # get a font
-    fnt = ImageFont.truetype("AEH.ttf", 250)
+    fnt = ImageFont.truetype(os.path.join(os.getcwd(), "users/static/fonts/AEH.ttf"), 250)
     # get a drawing context
 
 
