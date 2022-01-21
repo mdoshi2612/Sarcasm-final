@@ -29,11 +29,31 @@
         <div class="navbar-ele"></div>
         <div class="navbar-ele"></div>
         <div class="navbar-ele" style="padding-right: 150px;"></div>
-        <div class="navbar-ele"><a href="#"><img src="../../static/images/play.png"></a></div>
-        <div class="navbar-ele"><a href="#"><img src="../../static/images/leader.png"></a></div>
-        <div class="navbar-ele"><a href="#"><img src="../../static/images/faq.png"></a></div>
-        <div class="navbar-ele"><a href="#"><img src="../../static/images/team.png"></a></div>
-        <div class="navbar-ele" id="mob-share"><a href="#"><img src="../../static/images/share.png"></a></div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/play.png"></a>
+        </div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/leader.png"></a>
+        </div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/faq.png"></a>
+        </div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/team.png"></a>
+        </div>
+        <div class="navbar-ele" id="mob-share">
+            <a href="#"><img id="image-button" src="../../static/images/share.png"></a>
+            <div class="share-instructions">
+                <h3>BONUS POINTS:</h3>
+                <p style="font-size: 1.4rem;">Press the 'download/share' button below to download a personalized team sharing template for your Instagram story. One member of the team has to share this on their story tagging @sarc_iitb and the rest of his/her teammates (and encourage
+                    a few friends to join in too!) and dm us a screenshot of the story being up for at least 6 hours - it will be checked and within12 hours of you dm-ing us, your team will receive 5 extra points as a sharing bonus. So what are you waiting
+                    for?
+                </p>
+                <a href="/image" id="share"><button>Share</button></a>
+                <button class="close-button">Close</button>
+
+            </div>
+        </div>
         <div class="navbar-ele"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></div>
         <div class="navbar-ele"><a href="#"><i class="fab fa-facebook fa-2x"></i></a></div>
     </nav>
@@ -53,7 +73,7 @@
   </div> -->
     </div>
 
-    
+
     <div class="container main">
         <h1 class='main-heading'>SARCasm</h1>
 
@@ -84,22 +104,16 @@
                 {% if level.question is not None %}
                 <div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">Question: {{level.question|safe}}</span></div>{% endif %}
                 <div class="row questionImage card-img" id="bonusQuestionImage">
-                    {% if level.image.url is not None %}
-                    {% comment %} {{level.image.url}} {% endcomment %}
-                    <img src={{level.image.url}} class="img-responsive" style="width:50%; height:auto; margin-left:auto; margin-right:auto;">
-                    {% endif %}
-                    {% if level.audiofile.url is not None %}
+                    {% if level.image.url is not None %} {% comment %} {{level.image.url}} {% endcomment %}
+                    <img src={{level.image.url}} class="img-responsive" style="width:50%; height:auto; margin-left:auto; margin-right:auto;"> {% endif %} {% if level.audiofile.url is not None %}
                     <audio controls id="bonusQuestionAudio">
                         <source src={{level.audiofile.url}} type="audio/mpeg">
                         Your browser does not support the audio tag.
-                    </audio>
-                    {% endif %}
-                    {% if level.videofile.url is not None %}
+                    </audio> {% endif %} {% if level.videofile.url is not None %}
                     <video width="auto" height="auto" controls id="bonusQuestionVideo">
                         <source src={{level.videofile.url}} type="video/mp4">
                         Your Browser does not support the video tag
-                    </video>
-                    {% endif %}
+                    </video> {% endif %}
                 </div>
             </div>
             <!-- {% if special == 'code' %}
@@ -141,21 +155,20 @@
     {% endcomment %} -->
 
 
-     <div class="column blur-back score-card" style="width: 25%; text-align: center; position: absolute; bottom: 30px; left: 30px;">
-      <div class="team-half">
-      <img style="width: 90%;" src={{logo}}/>
-      <div class="team-name">{{user.team_name}}</div>
-      </div>
-      <div class="score-half">  
-      <div class="points">
-        {{user.points}} 
-      </div>
-      <div class="level">:L{{user.current_level.level_id}}</div>
-      <div class="level">{{user.league}}</div>
+    <div class="column blur-back score-card" style="width: 25%; text-align: center; position: absolute; bottom: 30px; left: 30px;">
+        <div class="team-half">
+            <img style="width: 12rem; height:12rem;" src={{logo}}/>
+            <div class="team-name">{{user.team_name}}</div>
+        </div>
+        <div class="score-half">
+            <div class="points">
+                {{user.points}}
+            </div>
+            <div class="level">:L{{user.current_level.level_id}}</div>
 
-      </div>
+        </div>
 
-    </div> 
+    </div>
 
 
 
@@ -164,17 +177,8 @@
     </div>
     </div>
     </div>
-    <div class='share' id="share">
-        <img src="static/images/share.png" alt="" >
-    </div>
-    <div class="share-instructions">
-        <h3>BONUS POINTS:</h3>
-<p style="font-size: 1.4rem;">Press the 'download/share' button below to download a personalized team sharing template for your Instagram story. One member of the team has to share this on their story tagging @sarc_iitb and the rest of his/her teammates (and encourage a few friends to join in too!) and dm us a screenshot of the story being up for at least 6 hours - it will be checked and within12 hours of you dm-ing us, your team will receive 5 extra points as a sharing bonus.
-So what are you waiting for?</p>
-<a href="/image" id="share"><button>Share</button></a>
-<button class="close-button">Close</button>
 
-    </div>  
+
     <script>
         const pokeball = document.querySelector(".pokeball")
         const nav = document.querySelector("nav")
@@ -189,22 +193,29 @@ So what are you waiting for?</p>
             nav.classList.toggle("show-nav")
             main.classList.toggle("slide-down")
         })
-        share.addEventListener("click", function(){
+        share.addEventListener("click", function() {
             shareinst.classList.add("show-modal")
             modalback.classList.add("show-modal")
         })
-        mobshare.addEventListener("click", function(){
+        mobshare.addEventListener("click", function() {
             shareinst.classList.add("show-modal")
             modalback.classList.add("show-modal")
         })
-        closebut.addEventListener("click", function(){
+        closebut.addEventListener("click", function() {
             shareinst.classList.remove("show-modal")
             modalback.classList.remove("show-modal")
         })
-        
+
         // document.addEventListener("click", function(){
         //     shareinst.classList.remove("show-modal")
         // })
+    </script>
+    <script type="text/javascript">
+        button = document.getElementById("image-button");
+        instructions = document.getElementsByClassName("share-instructions");
+        button.addEventListener("click", function() {
+            instructions.classList.toggle("show-modal")
+        })
     </script>
 
     <!-- <script type="text/javascript ">
