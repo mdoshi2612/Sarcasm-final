@@ -79,6 +79,7 @@ def home(request):
 		teamFetch = Team.objects.filter(leader_roll_number=leader_roll_number).first()
 		email=str(leader_roll_number)+'@iitb.ac.in'
 		password = User.objects.make_random_password()
+		print(password)
 		user = User.objects.create(username = leader_roll_number, email = email)
 		user.set_password(password)
 		teamFetch.user = user
