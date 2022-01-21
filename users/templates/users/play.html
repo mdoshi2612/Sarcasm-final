@@ -5,7 +5,8 @@
 <head>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script src="https://kit.fontawesome.com/3aab0d0a4c.js" crossorigin="anonymous"></script>
-    <title>Sarcasm base</title>
+    <title>Sarcasm</title>
+    <link rel="icon" type="image/png" href="{% static 'images/favIcon.png' %}"/>
     <style>
 
     </style>
@@ -30,18 +31,18 @@
         <div class="navbar-ele"></div>
         <div class="navbar-ele" style="padding-right: 150px;"></div>
         <div class="navbar-ele">
-            <a href="#"><img src="../../static/images/play.png"></a>
+            <a href="play"><img src="../../static/images/play.png"></a>
         </div>
         <div class="navbar-ele">
-            <a href="#"><img src="../../static/images/leader.png"></a>
+            <a href="leaderboard"><img src="../../static/images/leader.png"></a>
         </div>
         <div class="navbar-ele">
-            <a href="#"><img src="../../static/images/faq.png"></a>
+            <a href="faq"><img src="../../static/images/faq.png"></a>
         </div>
         <div class="navbar-ele">
-            <a href="#"><img src="../../static/images/team.png"></a>
+            <a href="team"><img src="../../static/images/team.png"></a>
         </div>
-        <div class="navbar-ele" id="mob-share">
+        {% comment %} <div class="navbar-ele" id="mob-share">
             <a href="#"><img id="image-button" src="../../static/images/share.png"></a>
             <div class="share-instructions">
                 <h3>BONUS POINTS:</h3>
@@ -53,9 +54,9 @@
                 <button class="close-button">Close</button>
 
             </div>
-        </div>
-        <div class="navbar-ele"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></div>
-        <div class="navbar-ele"><a href="#"><i class="fab fa-facebook fa-2x"></i></a></div>
+        </div> {% endcomment %}
+        <div class="navbar-ele"><a href="https://www.instagram.com/sarc_iitb/"><i class="fab fa-instagram fa-2x"></i></a></div>
+        <div class="navbar-ele"><a href="https://www.facebook.com/SARC.IITB"><i class="fab fa-facebook fa-2x"></i></a></div>
     </nav>
     <div class="dropdown" style="position: fixed; left: 20px; top: 30px;">
         <div class="pokeball unselected">
