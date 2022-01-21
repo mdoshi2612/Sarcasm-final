@@ -94,7 +94,52 @@ nav {
     justify-content: space-evenly;
     box-sizing: border-box;
 }
+#share button{
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: #ffd600;
+    color: black;
+    padding: 6px 10px;
+}
+.share-instructions button{
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: #ffd600;
+    color: black;
+    padding: 6px 10px;
 
+}
+.share-instructions{
+    position: absolute;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 25px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 101;
+}
+.show-modal{
+    display: block !important;
+}
+.modal-back{
+    background-color: black;
+    opacity: 0.3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    top: 0%;
+    left: 0%;
+    z-index: 100;
+}
 .ham-nav {
     background-color: rgb(12, 12, 88);
     position: absolute;
@@ -350,7 +395,9 @@ input[type="submit"] {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
+.navbar-ele img {
+    width: 40px;
+}
 .team-half img {
     width: 15rem;
 }
@@ -371,6 +418,25 @@ input[type="submit"] {
     position: absolute;
     top: 1.2rem;
     right: 1.7rem;
+}
+.score-card {
+    width: 40% !important;
+    left: 10% ;
+    display: grid;
+    grid-template-columns: 35% 65%;
+}
+.points {
+    font-size: 7rem;
+    display: flex;
+    justify-content: center;
+    font-family: Pokemon;
+}
+.team-half{
+    padding-left: 20px;
+}
+.level {
+    font-size: 2.5rem;
+    margin-top: 0.4rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -400,9 +466,19 @@ input[type="submit"] {
         height: 20vh;
     }
     .team-half img {
-        width: 15rem;
+        width: 60% !important;
+        height: 65% !important;
+    }
+    .share{
+        display: none;
     }
     .team-half {
         width: 20rem;
+    }
+    nav{
+        overflow-x: scroll;
+    }
+    .share-instructions{
+        width: 80%;
     }
 }

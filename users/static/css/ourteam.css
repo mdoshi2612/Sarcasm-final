@@ -68,6 +68,19 @@ img {
     margin: 3rem auto;
 }
 
+.names {
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+
+.names-coordies {
+    font-size: 1.5rem;
+}
+
+.names-coordies {
+    margin: -1.5rem auto;
+}
+
 .coordies {
     margin: 3rem auto;
 }
@@ -77,7 +90,7 @@ img {
 }
 
 .photos {
-    width: 10rem
+    width: 12rem;
 }
 
 .main-heading h1 {
@@ -134,19 +147,15 @@ img {
     .thumb {
         width: 100px;
     }
-}
-
-;
-img {
-    border: 2px solid black;
-}
-
-.thumb {
-    width: 100px;
-}
-
-.photos {
-    width: 7rem;
+    img {
+        border: 2px solid black;
+    }
+    .thumb {
+        width: 100px;
+    }
+    .photos {
+        width: 7rem;
+    }
 }
 
 @media only screen and (max-width:600px) {
