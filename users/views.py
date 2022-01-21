@@ -123,7 +123,7 @@ def generatepassword(request):
 
 def send_otp(email, password, leader_roll_number):
     subject = "Sarcasm Login Credentials"
-    message = 'Hi, the login credentials for your team are: \nUsername: ' + str(leader_roll_number) + '\nPassword: ' + str(password)+'\nUse these credentials to log into the portal when it goes live. \nStay tuned and follow instagram.com/sarc_iitb for updates.'
+    message = 'Hi, the login credentials for your team are: \nUsername: ' + str(leader_roll_number) + '\nPassword: ' + str(password)+'\nUse these credentials to log into the portal when it goes live at 10 pm on Friday (21-01-22). \nStay tuned and follow https://www.instagram.com/sarc_iitb/ for updates.'
     email_from = 'pragya.sarc@gmail.com'
     recipient = [email, ]
     send_mail(subject, message, email_from, recipient, fail_silently=True)
