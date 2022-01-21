@@ -9,29 +9,386 @@
     <link rel="stylesheet" href="../../static/css/ourteam.css" />
     <title>Sarcasm</title>
     <link rel="icon" type="image/png" href="{% static 'images/favIcon.png' %}"/>
+    <style>
+        nav {
+            width: 100%;
+            height: 10rem;
+            color: grey;
+            align-items: center;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+        }
+        
+        #share button {
+            outline: none;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            background-color: #ffd600;
+            color: black;
+            padding: 6px 10px;
+        }
+        
+        .share-instructions button {
+            outline: none;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            background-color: #ffd600;
+            color: black;
+            padding: 6px 10px;
+        }
+        
+        .share-instructions {
+            position: absolute;
+            background-color: white;
+            border-radius: 1rem;
+            padding: 25px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 101;
+        }
+        
+        .show-modal {
+            display: block !important;
+        }
+        
+        .modal-back {
+            background-color: black;
+            opacity: 0.3;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            top: 0%;
+            left: 0%;
+            z-index: 100;
+        }
+        
+        .ham-nav {
+            background-color: rgb(12, 12, 88);
+            position: absolute;
+            left: 0%;
+            top: 0px;
+            width: 370px;
+            height: 370px;
+            padding-top: 70px;
+            z-index: 10;
+            border-radius: 0px 0px 9999px 0px;
+            display: none;
+            transition: 0.75s all ease-in;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        #navbar-img {
+            height: 5rem;
+            width: auto;
+        }
+        
+        .navbar-ele {
+            padding: 5px 15px;
+            margin: 5px 0px;
+        }
+        
+        .navbar-ele a {
+            color: grey;
+            text-decoration: none;
+            font-size: 2rem;
+        }
+        
+        .col-submit {
+            text-align: center;
+        }
+        
+        nav {
+            width: 100%;
+            height: 100px;
+            flex-direction: row;
+            color: grey;
+            align-items: center;
+            justify-content: space-evenly;
+            background: #FFFFFF;
+            border: 15px solid #8C8C8C;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            opacity: 0;
+            display: none;
+        }
+        
+        .show-nav {
+            opacity: 1;
+            display: flex;
+        }
+        
+        .slide-down {
+            transform: translateY(100px);
+        }
+        
+        .pokeball {
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 0.5rem solid #333;
+            transform-origin: center bottom;
+        }
+        
+        .pokeball .base {
+            background: #333;
+            height: 80%;
+            padding: 10%;
+        }
+        
+        .pokeball .upper-half {
+            position: absolute;
+            background: #f15324;
+            height: 42%;
+            width: 100%;
+        }
+        
+        .pokeball .lower-half {
+            bottom: 0;
+            position: absolute;
+            background: white;
+            height: 42%;
+            width: 100%;
+        }
+        
+        .pokeball .inner-circle {
+            border-radius: 50%;
+            height: 20%;
+            width: 20%;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 0.5rem solid #333;
+            transform: translate(-50%, -50%);
+        }
+        
+        .indicator-inner {
+            border-radius: 50%;
+            height: 20%;
+            width: 20%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+        }
+        
+        .indicator {
+            border-radius: 50%;
+            height: 80%;
+            width: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f64c4c;
+            background: -webkit-radial-gradient(center, #f64c4c, #ff514f 0);
+            background: -moz-radial-gradient(center, #f64c4c, #ff514f 0);
+            background: radial-gradient(ellipse at center, #f64c4c, #ff514f 0);
+            opacity: 0;
+        }
+        
+        @keyframes blink {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes shake {
+            0% {
+                transform: rotate(5deg);
+            }
+            5% {
+                transform: rotate(-5deg);
+            }
+            10% {
+                transform: rotate(5deg);
+            }
+            15% {
+                transform: rotate(-5deg);
+            }
+            20% {
+                transform: rotate(5deg);
+            }
+            25% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+        
+        .selected {
+            animation: shake 1.5s ease-in infinite;
+        }
+        
+        .selected .indicator {
+            opacity: 1;
+            animation: blink 1s ease-in-out infinite;
+        }
+        
+        .selected .indicator-inner {
+            background: #f15324;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: inherit;
+            min-width: 160px;
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: #ffd600;
+            padding: 12px 10px;
+            text-decoration: none;
+            display: block;
+            font-size: large;
+            font-family: Pokemon;
+            font-weight: 400;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .navbar-ele img {
+            width: 40px;
+        }
+        .unselected
+        {
+            transform:translateY(-610px);
+
+        }
+        .selected
+        {
+            position:absolute;
+            top:-650px;
+
+        }
+        .navbar-ele img{
+            border-color:white;
+        }
+    </style>
 </head>
 
 <body>
+    <span class="modal-back"></span>
+    <nav>
+        <div class="navbar-ele"></div>
+        <div class="navbar-ele"></div>
+        <div class="navbar-ele" style="padding-right: 150px;"></div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/play.png"></a>
+        </div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/leader.png"></a>
+        </div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/faq.png"></a>
+        </div>
+        <div class="navbar-ele">
+            <a href="#"><img src="../../static/images/team.png"></a>
+        </div>
+        <div class="navbar-ele" id="mob-share">
+            <a href="#"><img src="../../static/images/share.png"></a>
+        </div>
+        <div class="navbar-ele"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></div>
+        <div class="navbar-ele"><a href="#"><i class="fab fa-facebook fa-2x"></i></a></div>
+    </nav>
+    <div class="dropdown" style="position: fixed; left: 20px; top: 2    0px;">
+        <div class="pokeball unselected">
+            <div class="upper-half"> </div>
+            <div class="lower-half"> </div>
+            <div class="base"> </div>
+            <div class="inner-circle"> </div>
+            <div class="indicator visible"> </div>
+            <div class="indicator-inner"> </div>
+        </div>
+
+        <!-- <div class="dropdown-content">
+    <a href="{% url 'faq' %}">FAQs</a>
+    <a href="{% url 'leaderboard' %}">Leaderboard</a>
+    <a href="{% url 'ourteam' %}">Team</a>
+  </div> -->
+    </div>
+    <script>
+        const pokeball = document.querySelector(".pokeball")
+        const nav = document.querySelector("nav")
+        const main = document.querySelector(".main")
+        const share = document.getElementById("share")
+        const shareinst = document.querySelector(".share-instructions")
+        const closebut = document.querySelector(".close-button")
+        const modalback = document.querySelector(".modal-back")
+        const mobshare = document.getElementById("mob-share")
+        pokeball.addEventListener("click", function() {
+            pokeball.classList.toggle("selected")
+            nav.classList.toggle("show-nav")
+            main.classList.toggle("slide-down")
+        })
+        share.addEventListener("click", function() {
+            shareinst.classList.add("show-modal")
+            modalback.classList.add("show-modal")
+        })
+        mobshare.addEventListener("click", function() {
+            shareinst.classList.add("show-modal")
+            modalback.classList.add("show-modal")
+        })
+        closebut.addEventListener("click", function() {
+            shareinst.classList.remove("show-modal")
+            modalback.classList.remove("show-modal")
+        })
+
+        // document.addEventListener("click", function(){
+        //     shareinst.classList.remove("show-modal")
+        // })
+    </script>
+
     <div class="main-heading">
         <h1>OUR TEAM</h1>
     </div>
 
     <div class="container">
+
+
         <div class="row">
             <h1>Core Team Members</h1>
         </div>
         <div class="row ctms">
             <div class="col-6"><img src="../../static/images/Aryansh Kabra.jpg" alt="" class="photos">
-                <div class="names">Aruja Khanna</div>
+                <div class="names">Aryansh Kabra</div>
             </div>
             <div class="col-6"><img src="../../static/images/Aruja Khanna.jpg" alt="" class="photos">
-                <div class="col-6 names">Aryansh Kabra</div>
+                <div class="names">Aruja Khanna</div>
             </div>
         </div>
-        <div class="row ctms">
 
-
-        </div>
 
         <h1>Co-ordinators</h1>
         <div class="container">
