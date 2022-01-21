@@ -135,7 +135,7 @@ body {
 .pokeball .base {
     background: #333;
     height: 80%;
-    width: 80%;
+    width: 100%;
     padding: 10%;
 }
 
