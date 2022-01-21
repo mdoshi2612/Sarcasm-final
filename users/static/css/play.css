@@ -94,28 +94,30 @@ nav {
     justify-content: space-evenly;
     box-sizing: border-box;
 }
-#share button{
-    outline: none;
-    border-radius: 10px;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: 600;
-    background-color: #ffd600;
-    color: black;
-    padding: 6px 10px;
-}
-.share-instructions button{
-    outline: none;
-    border-radius: 10px;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: 600;
-    background-color: #ffd600;
-    color: black;
-    padding: 6px 10px;
 
+#share button {
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: #ffd600;
+    color: black;
+    padding: 6px 10px;
 }
-.share-instructions{
+
+.share-instructions button {
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: #ffd600;
+    color: black;
+    padding: 6px 10px;
+}
+
+.share-instructions {
     position: absolute;
     background-color: white;
     border-radius: 1rem;
@@ -126,10 +128,12 @@ nav {
     display: none;
     z-index: 101;
 }
-.show-modal{
+
+.show-modal {
     display: block !important;
 }
-.modal-back{
+
+.modal-back {
     background-color: black;
     opacity: 0.3;
     position: absolute;
@@ -140,6 +144,7 @@ nav {
     left: 0%;
     z-index: 100;
 }
+
 .ham-nav {
     background-color: rgb(12, 12, 88);
     position: absolute;
@@ -395,9 +400,11 @@ input[type="submit"] {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 .navbar-ele img {
     width: 40px;
 }
+
 .team-half img {
     width: 15rem;
 }
@@ -419,21 +426,24 @@ input[type="submit"] {
     top: 1.2rem;
     right: 1.7rem;
 }
+
 .score-card {
-    width: 40% !important;
-    left: 10% ;
+    left: 10%;
     display: grid;
     grid-template-columns: 35% 65%;
 }
+
 .points {
     font-size: 7rem;
     display: flex;
     justify-content: center;
     font-family: Pokemon;
 }
-.team-half{
+
+.team-half {
     padding-left: 20px;
 }
+
 .level {
     font-size: 2.5rem;
     margin-top: 0.4rem;
@@ -469,16 +479,16 @@ input[type="submit"] {
         width: 60% !important;
         height: 65% !important;
     }
-    .share{
+    .share {
         display: none;
     }
     .team-half {
         width: 20rem;
     }
-    nav{
+    nav {
         overflow-x: scroll;
     }
-    .share-instructions{
+    .share-instructions {
         width: 80%;
     }
 }

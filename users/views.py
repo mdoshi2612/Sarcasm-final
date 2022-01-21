@@ -341,10 +341,16 @@ class Bonus(View) :
 
 		
 def leaderboard(request):
-
-	top_teams = Team.objects.order_by('-points')[:10]
-	context = {'top_teams': top_teams}
-	return render(request,'users/leaderboard.html', context)
+	if request.method == 'POST':
+		league = request.POST.get('league')		
+		if league == "Freshies Only":
+			top_teams = Team.objects.filter(league = "Freshies Only").order_by('-points')
+			context = {'top_teams': top_teams}
+			return render(request,'users/leaderboard.html', context)
+		top_teams = Team.objects.order_by('-points')
+		context = {'top_teams': top_teams}
+		return render(request,'users/leaderboard.html', context)
+	return render(request,'users/leaderboard.html')
 
 def success(request):
 	return render(request, 'users/success.html')
@@ -449,3 +455,6 @@ def image(request):
 	image.save(response, 'png')
 	response['Content-Disposition'] = 'attachment; filename="my_SARCasm_team.png"'
 	return response	
+
+def navbar(request):
+	return render(request,'users/navbar.html')
