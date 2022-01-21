@@ -2,11 +2,11 @@
     font-family: Pokemon;
     src: url('../fonts/pokemonsolid.woff');
 }
-header{
-font-family: Pokemon;
-    src: url('../fonts/pokemonsolid.woff');
-    color: yellow;
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
 }
+<<<<<<< HEAD
 body {
     background: url("../images/laptop_background.jpg") no-repeat fixed;
     color: #ffd600;
@@ -25,6 +25,99 @@ padding:0
 @media only screen and (max-width:992px) {
     .body{
         background: url("../images/mobile_background.jpg") fixed;
+=======
+
+* {
+    font-size: 15px;
+}
+
+body {
+    background: url("../images/laptop_background.jpg") no-repeat fixed;
+    color: white;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.main-heading{
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 140px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    /* identical to box height */
+    color: #FFD600;
+}
+
+
+
+.container  {
+    text-align: center;
+    font-size: 15px;
+    align-items: center;
+}
+
+.thumb {
+    width: 100px;
+    height: 100px;
+}
+
+.thumb img {
+    width: 100%;
+    border-radius: 50%; 
+}
+
+img { 
+   border: 3px solid aqua;
+}
+
+@media only screen and (min-width: 768px){
+
+    .laptop{
+        display: none;
     }
+}
+
+@media only screen and (max-width:992px) {
+    .mobile{
+        display: none;
+    }
+    .body{
+    background: url("../images/mobile_background.jpg") no-repeat fixed;
+    color: white;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    }
+
+    .thumb {
+    width: 40px;
+    height: 40px;
+>>>>>>> 8fe27522fe133de7681c5c01c69ce2cb4a4521aa
+    }
+
+    .main-heading{
+        font-size: 2rem;
+    }
+    * {
+        font-size: 7px;
+        text-align: center;
+    };
+
+    img { 
+    border: 2px solid black;
+}
+    
+    .thumb {
+    width: 40px;
+    height: 40px;
+}
+
     
 }

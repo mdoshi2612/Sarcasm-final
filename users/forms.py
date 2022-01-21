@@ -11,4 +11,4 @@ class TeamForm(forms.ModelForm):
         fields='__all__'
 
 class LevelForm(forms.Form):
-	answer = forms.CharField(widget=forms.TextInput(attrs={'class': 'accordion_ans'}))
+	answer = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'accordion_ans'}))
