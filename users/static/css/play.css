@@ -355,6 +355,24 @@ input[type="submit"] {
     width: 15rem;
 }
 
+.share {
+    position: absolute;
+    height: 10rem;
+    width: 10rem;
+    bottom: 10%;
+    right: 10%;
+    border-radius: 50%;
+    background-color: cyan;
+}
+
+#share img {
+    height: 66.7%;
+    width: 66.7%;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.7rem;
+}
+
 @media only screen and (max-width: 600px) {
     .main-heading {
         font-size: 7.5rem;
