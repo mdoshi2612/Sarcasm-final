@@ -413,5 +413,5 @@ def image(request):
 
 	image = generate_image(cur_user.team_logo, cur_user.team_name)
 	image.save(response, 'png')
-	response['Content-Disposition'] = 'attachment; filename="image.png"'
+	response['Content-Disposition'] = 'attachment; filename="my_SARCasm_team.png"'
 	return response	
