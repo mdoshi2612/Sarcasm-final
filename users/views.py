@@ -285,9 +285,10 @@ class Bonus(View) :
 		hour = expdatetime.strftime('%H')
 		minute = expdatetime.strftime('%M')
 		second = expdatetime.strftime('%S')
+		time_remaining=(expdatetime-current_time).total_seconds() * 1000
 
 		context = {'question': question,'year': year,'month': month,'day': day,'hour': hour,'minute': minute,
-			'second':second,'expdate': expdatetime,'livedate': livedatetime,'now': current_time,'form':form,}
+			'second':second,'expdate': expdatetime,'livedate': livedatetime,'now': current_time,'form':form,'time_remaining':time_remaining}
 		return render(request, 'users/bonus.html', context)
 	
 
@@ -324,13 +325,6 @@ class Bonus(View) :
 			else:
 				print("Wrong Answer! Try Again")
 				return redirect(reverse('bonus'))
-		if(form.cleaned_data.get('skip')):
-			print("Skipping")
-			cur_user.bonus_level_id += 1
-			cur_user.bonus_attempted=cur_user.bonus_attempted+1
-			cur_user.points += 0	 					
-			cur_user.save()
-			return redirect(reverse('play'))
 
 		cur_user.bonus_level_id += 1
 		cur_user.bonus_attempted=cur_user.bonus_attempted+1
