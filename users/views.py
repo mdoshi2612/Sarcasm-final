@@ -174,7 +174,7 @@ class Play(View) :
 		
 		cur_user = Team.objects.get(user=request.user)
 		cur_level = cur_user.current_level	
-		if cur_level.level_id > 46:
+		if cur_level.level_id > 65:
 			return render(request, 'users/success.html')
 		image = "./static/pokemons/"+cur_user.team_logo+".png"
 		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
@@ -227,14 +227,14 @@ class Play(View) :
 			print(correct_answers)
 			if ans in correct_answers:
 				level_number = cur_user.current_level.level_id
-				if level_number == 46 :
+				if level_number == 65 :
 					cur_user.points=cur_user.points+3
 					cur_user.current_level_time = timezone.now()
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1) 	 					
 					cur_user.save()
 					
 					return render(request, 'users/success.html')
-				elif level_number > 46:
+				elif level_number > 65:
 					return render(request, 'users/success.html')
 					
 				try:
@@ -297,7 +297,7 @@ class Bonus(View) :
 		time_remaining=(expdatetime-current_time).total_seconds() * 1000
 
 		context = {'question': question,'year': year,'month': month,'day': day,'hour': hour,'minute': minute,
-			'second':second,'expdate': expdatetime,'livedate': livedatetime,'now': current_time,'form':form,'time_remaining':time_remaining}
+			'second':second,'expdate': expdatetime,'livedate': livedatetime,'now': current_time,'form':form,'time_remaining':time_remaining,"level":bonus_level}
 		return render(request, 'users/bonus.html', context)
 	
 
