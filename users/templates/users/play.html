@@ -13,7 +13,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="static/css/play.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
+  <!-- <script>
     var time = "{{time_remaining}}";
     console.log(time)
     window.onload = () => {
@@ -21,7 +21,7 @@
       window.location.href = "/bonus";
       }, time);
     }
-  </script>
+  </script> -->
 </head>
 
 <body>
@@ -38,7 +38,7 @@
           {% endif %}
          
         </div> -->
-        <div class="row" style="margin-bottom: 20px;">
+        <!-- <div class="row" style="margin-bottom: 20px;">
           <div class="col">
           <span class="sub-heading" style="color: black;  font-weight: bold;">Menu</span>
           </div>
@@ -49,7 +49,23 @@
         </div>
         </div>
         </div>
+        </div> -->
+        <div class="dropdown" style="position: fixed; margin-left: -1vw; margin-top: -18vh;">
+        <div class="pokeball">
+          <div class="upper-half"> </div>
+          <div class="lower-half"> </div>
+          <div class="base"> </div>
+          <div class="inner-circle"> </div>
+          <div class="indicator visible"> </div>
+          <div class="indicator-inner"> </div>
         </div>
+        <div class="dropdown-content">
+          <a href="{% url 'faq' %}">FAQs</a>
+          <a href="{% url 'leaderboard' %}">Leaderboard</a>
+          <a href="{% url 'ourteam' %}">Team</a>
+        </div>
+        </div>
+        <div class="score" style="position: fixed; margin-left: 80vw; margin-top: -15vh; color: #081341; font-size:x-large; font-weight: bold;">Score: {{user.points}}</div>
         <div class="accordion" style="font-size: 1.5rem;">
           {% if level.question is not None %}<div class="sub-ttle wrapper"><span></span><span class="text"></span><span class="cursor">Question: {{level.question|safe}}</span></div>{% endif %}
           </div>
@@ -82,7 +98,7 @@
         <div class="row">
           <form class="d-flex flex-column" method="POST" action="play"> {% csrf_token %} 
             {{form}}  
-          <input  placeholder="Answer" type="submit" value="Submit" name="" class="submitButton row" autocomplete="off" style="color: white; width: auto; font-size: 2.5rem;">
+          <input  placeholder="Answer" type="submit" value="Submit" name="" class="submitButton row" autocomplete="off" style=" width: auto; font-size: 2.5rem;">
           </form>
         </div>
     </div>
