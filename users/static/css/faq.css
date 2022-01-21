@@ -1,0 +1,152 @@
+@font-face {
+    font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
+}
+
+body {
+    background: url("../images/laptop_background.jpg");
+    background-size: cover;
+}
+
+.main-heading {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10rem;
+    line-height: 210px;
+    width: 50%;
+    margin: auto;
+    /* identical to box height */
+    color: #FFD600;
+    text-align: center;
+}
+
+
+/* * {
+    font-size: 10px;
+} */
+
+.accordion {
+    background-color: #081341;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 80%;
+    /* height: 25vh; */
+    border: none;
+    font-size: 1.5rem;
+    text-align: left;
+    outline: none;
+    /* font-size: 15px; */
+    transition: 0.4s;
+    margin-left: 10%;
+}
+
+.active {
+    height: 35vh;
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+/* .active, .accordion:hover {
+    background-color: #ccc;
+  }
+  
+  .accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2212";
+  } */
+
+.panel {
+    width: 80%;
+    margin-left: 10%;
+    border-radius: 0px 0px 10px 10px;
+    /* padding-top:-20%; */
+    /* padding: 0 18px; */
+     padding-right: 5%; 
+    color: white;
+    background-color: #081341;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1.5rem;
+    transition: max-height 0.2s ease-out;
+    /* transform: translateY(-50px); */
+    /* transform: translateX(-500px); */
+}
+/* .answer-para
+{
+    transform: translateX(-1000px);
+} */
+ .panel p{
+    padding-left: 15%;
+    /* transform: translateX(-1000px); 
+}
+.faq-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+
+.faq-img {
+    height: 80%;
+    width: 10%;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .accordion {
+        height: 15vh;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+        padding: 4px;
+    }
+    .panel {
+        font-size: 2rem;
+        margin-left:10% ;
+        /* padding-right: 75%; */
+        /* transform: translateX(90px); */
+    }
+    .faq-img {
+        height: 120%;
+    }
+    .panel p
+    {
+        transform: translateX(-0.5%);
+        padding-right: 10%; 
+
+    }
+}
+
+@media screen and (max-width: 992px) {
+    * {
+        font-size: 20px;
+    }
+    .accordion {
+        font-size: 2rem;
+    }
+    .main-heading {
+        margin-left: 30%;
+        line-height: 250px;
+    }
+    .panel {
+        padding-left: 70px;
+        padding-right: 50px;
+    }
+    .panel p {
+        font-size: 30px;
+    }
+}

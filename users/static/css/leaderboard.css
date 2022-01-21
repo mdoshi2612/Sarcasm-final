@@ -1,0 +1,291 @@
+@font-face {
+    font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../fonts/AvenirLTStd-Book.otf') format('opentype');
+}
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
+} */
+
+body {
+    background: url("../images/laptop_background.jpg");
+    background-size: cover;
+}
+
+.main-heading {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 7rem;
+    line-height: 210px;
+    width: 50%;
+    margin: auto;
+    /* identical to box height */
+    color: #FFD600;
+    text-align: center;
+}
+
+.table-container {
+    width: 60%;
+    margin: auto;
+    background-color: #11182A;
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
+
+.leaderboard {
+    font-size: 2rem;
+    color: white;
+    font-family: Avenir;
+    border-style: hidden;
+    margin: 0;
+}
+
+.leaderboard td,
+.leaderboard tr {
+    border: 0.2rem solid #98DED8;
+}
+
+.team-name {
+    width: 60%;
+    vertical-align: middle;
+}
+
+.rank {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.score {
+    vertical-align: middle;
+}
+
+.logo {
+    width: 4rem;
+    height: 3.5rem;
+}
+
+.team-name button {
+    float: right;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.team-name button img {
+    height: 1.5rem;
+}
+
+
+/* For dropdown list */
+
+.member-names {
+    width: 30%;
+}
+
+.member-names li {
+    padding: 0.25rem;
+    margin-left: 0.1rem;
+}
+
+.options {
+    margin: -1rem auto;
+    width: fit-content;
+    display: flex;
+}
+
+.options .option {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 250ms ease-in-out;
+}
+
+.options .option div {
+    margin-right: 3rem;
+}
+
+.options .option.faded {
+    opacity: 0.8;
+}
+
+.pokeball {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 0.5rem solid #333;
+    transform-origin: center bottom;
+}
+
+.pokeball .base {
+    background: #333;
+    height: 80%;
+    width: 80%;
+    padding: 10%;
+}
+
+.pokeball .upper-half {
+    position: absolute;
+    background: #f15324;
+    height: 42%;
+    width: 100%;
+}
+
+.pokeball .lower-half {
+    bottom: 0;
+    position: absolute;
+    background: white;
+    height: 42%;
+    width: 100%;
+}
+
+.pokeball .inner-circle {
+    border-radius: 50%;
+    height: 20%;
+    width: 20%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 0.5rem solid #333;
+    transform: translate(-50%, -50%);
+}
+
+.indicator-inner {
+    border-radius: 50%;
+    height: 20%;
+    width: 20%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+}
+
+.indicator {
+    border-radius: 50%;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f64c4c;
+    background: -webkit-radial-gradient(center, #f64c4c, #ff514f 0);
+    background: -moz-radial-gradient(center, #f64c4c, #ff514f 0);
+    background: radial-gradient(ellipse at center, #f64c4c, #ff514f 0);
+    opacity: 0;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(5deg);
+    }
+    5% {
+        transform: rotate(-5deg);
+    }
+    10% {
+        transform: rotate(5deg);
+    }
+    15% {
+        transform: rotate(-5deg);
+    }
+    20% {
+        transform: rotate(5deg);
+    }
+    25% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.selected {
+    animation: shake 1.5s ease-in infinite;
+}
+
+.selected .indicator {
+    opacity: 1;
+    animation: blink 1s ease-in-out infinite;
+}
+
+.selected .indicator-inner {
+    background: #f15324;
+}
+
+.radio-options {
+    font-size: 2rem;
+    color: white;
+}
+
+input[type=submit] {
+    width: 10%;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    background-color: #FFD600;
+}
+
+input[type="radio"] {
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+
+@media only screen and (max-width: 992px) {
+    .radio-options {
+        margin-right: 0.25rem;
+        font-size: 1.5rem;
+    }
+    .options .option div {
+        margin-right: 1rem;
+    }
+    * {
+        font-size: 6px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    body {
+        background: url("../images/mobile_background.jpg") fixed;
+    }
+    .main-heading {
+        font-size: 5rem;
+    }
+    .leaderboard {
+        font-size: 1.5rem;
+    }
+    .logo {
+        width: 3rem;
+        height: 2.5rem;
+    }
+}

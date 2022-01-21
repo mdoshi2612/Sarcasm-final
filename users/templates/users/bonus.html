@@ -1,0 +1,166 @@
+{% load static %}
+{% block head %}
+<META HTTP-EQUIV="refresh" CONTENT="15">
+{% endblock %}
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/play.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+      function skip() {
+        $.ajax({
+                type: "POST",
+                url: "http://localhost:8000/increase_bonus_level",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    print(data)
+                    if (data.message == "ok") {
+                        alert("ok")
+                    } else {
+                        alert("function");
+                    }
+                },
+                failure: function (errMsg) {
+                    alert("Se presentó un error al intentar el login");
+                }
+            });
+            
+          window.location.href="/play?1"
+      }
+  </script>
+<style type="text/css">
+    
+    #star {
+        height: 60px;
+    }
+
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/play.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+<h1 class='main-heading'>SARCasm</h1>
+
+<div class="container">
+    <div class="questionContainer d-flex flex-column">
+        <div class="row ml-auto" style="margin-right: auto; ">
+            <p id="TimerVivek" style="font-size: 30px;"></p>
+        </div>
+        <div class="questionDetails">
+            <div class="row questionumber">
+                <img src="{% static 'images/bonus.png' %}" height="300" alt="">
+            </div>
+        </div>
+        <span class="sub-heading" style="color: orangered; text-align: center; font-size: 4rem; font-weight: bold;">Expires at: {{expdate}}</span>
+        <!-- <div class="row questionontent"> -->
+            <div class="accordion">
+            {% if question is not None%}<div class="sub-ttle wrapper" id="bonusQuestionText"><span></span><span
+                    class="text"></span><span class="cursor">Question: {{question|safe}}</span></div>{% endif %}
+        </div>
+        <div class="row questionImage card-img" id="bonusQuestionImage">
+            {% if level.image.url is not None %}
+            <img src={{level.image.url}} class="img-responsive">
+            {% endif %}
+            {% if level.audiofile.url is not None %}
+            <audio controls id="bonusQuestionAudio">
+                <source src={{level.audiofile.url}} type="audio/mpeg">
+                Your browser does not support the audio tag.
+            </audio>
+            {% endif %}
+            {% if level.videofile.url is not None %}
+            <video width="auto" height="150" controls id="bonusQuestionVideo">
+                <source src={{level.videofile.url}} type="video/mp4">
+                Your Browser does not support the video tag
+            </video>
+            {% endif %}
+        </div>
+        <div class="row">
+            <form class="d-flex flex-column" method="POST" action="" id="answer"> {% csrf_token %}
+                 {{form}}
+            <input type="submit" value="Submit" name="submit" class="submitButton row" style="color: white; width: auto;">
+            </form>
+            <form method="POST" action="skip"> {% csrf_token %}
+            <input type="text" name="skip" value="skipped" hidden/>
+            <button type="submit" style="background: #ffd600;; height: 300%; padding: 1rem; font-size:2.5rem;  border-radius: 1rem; color: white; width: auto;">Skip</button>
+            </form>
+        </div>
+    </div>
+    <!-- {% comment %}
+    <div class="offset-2 col-md-2 col-sm-2">
+        <p onmouseover="showInsult()" class="imageArea"><img id="marioimg" src="{% static " images/mario-question.svg"
+                %}"></p>
+    </div> {% endcomment %} -->
+</div>
+
+</div>
+{% block post %}
+<script type="text/javascript">
+    var comments = ["Hey Step up your game", "You can still win", "It will be nicer if you try being smarter", "I’d agree with you but then we’d both be wrong", "Keep Typing. Maybe youll find the answer", "My friend says that you need a therapist.", "Remember what I told you: It's hard ", "Life sometimes gets hard for no reason ", "50% correct 50% incorrect", "Same old same old ", "   Maybe you don't want the prizes so bad ", "I think you are stuckkkk….", "I bet you didn't see that coming ", "This is an easy question ", "Looks like someone needs a little help ", "I am surprised you reached till here ", "It's not what you are thinking ", "JBL PORTABLE SPEAKER", "JBL WIRED HEADPHONES", "10000 mAH MI POWER BANK", "ROUTER ", "BOAT EARPHONES ", " I don't know that either ", "Good luck! You will need it "];
+    $(document).ready(function () {
+        $("#marioimg").hover(function () {
+            $("#randomInsult").css("opacity", "1");
+        }, function () {
+            $("#randomInsult").css("opacity", "0");
+        });
+    });
+    function showInsult() {
+        var comment = comments[Math.floor(Math.random() * 25)];
+        // var randomInsult = "Your " + randomBodyPart + " is " + randomAdjective + " " + randomWord;
+        var randomInsult = comment;
+        document.getElementById("randomInsult").innerHTML = randomInsult;
+    };
+
+    // Code for count-down timer 
+    var exp_date = "{{ date|date:'M d Y' }}";
+    console.log(exp_date);
+    var exp_hour = "{{ hour}}";
+    var exp_minute = "{{ minute }}";
+    var exp_second = "{{ second }}";
+    var expiry = exp_date + ' ' + exp_hour + ':' + exp_minute + ':' + exp_second;
+    // console.log({{ year }},{{ month }},{{ day }},{{ hour }},{{ minute }},{{ second }},0);
+    // var countDownDate = new Date(Date.UTC({{ year }}, { { month } }, { { day } }, { { hour } }, { { minute } }, { { second } }, 0)).getTime() - (31 * 24 * 60 * 60 * 1000);
+    // console.log(countDownDate);
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+        // console.log(now)
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        //console.log(days);
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="TimerVivek"
+        document.getElementById("TimerVivek").innerHTML = hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("TimerVivek").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+
+
+// $('#check').click(function() {
+//   if ($(this).is(':checked')) {
+//     $('#submit').removeAttr('disabled');
+//     $('#para').css('opacity','0');
+//   } else {
+//     $('#submit').attr('disabled', 'disabled');
+//   }
+// });
+</script>{% endblock %}

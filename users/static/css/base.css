@@ -1,0 +1,716 @@
+@font-face {
+    font-family: Pokemon;
+    src: url('../fonts/pokemonsolid.woff');
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
+}
+
+* {
+    font-size: 10px;
+}
+
+body {
+    background: url("../images/laptop_background.jpg") no-repeat fixed;
+    color: #ffd600;
+    background-size: cover;
+}
+
+.main-heading {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10rem;
+    line-height: 140px;
+    width: 85%;
+    margin: auto;
+    /* identical to box height */
+    color: #FFD600;
+}
+
+#reg-heading h1 {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 5rem;
+    /* identical to box height */
+    color: #FFD600;
+    margin-bottom: 1rem;
+    margin-left: 0%;
+}
+
+.team-logos h1 {
+    font-family: Pokemon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 5rem;
+    /* identical to box height */
+    color: #FFD600;
+    margin: 2rem 0;
+    margin-left: 0%;
+}
+
+#gen-info-section {
+    color: white;
+    width: 85%;
+    height: auto;
+    margin: auto;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
+}
+
+#gen-info {
+    text-align: left;
+    margin-left: 2vw;
+    margin-right: 2vw
+}
+
+.blur-back {
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+}
+
+#gen-info {
+    padding-top: 50px;
+    font-size: 2.5rem;
+}
+
+#reg-heading {
+    height: 100px;
+    width: max-content;
+    margin-left: 7.5%;
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 16px;
+    text-align: center;
+}
+
+.navbar-links {
+    z-index: 100;
+}
+
+#reg-heading h1 {
+    padding: 24px 80px;
+    font-size: 5rem;
+}
+
+body {
+    padding-bottom: 50px !important;
+}
+
+#reg-section {
+    margin-left: 7.5%;
+    width: 85%;
+    border-radius: 16px;
+}
+
+#reg-section-content {
+    padding-left: 20px;
+    padding-top: 25px;
+    font-size: 2.5rem;
+}
+
+.col-lg {
+    margin: 10px 0px;
+}
+
+.col-lg label {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.col-lg-4 {
+    margin: 10px 0px;
+}
+
+.col-lg-4 label {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.error_message span {
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+}
+
+.team-name-div,
+.player {
+    margin-top: 2rem;
+}
+
+#player2,
+#player3,
+#player4,
+#player5 {
+    display: none;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    width: 80%;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+}
+
+.single-input {
+    width: 60% !important;
+    margin: 0 2rem;
+}
+
+div *,
+div *:before,
+div *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}
+
+.team-logos {
+    margin: 2rem 0px;
+    text-align: center;
+    width: 85%;
+    margin: 4rem auto;
+}
+
+.logo {
+    width: 15rem;
+    height: 15rem;
+}
+
+.row-logos {
+    margin: 1rem 0;
+}
+
+.button {
+    display: block;
+    width: 115px;
+    height: 25px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+
+/* HIDE RADIO */
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+/* IMAGE STYLES */
+
+[type=radio]+img {
+    cursor: pointer;
+}
+
+
+/* CHECKED STYLES */
+
+[type=radio]:checked+img {
+    outline: 2px solid #f00;
+}
+
+nav {
+    width: 100%;
+    height: 10rem;
+    color: grey;
+    align-items: center;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+}
+
+.ham-nav {
+    background-color: rgb(12, 12, 88);
+    position: absolute;
+    left: 0%;
+    top: 0px;
+    width: 370px;
+    height: 370px;
+    padding-top: 70px;
+    z-index: 10;
+    border-radius: 0px 0px 9999px 0px;
+    display: none;
+    transition: 0.75s all ease-in;
+}
+
+.show {
+    display: block;
+}
+
+#navbar-img {
+    height: 5rem;
+    width: auto;
+}
+
+.navbar-ele {
+    padding: 5px 15px;
+    margin: 5px 0px;
+}
+
+.navbar-ele a {
+    color: grey;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.col-submit {
+    text-align: center;
+}
+
+input[type=button],
+input[type=submit] {
+    width: 10%;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    background-color: #FFD600;
+}
+
+@media screen and (max-width: 992px) {
+    * {
+        font-size: 8px;
+    }
+    .main-heading {
+        text-align: center;
+    }
+}
+
+#submit {
+    background-color: #ffd600;
+    border: none;
+    font-size: 2rem;
+    border-radius: 1rem;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 700;
+    margin: auto;
+}
+
+label {
+    text-align: left !important;
+}
+
+#ham {
+    z-index: 1200;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+nav {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    color: grey;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #FFFFFF;
+    border: 15px solid #8C8C8C;
+    box-sizing: border-box;
+}
+
+#navbar-img {
+    height: 50px;
+    width: auto;
+}
+
+.navbar-ele a {
+    color: grey;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    color: grey;
+    align-items: center;
+    justify-content: center;
+    /* background: #FFFFFF; */
+    border: 15px solid #8C8C8C;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    /* display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center; */
+    /* background-color: white; */
+    color: grey;
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+
+.navbar-links {
+    height: 100%;
+    width: 99%;
+}
+
+.navbar-links ul {
+    transform: translateY(-70px);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    transform: translateX(10px);
+    display: block;
+    text-decoration: none;
+    color: grey;
+    font-size: 1.5rem;
+    padding-top: 1rem;
+}
+
+.navbar-links li a:hover {
+    color: #1DA1F2
+}
+
+.toggle-button {
+    width: 40px;
+    height: 80px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+/* Radio buttons */
+
+.options {
+    margin: 2rem auto;
+    width: fit-content;
+    display: flex;
+}
+
+.options .option {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 250ms ease-in-out;
+}
+
+.options .option div {
+    margin-right: 3rem;
+}
+
+.options .option.faded {
+    opacity: 0.8;
+}
+
+.pokeball {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 0.5rem solid #333;
+    transform-origin: center bottom;
+}
+
+.pokeball .base {
+    background: #333;
+    height: 80%;
+    width: 80%;
+    padding: 10%;
+}
+
+.pokeball .upper-half {
+    position: absolute;
+    background: #f15324;
+    height: 42%;
+    width: 100%;
+}
+
+.pokeball .lower-half {
+    bottom: 0;
+    position: absolute;
+    background: white;
+    height: 42%;
+    width: 100%;
+}
+
+.pokeball .inner-circle {
+    border-radius: 50%;
+    height: 20%;
+    width: 20%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 0.5rem solid #333;
+    transform: translate(-50%, -50%);
+}
+
+.indicator-inner {
+    border-radius: 50%;
+    height: 20%;
+    width: 20%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+}
+
+.indicator {
+    border-radius: 50%;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f64c4c;
+    background: -webkit-radial-gradient(center, #f64c4c, #ff514f 0);
+    background: -moz-radial-gradient(center, #f64c4c, #ff514f 0);
+    background: radial-gradient(ellipse at center, #f64c4c, #ff514f 0);
+    opacity: 0;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(5deg);
+    }
+    5% {
+        transform: rotate(-5deg);
+    }
+    10% {
+        transform: rotate(5deg);
+    }
+    15% {
+        transform: rotate(-5deg);
+    }
+    20% {
+        transform: rotate(5deg);
+    }
+    25% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.selected {
+    animation: shake 1.5s ease-in infinite;
+}
+
+.selected .indicator {
+    opacity: 1;
+    animation: blink 1s ease-in-out infinite;
+}
+
+.selected .indicator-inner {
+    background: #f15324;
+}
+
+.radio-options {
+    font-size: 2.5rem;
+    color: white;
+}
+
+@media only screen and (max-width: 992px) {
+    nav {
+        border: none;
+        background-color: transparent;
+        background: transparent;
+    }
+    .navbar {
+        margin: 3rem;
+        background-color: transparent;
+        background: transparent;
+    }
+    #navbar-img {
+        display: none;
+    }
+    body {
+        background: url("../images/mobile_background.jpg") fixed;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+    }
+    .toggle-button {
+        display: flex;
+    }
+    .navbar-links {
+        display: none;
+        width: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        left: 0%;
+    }
+    .navbar-links ul {
+        transform: translateY(120px);
+        background-color: white;
+        flex-direction: column;
+        width: 100%;
+        transition: all 0.8s ease-in-out;
+    }
+    .navbar-links ul li {
+        width: 100%;
+        background-color: white;
+        text-align: center;
+    }
+    .navbar-links ul li a {
+        padding: .5rem 1.5rem;
+        font-size: 25px;
+    }
+    .navbar-links.active {
+        display: flex;
+    }
+    .single-input {
+        margin: 0rem;
+        display: block;
+    }
+}
+
+
+/* Background Styles Only */
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    font-family: Raleway;
+}
+
+html {
+    background-color: #DFDFDF;
+}
+
+.side-links {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.toggle-button {
+    z-index: 200;
+    transform: translateY(-5px);
+}
+
+.side-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: white;
+    width: 180px;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.side-link-youtube {
+    background-color: red;
+}
+
+.side-link-twitter {
+    background-color: #1DA1F2;
+}
+
+.side-link-github {
+    background-color: #6e5494;
+}
+
+.side-link-text {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.side-link-icon {
+    color: white;
+    font-size: 30px;
+}
+
+#navbar-img {
+    height: 90%;
+}
+
+.team-logos {
+    display: none;
+    transition: all 0.75s ease-in;
+    opacity: 0;
+}
+
+.show-logos {
+    opacity: 1;
+    display: block;
+    transition: all 0.75s ease-in;
+}
+
+@media only screen and (max-width: 600px) {
+    .radio-options {
+        margin-right: 0.25rem;
+        font-size: 1.5rem;
+    }
+    .options .option div {
+        margin-right: 1rem;
+    }
+    * {
+        font-size: 6px;
+    }
+}
