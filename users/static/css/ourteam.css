@@ -81,11 +81,6 @@ img {
     flex-direction: column;
     }
 
-    .thumb {
-    width: 40px;
-    height: 40px;
-    }
-
     .main-heading{
         font-size: 2rem;
     }
@@ -97,11 +92,8 @@ img {
     img { 
     border: 2px solid black;
 }
-    
-    .thumb {
-    width: 40px;
-    height: 40px;
+.thumb{
+    width: 100px;
 }
-
     
 }

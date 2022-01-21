@@ -17,7 +17,13 @@ body {
   color: #ffd600;
   background-size: cover;
 }
-
+.blur-back {
+  background-color: rgba(255, 255, 255, 0.13);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+}
 .main-heading {
   font-family: Pokemon;
   font-style: normal;
@@ -78,6 +84,75 @@ body {
   margin: 10vh auto;
 }
 
+nav {
+  width: 100%;
+  height: 10rem;
+  color: grey;
+  align-items: center;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+}
+
+.ham-nav {
+  background-color: rgb(12, 12, 88);
+  position: absolute;
+  left: 0%;
+  top: 0px;
+  width: 370px;
+  height: 370px;
+  padding-top: 70px;
+  z-index: 10;
+  border-radius: 0px 0px 9999px 0px;
+  display: none;
+  transition: 0.75s all ease-in;
+}
+
+.show {
+  display: block;
+}
+
+#navbar-img {
+  height: 5rem;
+  width: auto;
+}
+
+.navbar-ele {
+  padding: 5px 15px;
+  margin: 5px 0px;
+}
+
+.navbar-ele a {
+  color: grey;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.col-submit {
+  text-align: center;
+}
+nav {
+  width: 100%;
+  height: 100px;
+  flex-direction: row;
+  color: grey;
+  align-items: center;
+  justify-content: space-evenly;
+  background: #FFFFFF;
+  border: 15px solid #8C8C8C;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  opacity: 0;
+  display: none;
+}
+.show-nav{
+  opacity: 1;
+  display: flex;
+}
+.slide-down{
+  transform: translateY(100px);
+}
 input[type="submit"] {
   width: 10%;
   padding: 1rem;
@@ -97,13 +172,24 @@ input[type="submit"] {
   color: white;
 }
 
-.score {
-  position: absolute;
-  margin-right: 4rem;
-  margin-top: 4rem;
-  color: #081341;
+.score{
+  background-color: #f64c4c;
+  border-radius: 1rem;
+  padding: 10px;
 }
-
+.team-name{
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+.points{
+  font-size: 2.7rem;
+}
+.level{
+  font-size: 2rem;
+  font-weight: 500;
+}
 .pokeball {
   height: 5rem;
   width: 5rem;
@@ -174,6 +260,54 @@ input[type="submit"] {
   opacity: 0;
 }
 
+@keyframes blink {
+  0% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 0.5;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0% {
+      transform: rotate(5deg);
+  }
+  5% {
+      transform: rotate(-5deg);
+  }
+  10% {
+      transform: rotate(5deg);
+  }
+  15% {
+      transform: rotate(-5deg);
+  }
+  20% {
+      transform: rotate(5deg);
+  }
+  25% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(0deg);
+  }
+}
+
+.selected {
+  animation: shake 1.5s ease-in infinite;
+}
+
+.selected .indicator {
+  opacity: 1;
+  animation: blink 1s ease-in-out infinite;
+}
+
+.selected .indicator-inner {
+  background: #f15324;
+}
 .dropdown {
   position: relative;
   display: inline-block;
@@ -199,4 +333,23 @@ input[type="submit"] {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+@media only screen and (max-width: 600px){
+  .main-heading{
+    font-size: 7.5rem;
+    margin-top: 80px;
+  }
+  .score-card{
+    width: 90% !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 35% 65%;
+
+  }
+  .points{
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+  }
 }
