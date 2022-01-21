@@ -106,9 +106,9 @@
     <br>
     <br>
     <div id="reg-section" class="blur-back">
-        <form action="" method="POST" id="reg-form">
+        <form action="" method="POST" id="reg-form">{% csrf_token %}
             <div id="reg-section-content">
-                {% csrf_token %}
+                
                 <div class="container">
                     {% if error_message %}
                     <div class="row error_message">

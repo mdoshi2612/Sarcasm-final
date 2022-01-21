@@ -6,26 +6,6 @@
 * {
     font-family: Raleway;
 }
-<<<<<<< HEAD
-body {
-    background: url("../images/laptop_background.jpg") no-repeat fixed;
-    color: #ffd600;
-    background-size: 100% 100%;
-    padding-bottom: 50px !important;
-    margin: 0;
-    padding: 0;
-}
-
-*{
-margin:0;
-padding:0
-}
-
-
-@media only screen and (max-width:992px) {
-    .body{
-        background: url("../images/mobile_background.jpg") fixed;
-=======
 
 * {
     font-size: 15px;
@@ -99,7 +79,6 @@ img {
     .thumb {
     width: 40px;
     height: 40px;
->>>>>>> 8fe27522fe133de7681c5c01c69ce2cb4a4521aa
     }
 
     .main-heading{
