@@ -1,16 +1,19 @@
 from PIL import Image, ImageDraw, ImageFont
+import os 
+
 def generate_image(pokemon, team_name):
     # Front Image
-    filename1 = 'final1-01.png'
+    filename1 = './final1-01.png'
     
-    # Back Image
     filename = './pokemons/'+pokemon+'.png'
+    
+    # Open Background Image
+    background = Image.open(filename1)
     
     # Open Front Image
     frontImage = Image.open(filename)
     
-    # Open Background Image
-    background = Image.open(filename1)
+
 
     # Convert image to RGBA
     frontImage = frontImage.convert("RGBA")
@@ -62,6 +65,7 @@ def generate_image(pokemon, team_name):
     d.text((x, 1900), team_name, font=fnt, fill=(255, 191, 0, 255))
 
     out = Image.alpha_composite(background, txt)
+    return out
 
-    out.show()
-
+image = generate_image("Charizard", "Pokemon")
+image.show()
