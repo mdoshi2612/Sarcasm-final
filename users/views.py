@@ -217,7 +217,7 @@ class Play(View) :
 
 		form = self.form_class(request.POST)    #What if request != 'POST' ????
 		if form.is_valid():
-			ans = form.cleaned_data.get('answer').lower()
+			ans = form.cleaned_data.get('answer').lower().strip()
 			correct_answers = cur_level.answer.split(',')
 			print(correct_answers)
 			if ans in correct_answers:
@@ -302,34 +302,35 @@ class Bonus(View) :
 		bonus_level = BonusQuestion.objects.get(level_id=cur_user.bonus_level_id)
 		form = self.form_class(request.POST)    #What if request != 'POST' ????
 		if form.is_valid():
-			if(form.cleaned_data.get('submit')):
-				print("Submitting")
-				ans = form.cleaned_data.get('answer')
-				if ans == bonus_level.answer:
-					
-					level_number = bonus_level.level_id
-					if cur_user.bonus_level_id == level_number:
-						try:
-							cur_user.bonus_level_id += 1
-							cur_user.bonus_attempted=cur_user.bonus_attempted+1
-							cur_user.points += 6	 					
-							cur_user.save()
-							return redirect(reverse('play'))
-						except:
-							pass
-					else:
-						print("Cant play Bonus Twice")
+			# if(form.cleaned_data.get('submit')):
+			# 	print("Submitting")
+			ans = form.cleaned_data.get('answer').lower().strip()
+			correct_answers = bonus_level.answer.split(',')
+			if ans in correct_answers:
+				
+				level_number = bonus_level.level_id
+				if cur_user.bonus_level_id == level_number:
+					try:
+						cur_user.bonus_level_id += 1
+						cur_user.bonus_attempted=cur_user.bonus_attempted+1
+						cur_user.points += 6	 					
+						cur_user.save()
 						return redirect(reverse('play'))
+					except:
+						pass
 				else:
-					print("Wrong Answer! Try Again")
-					return redirect(reverse('bonus'))
-			if(form.cleaned_data.get('skip')):
-				print("Skipping")
-				cur_user.bonus_level_id += 1
-				cur_user.bonus_attempted=cur_user.bonus_attempted+1
-				cur_user.points += 0	 					
-				cur_user.save()
-				return redirect(reverse('play'))
+					print("Cant play Bonus Twice")
+					return redirect(reverse('play'))
+			else:
+				print("Wrong Answer! Try Again")
+				return redirect(reverse('bonus'))
+		if(form.cleaned_data.get('skip')):
+			print("Skipping")
+			cur_user.bonus_level_id += 1
+			cur_user.bonus_attempted=cur_user.bonus_attempted+1
+			cur_user.points += 0	 					
+			cur_user.save()
+			return redirect(reverse('play'))
 
 		cur_user.bonus_level_id += 1
 		cur_user.bonus_attempted=cur_user.bonus_attempted+1
