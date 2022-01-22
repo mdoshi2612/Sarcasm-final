@@ -31,6 +31,10 @@ body {
     font-size: 3rem;
 }
 
+.score {
+    font-size: 3rem;
+}
+
 .main-heading {
     font-family: Pokemon;
     font-style: normal;
