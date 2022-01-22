@@ -272,11 +272,16 @@ input[type="radio"] {
 }
 
 @media screen and (max-width: 992px) {
+    * {
+        font-size: 6px;
+    }
     body {
         background: url("../images/mobile_background.jpg") fixed;
     }
     .main-heading {
-        font-size: 5rem;
+        font-size: 4rem;
+        text-align: center;
+        width: 100%;
     }
     .leaderboard {
         font-size: 1.5rem;
@@ -284,5 +289,11 @@ input[type="radio"] {
     .logo {
         width: 3rem;
         height: 2.5rem;
+    }
+    .table-container {
+        width: 80%;
+    }
+    .team-name {
+        font-size: 1.5rem;
     }
 }
