@@ -312,4 +312,10 @@ input[type="radio"] {
     .team-name {
         font-size: 1.5rem;
     }
+    .rank {
+        font-size: 1.5rem;
+    }
+    .score {
+        font-size: 1.5rem;
+    }
 }
