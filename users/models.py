@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
 
 # Create your models here.
 
@@ -44,6 +45,7 @@ class Team(models.Model):
 	# score = models.IntegerField(default=0)
 	bonus_attempted = models.IntegerField(default=0)
 	bonus_level_id = models.IntegerField(default=1)
+	latest_question_date = models.DateTimeField(default=datetime(2022, 1, 23, 23, 00, 00, 0))
 
 class BonusQuestion(models.Model):
 	# question = RichTextField(config_name = 'awesome_ckeditor', blank = True)

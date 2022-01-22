@@ -20,6 +20,7 @@ import csv
 from django.templatetags.static import static
 from django.contrib.staticfiles.storage import staticfiles_storage
 from PIL import Image, ImageDraw, ImageFont
+from datetime import datetime, timedelta
 # Create your views here.
 
 def csv_teams(request):
@@ -229,6 +230,7 @@ class Play(View) :
 				level_number = cur_user.current_level.level_id
 				if level_number == 65 :
 					cur_user.points=cur_user.points+3
+					cur_user.latest_question_date = datetime.now()
 					cur_user.current_level_time = timezone.now()
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1) 	 					
 					cur_user.save()
@@ -240,6 +242,8 @@ class Play(View) :
 				try:
 					cur_user.current_level = Level.objects.get(level_id = level_number + 1)
 					cur_user.points=cur_user.points+3
+					cur_user.latest_question_date = datetime.now()
+					
 					# cur_user.current_level_time = timezone.now()	 					
 					cur_user.save()
 				except:
@@ -344,10 +348,10 @@ def leaderboard(request):
 	if request.method == 'POST':
 		league = request.POST.get('league')		
 		if league == "Freshies Only":
-			top_teams = Team.objects.filter(league = "Freshies Only").order_by('-points')
+			top_teams = Team.objects.filter(league = "Freshies Only").order_by('-points', 'latest_question_date')
 			context = {'top_teams': top_teams}
 			return render(request,'users/leaderboard.html', context)
-		top_teams = Team.objects.order_by('-points')
+		top_teams = Team.objects.order_by('-points', 'latest_question_date')
 		context = {'top_teams': top_teams}
 		return render(request,'users/leaderboard.html', context)
 	return render(request,'users/leaderboard.html')
@@ -368,16 +372,7 @@ def increase_bonus_level(request) :
 			cur_user.save()
 			return redirect(reverse('play'))
 
-	if request.method == 'POST':
-		league = request.POST.get('league')		
-		if league == "Freshies Only":
-			top_teams = Team.objects.filter(league = "Freshies Only").order_by('-points')
-			context = {'top_teams': top_teams}
-			return render(request,'users/leaderboard.html', context)
-		top_teams = Team.objects.order_by('-points')
-		context = {'top_teams': top_teams}
-		return render(request,'users/leaderboard.html', context)
-	return render(request,'users/leaderboard.html')
+
 
 def generate_image(pokemon, team_name):
     # Front Image
