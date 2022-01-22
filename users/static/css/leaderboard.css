@@ -14,9 +14,21 @@
     font-family: Raleway;
 } */
 
+* {
+    font-size: 10px;
+}
+
 body {
     background: url("../images/laptop_background.jpg");
     background-size: cover;
+}
+
+.team-name {
+    font-size: 3rem;
+}
+
+.rank {
+    font-size: 3rem;
 }
 
 .main-heading {
